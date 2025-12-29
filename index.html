@@ -9,50 +9,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { 
-            /* 调整为更有质感的浅冰蓝 */
-            --brand-blue-light: #bde4f4; 
-            /* 关键：顶部文字使用深色，确保绝对清晰 */
-            --top-text-color: #0c4a6e; 
+            --brand-blue-light: #bde4f4; /* 浅冰蓝 */
+            --brand-blue-dark: #0ea5e9;  /* 按钮及交互蓝 */
+            --top-text: #0c4a6e;        /* 顶部深色文字，确保清晰 */
             --text-main: #1e293b;
         }
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: var(--text-main); margin: 0; }
 
-        /* --- 1. 顶部通知栏：浅蓝底 + 深蓝字 (解决不清晰问题) --- */
+        /* --- 1. 顶部通知栏 (浅蓝背景 + 深蓝文字 = 清晰) --- */
         .top-promo { 
-            background-color: var(--brand-blue-light) !important; 
-            color: var(--top-text-color) !important; 
+            background-color: var(--brand-blue-light); 
+            color: var(--top-text); 
             display: flex; justify-content: center; align-items: center; 
             padding: 20px 0;
             font-size: 16px; 
-            font-weight: 800; /* 加粗文字 */
+            font-weight: 700; 
             letter-spacing: 0.5px;
         }
-        .top-promo i { font-size: 20px; margin-right: 12px; color: var(--top-text-color); }
-
-        /* 优惠码：白底黑字，对比度最高 */
+        .top-promo i { font-size: 20px; margin-right: 12px; }
         .promo-pill {
             background: #ffffff;
-            color: #000000;
+            color: #000;
             padding: 4px 15px;
             border-radius: 50px;
             margin-left: 12px;
             font-family: monospace;
             font-weight: 900;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        /* --- 2. 服务栏 --- */
+        /* --- 2. 服务条 --- */
         .service-nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 10px 40px; }
         .service-inner { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .service-item { display: flex; align-items: center; gap: 8px; color: #64748b; font-size: 12px; font-weight: 600; }
-        .service-item i { color: #0ea5e9; }
+        .service-item i { color: var(--brand-blue-dark); }
 
         /* --- 3. Header --- */
         .main-header { background: white; border-bottom: 1px solid #e2e8f0; padding: 20px 40px; position: sticky; top: 0; z-index: 1000; }
         .header-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; }
         .logo { font-size: 24px; font-weight: 800; text-transform: uppercase; color: #0f172a; }
-        .logo span { color: #0ea5e9; }
+        .logo span { color: var(--brand-blue-dark); }
 
         .search-area { flex-grow: 1; margin: 0 60px; position: relative; }
         .search-input { 
@@ -60,7 +56,7 @@
             border: 2px solid #f1f5f9; border-radius: 12px; 
             background: #f8fafc; font-size: 15px; outline: none;
         }
-        .search-input:focus { border-color: #0ea5e9; background: white; }
+        .search-input:focus { border-color: var(--brand-blue-dark); background: white; }
         .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
 
         .nav-actions { display: flex; gap: 40px; }
@@ -72,63 +68,5 @@
         .layout { max-width: 1400px; margin: 0 auto; display: flex; padding: 40px; gap: 50px; }
         .sidebar { width: 260px; flex-shrink: 0; }
         .cat-box { background: white; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; }
-        .cat-item { display: block; padding: 15px 20px; color: #475569; font-size: 15px; text-decoration: none; border-bottom: 1px solid #f8fafc; }
-        .cat-item:hover, .cat-item.active { background: #f0f9ff; color: #0ea5e9; font-weight: 700; border-left: 4px solid #0ea5e9; }
-
-        /* --- 5. 产品网格 --- */
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; flex-grow: 1; }
-        .card { background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 30px; display: flex; flex-direction: column; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: #0ea5e9; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .btn-buy { background: #0ea5e9; color: white; text-align: center; padding: 15px; border-radius: 12px; font-weight: 700; margin-top: auto; }
-    </style>
-</head>
-<body>
-
-    <div class="top-promo">
-        <i class="fa-solid fa-gift"></i>
-        <span>
-            <span data-i18n="p_text">10% Rabatt für Neukunden*</span>
-            <span class="promo-pill">WELCOME10</span>
-        </span>
-    </div>
-
-    <div class="service-nav">
-        <div class="service-inner">
-            <div class="flex gap-10">
-                <div class="service-item"><i class="fa-solid fa-check"></i> <span data-i18n="s1">Über 100.000 Produkte</span></div>
-                <div class="service-item"><i class="fa-solid fa-check"></i> <span data-i18n="s2">Versandkostenfrei ab 50 CHF</span></div>
-                <div class="service-item"><i class="fa-solid fa-check"></i> <span data-i18n="s3">Original Schweizer Apotheke</span></div>
-            </div>
-            <select id="langBox" class="text-xs font-bold outline-none cursor-pointer">
-                <option value="de">DEUTSCH</option>
-                <option value="zh">中文 (ZH)</option>
-            </select>
-        </div>
-    </div>
-
-    <header class="main-header">
-        <div class="header-inner">
-            <div class="logo">WEDER<span>PHARMA</span></div>
-            <div class="search-area">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" placeholder="Suche..." class="search-input">
-            </div>
-            <div class="nav-actions">
-                <div class="action-btn"><i class="fa-regular fa-user"></i><span data-i18n="h_acc">Account</span></div>
-                <div class="action-btn"><i class="fa-solid fa-cart-shopping"></i><span data-i18n="h_cart">Cart</span></div>
-            </div>
-        </div>
-    </header>
-
-    <div class="layout">
-        <aside class="sidebar hidden md:block">
-            <div class="cat-box">
-                <a class="cat-item active" data-i18n="c_all">Alle Produkte</a>
-                <a class="cat-item">Gastroenterologie</a>
-                <a class="cat-item">Kardiologie</a>
-                <a class="cat-item">Neurologie</a>
-                <a class="cat-item">Vitamine</a>
-            </div>
-        </aside>
-        <main class="product-grid">
-            <div class="card
+        .cat-item { display: block; padding: 15px 20px; color: #475569; font-size: 15px; text-decoration: none; border-bottom: 1px solid #f8fafc; transition: 0.2s; }
+        .cat-item:hover, .cat-item.active { background: #f0f9ff; color: var(--brand-blue-dark); font-weight: 700; border-left: 4px solid var(--brand-blue-dark);
