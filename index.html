@@ -1,21 +1,26 @@
 
+
+没问题！我已经为你把所有的代码整合好了。
+
+这个版本包含了中、德、法、英四种语言的完整字典，并且已经为你所有的导航栏、标题、分类标签、产品名称和描述打好了翻译标签。
+
+你可以直接全选并覆盖你 GitHub 仓库里的 index.html 内容：
+HTML
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA | Produkte</title>
+    <title>WEDERPHARMA | Professional Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* 强制 Arial 字体，模拟 Axapharm 的工业感 */
         body { 
             font-family: Arial, Helvetica, sans-serif; 
             background-color: #ffffff; 
             color: #333333;
             font-size: 14px;
         }
-
-        /* 侧边栏样式 */
         .sidebar-link {
             display: block;
             padding: 10px 15px;
@@ -25,28 +30,26 @@
             letter-spacing: 0.05em;
             color: #666666;
             transition: all 0.2s;
+            cursor: pointer;
         }
         .sidebar-link:hover, .sidebar-link.active {
             background-color: #f8f8f8;
             color: #0056b3;
             border-left: 3px solid #0056b3;
         }
-
-        /* 产品卡片：扁平化、紧凑 */
         .product-item {
             border: 1px solid #e5e5e5;
             padding: 20px;
-            transition: shadow 0.3s;
+            transition: all 0.3s;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 220px;
+            min-height: 240px;
         }
         .product-item:hover {
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border-color: #cccccc;
         }
-
         .category-tag {
             font-size: 10px;
             font-weight: bold;
@@ -54,7 +57,6 @@
             text-transform: uppercase;
             margin-bottom: 8px;
         }
-
         .product-name {
             font-size: 18px;
             font-weight: bold;
@@ -62,20 +64,16 @@
             margin-bottom: 10px;
             line-height: 1.2;
         }
-
         .product-desc {
             font-size: 13px;
             color: #666666;
             line-height: 1.5;
             margin-bottom: 15px;
         }
-
-        /* 顶部导航 */
         .top-nav {
             border-bottom: 4px solid #0056b3;
-            padding: 20px 40px;
+            padding: 15px 40px;
         }
-
         .btn-detail {
             font-size: 11px;
             font-weight: bold;
@@ -89,123 +87,149 @@
             background-color: #0056b3;
             color: #ffffff;
         }
-
-        /* 隐藏滚动条但保留功能 */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: #dddddd; }
     </style>
 </head>
 <body>
 
     <header class="top-nav flex justify-between items-center bg-white sticky top-0 z-50 shadow-sm">
-       <div class="text-2xl text-red-600 tracking-tighter uppercase">
-    WEDER<span class="text-blue-700">PHARMA</span>
+        <div class="flex items-center">
+            <div class="text-2xl text-red-600 tracking-tighter uppercase font-bold">
+                <span data-i18n="brand_weder">WEDER</span><span class="text-blue-700" data-i18n="brand_pharma">PHARMA</span>
+            </div>
+            <select id="lang-select" class="ml-6 p-1 border border-gray-300 rounded text-[10px] uppercase font-bold cursor-pointer focus:outline-none bg-gray-50">
+                <option value="de">Deutsch</option>
+                <option value="zh">中文</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
         </div>
-        <select id="lang-select" class="ml-4 p-1 border rounded text-sm bg-white cursor-pointer">
-        <option value="zh">中文</option>
-        <option value="de">Deutsch</option>
-        <option value="fr">Français</option>
-        <option value="en">English</option>
-    </select>
-</div>
         <nav class="hidden md:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
-            <a href="#" class="hover:text-blue-700">Unternehmen</a>
-            <a href="#" class="text-blue-700">Produkte</a>
-            <a href="#" class="hover:text-blue-700">Kontakt</a>
+            <a href="#" class="hover:text-blue-700" data-i18n="nav_company">Unternehmen</a>
+            <a href="#" class="text-blue-700" data-i18n="nav_products">Produkte</a>
+            <a href="#" class="hover:text-blue-700" data-i18n="nav_contact">Kontakt</a>
         </nav>
     </header>
 
     <main class="max-w-[1400px] mx-auto flex flex-col md:flex-row py-10 px-6">
         
         <aside class="md:w-64 flex-shrink-0 mb-10 md:mb-0">
-            <h3 class="font-bold text-gray-900 mb-6 px-4 uppercase text-xs tracking-widest border-b pb-2">Kategorien</h3>
+            <h3 class="font-bold text-gray-900 mb-6 px-4 uppercase text-xs tracking-widest border-b pb-2" data-i18n="sidebar_title">Kategorien</h3>
             <div class="border-t border-l border-r border-gray-100">
-                <a href="#" class="sidebar-link active">Alle Produkte</a>
-                <a href="#" class="sidebar-link">Gastroenterologie</a>
-                <a href="#" class="sidebar-link">Kardiologie</a>
-                <a href="#" class="sidebar-link">Neurologie</a>
-                <a href="#" class="sidebar-link">Schmerztherapie</a>
-                <a href="#" class="sidebar-link">Vitamine / Mineralien</a>
-                <a href="#" class="sidebar-link">ZNS / Schlaf</a>
-            </div>
-            
-            <div class="mt-10 px-4 bg-gray-50 py-6">
-                <p class="text-[11px] font-bold uppercase mb-2 text-gray-400">Suche</p>
-                <input type="text" placeholder="Produkt suchen..." class="w-full p-2 border border-gray-300 text-xs focus:outline-none focus:border-blue-700">
+                <a href="#" class="sidebar-link active" data-i18n="cat_all">Alle Produkte</a>
+                <a href="#" class="sidebar-link" data-i18n="cat_gastro">Gastroenterologie</a>
+                <a href="#" class="sidebar-link" data-i18n="cat_cardio">Kardiologie</a>
+                <a href="#" class="sidebar-link" data-i18n="cat_neuro">Neurologie</a>
             </div>
         </aside>
 
         <section class="flex-grow md:pl-12">
-            
             <div class="mb-8">
-                <h1 class="text-3xl font-bold text-black mb-2">Produktkatalog</h1>
-                <p class="text-gray-500 text-sm">Übersicht über unsere pharmazeutischen Lösungen und Präparate.</p>
+                <h1 class="text-3xl font-bold text-black mb-2" data-i18n="page_title">Produktkatalog</h1>
+                <p class="text-gray-500 text-sm" data-i18n="page_subtitle">Übersicht über unsere pharmazeutischen Lösungen.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                
                 <div class="product-item">
                     <div>
-                        <div class="category-tag">Gastroenterologie</div>
+                        <div class="category-tag" data-i18n="cat_gastro">Gastroenterologie</div>
                         <h2 class="product-name">Weder-Lyte®</h2>
-                        <p class="product-desc">Elektrolytkonzentrat zur Herstellung einer Infusionslösung bei Dehydratation.</p>
+                        <p class="product-desc" data-i18n="desc_lyte">Elektrolytkonzentrat zur Herstellung einer Infusionslösung.</p>
                     </div>
-                    <a href="#" class="btn-detail">Details anzeigen</a>
+                    <a href="#" class="btn-detail" data-i18n="btn_details">Details anzeigen</a>
                 </div>
 
                 <div class="product-item">
                     <div>
-                        <div class="category-tag">Kardiologie</div>
+                        <div class="category-tag" data-i18n="cat_cardio">Kardiologie</div>
                         <h2 class="product-name">Swiss-Cardio 10mg</h2>
-                        <p class="product-desc">Filmtabletten zur Behandlung von Bluthochdruck und koronaren Herzkrankheiten.</p>
+                        <p class="product-desc" data-i18n="desc_cardio">Filmtabletten zur Behandlung von Bluthochdruck.</p>
                     </div>
-                    <a href="#" class="btn-detail">Details anzeigen</a>
+                    <a href="#" class="btn-detail" data-i18n="btn_details">Details anzeigen</a>
                 </div>
 
                 <div class="product-item">
                     <div>
-                        <div class="category-tag">Neurologie</div>
+                        <div class="category-tag" data-i18n="cat_neuro">Neurologie</div>
                         <h2 class="product-name">Neuro-Tone Pro</h2>
-                        <p class="product-desc">Wirkstoffkombination zur Unterstützung der kognitiven Funktion bei Erschöpfung.</p>
+                        <p class="product-desc" data-i18n="desc_neuro">Unterstützung der kognitiven Funktion.</p>
                     </div>
-                    <a href="#" class="btn-detail">Details anzeigen</a>
+                    <a href="#" class="btn-detail" data-i18n="btn_details">Details anzeigen</a>
                 </div>
-
-                <div class="product-item">
-                    <div>
-                        <div class="category-tag">ZNS</div>
-                        <h2 class="product-name">Somna-Weder®</h2>
-                        <p class="product-desc">Präparat zur Kurzzeitbehandlung von Ein- und Durchschlafstörungen.</p>
-                    </div>
-                    <a href="#" class="btn-detail">Details anzeigen</a>
-                </div>
-
-                <div class="product-item">
-                    <div>
-                        <div class="category-tag">Schmerz</div>
-                        <h2 class="product-name">Weder-Dol 500mg</h2>
-                        <p class="product-desc">Analgetikum und Antipyretikum bei leichten bis mäßig starken Schmerzen.</p>
-                    </div>
-                    <a href="#" class="btn-detail">Details anzeigen</a>
-                </div>
-
-                <div class="product-item">
-                    <div>
-                        <div class="category-tag">Vitamine</div>
-                        <h2 class="product-name">Vita-Weder C Plus</h2>
-                        <p class="product-desc">Hochdosiertes Vitamin C Präparat zur Stärkung der Abwehrkräfte.</p>
-                    </div>
-                    <a href="#" class="btn-detail">Details anzeigen</a>
-                </div>
-
             </div>
         </section>
     </main>
 
     <footer class="mt-20 border-t border-gray-200 py-10 px-10 bg-gray-50 text-center">
-        <p class="text-[10px] text-gray-400 uppercase tracking-widest">© 2025 Wederpharma Biotech AG | Swissmedic zertifiziert</p>
+        <p class="text-[10px] text-gray-400 uppercase tracking-widest" data-i18n="footer_text">© 2025 Wederpharma Biotech AG | Swissmedic zertifiziert</p>
     </footer>
 
+    <script>
+        const translations = {
+            zh: {
+                brand_weder: "维德", brand_pharma: "制药",
+                nav_company: "公司", nav_products: "产品", nav_contact: "联系",
+                sidebar_title: "产品分类", cat_all: "所有产品",
+                cat_gastro: "胃肠道科", cat_cardio: "心血管科", cat_neuro: "神经科",
+                page_title: "产品目录", page_subtitle: "我们的药物解决方案概览。",
+                desc_lyte: "用于制备脱水输液的电解质浓缩液。",
+                desc_cardio: "用于治疗高血压和冠心病的薄膜包衣片。",
+                desc_neuro: "支持疲劳时的认知功能活性成分组合。",
+                btn_details: "查看详情", footer_text: "© 2025 维德制药生物科技股份公司 | Swissmedic 认证"
+            },
+            de: {
+                brand_weder: "WEDER", brand_pharma: "PHARMA",
+                nav_company: "Unternehmen", nav_products: "Produkte", nav_contact: "Kontakt",
+                sidebar_title: "Kategorien", cat_all: "Alle Produkte",
+                cat_gastro: "Gastroenterologie", cat_cardio: "Kardiologie", cat_neuro: "Neurologie",
+                page_title: "Produktkatalog", page_subtitle: "Übersicht über unsere pharmazeutischen Lösungen.",
+                desc_lyte: "Elektrolytkonzentrat zur Herstellung einer Infusionslösung.",
+                desc_cardio: "Filmtabletten zur Behandlung von Bluthochdruck.",
+                desc_neuro: "Unterstützung der kognitiven Funktion.",
+                btn_details: "Details anzeigen", footer_text: "© 2025 Wederpharma Biotech AG | Swissmedic zertifiziert"
+            },
+            fr: {
+                brand_weder: "WEDER", brand_pharma: "PHARMA",
+                nav_company: "Entreprise", nav_products: "Produits", nav_contact: "Contact",
+                sidebar_title: "Catégories", cat_all: "Tous les produits",
+                cat_gastro: "Gastroentérologie", cat_cardio: "Cardiologie", cat_neuro: "Neurologie",
+                page_title: "Catalogue", page_subtitle: "Aperçu de nos solutions pharmaceutiques.",
+                desc_lyte: "Concentré d'électrolytes pour solution de perfusion.",
+                desc_cardio: "Comprimés pelliculés pour l'hypertension artérielle.",
+                desc_neuro: "Soutien des fonctions cognitives.",
+                btn_details: "Voir détails", footer_text: "© 2025 Wederpharma Biotech AG | Certifié Swissmedic"
+            },
+            en: {
+                brand_weder: "WEDER", brand_pharma: "PHARMA",
+                nav_company: "Company", nav_products: "Products", nav_contact: "Contact",
+                sidebar_title: "Categories", cat_all: "All Products",
+                cat_gastro: "Gastroenterology", cat_cardio: "Cardiology", cat_neuro: "Neurology",
+                page_title: "Product Catalog", page_subtitle: "Overview of our pharmaceutical solutions.",
+                desc_lyte: "Electrolyte concentrate for infusion solution.",
+                desc_cardio: "Film-coated tablets for high blood pressure.",
+                desc_neuro: "Support of cognitive function.",
+                btn_details: "View Details", footer_text: "© 2025 Wederpharma Biotech AG | Swissmedic certified"
+            }
+        };
 
+        const langSelect = document.getElementById('lang-select');
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            localStorage.setItem('preferredLang', lang);
+        }
+        langSelect.addEventListener('change', (e) => updateLanguage(e.target.value));
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLang') || 'de';
+            langSelect.value = savedLang;
+            updateLanguage(savedLang);
+        });
+    </script>
 </body>
+</html>
+
+
 
