@@ -3,70 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA | Swiss Premium Pharmacy</title>
+    <title>WEDERPHARMA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --brand-blue-light: #bde4f4; /* 浅冰蓝 */
-            --brand-blue-dark: #0ea5e9;  /* 按钮及交互蓝 */
-            --top-text: #0c4a6e;        /* 顶部深色文字，确保清晰 */
-            --text-main: #1e293b;
+            --light-blue: #bde4f4; /* 你要的浅蓝色 */
+            --dark-blue: #0c4a6e;  /* 确保清晰的深色字 */
+            --btn-blue: #0ea5e9;
         }
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: var(--text-main); margin: 0; }
-
-        /* --- 1. 顶部通知栏 (浅蓝背景 + 深蓝文字 = 清晰) --- */
-        .top-promo { 
-            background-color: var(--brand-blue-light); 
-            color: var(--top-text); 
-            display: flex; justify-content: center; align-items: center; 
-            padding: 20px 0;
-            font-size: 16px; 
-            font-weight: 700; 
-            letter-spacing: 0.5px;
+        body { background-color: #f8fafc; color: #1e293b; margin: 0; font-family: sans-serif; }
+        
+        /* 顶部：浅蓝底 + 深色字 = 绝对清晰 */
+        .top-banner { 
+            background-color: var(--light-blue); 
+            color: var(--dark-blue); 
+            text-align: center; 
+            padding: 20px; 
+            font-weight: 800; 
+            font-size: 18px;
         }
-        .top-promo i { font-size: 20px; margin-right: 12px; }
-        .promo-pill {
-            background: #ffffff;
-            color: #000;
-            padding: 4px 15px;
-            border-radius: 50px;
-            margin-left: 12px;
-            font-family: monospace;
-            font-weight: 900;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
+        .promo-pill { background: white; color: black; padding: 2px 10px; border-radius: 4px; margin-left: 10px; border: 1px solid #ddd; }
 
-        /* --- 2. 服务条 --- */
-        .service-nav { background: white; border-bottom: 1px solid #e2e8f0; padding: 10px 40px; }
-        .service-inner { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .service-item { display: flex; align-items: center; gap: 8px; color: #64748b; font-size: 12px; font-weight: 600; }
-        .service-item i { color: var(--brand-blue-dark); }
+        .header { background: white; padding: 20px 40px; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 24px; font-weight: 900; }
+        .logo span { color: var(--btn-blue); }
 
-        /* --- 3. Header --- */
-        .main-header { background: white; border-bottom: 1px solid #e2e8f0; padding: 20px 40px; position: sticky; top: 0; z-index: 1000; }
-        .header-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; }
-        .logo { font-size: 24px; font-weight: 800; text-transform: uppercase; color: #0f172a; }
-        .logo span { color: var(--brand-blue-dark); }
+        .container { max-width: 1400px; margin: 40px auto; display: grid; grid-template-columns: 250px 1fr; gap: 40px; padding: 0 20px; }
+        
+        .sidebar { background: white; border-radius: 12px; border: 1px solid #e2e8f0; height: fit-content; }
+        .cat-item { display: block; padding: 15px 20px; text-decoration: none; color: #475569; border-bottom: 1px solid #f1f5f9; }
+        .cat-item.active { background: #f0f9ff; color: var(--btn-blue); font-weight: bold; }
 
-        .search-area { flex-grow: 1; margin: 0 60px; position: relative; }
-        .search-input { 
-            width: 100%; padding: 12px 20px 12px 50px; 
-            border: 2px solid #f1f5f9; border-radius: 12px; 
-            background: #f8fafc; font-size: 15px; outline: none;
-        }
-        .search-input:focus { border-color: var(--brand-blue-dark); background: white; }
-        .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .card { background: white; border: 1px solid #e2e8f0; border-radius: 15px; padding: 25px; display: flex; flex-direction: column; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .c-tag { color: var(--btn-blue); font-size: 11px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+        .c-title { font-size: 18px; font-weight: 700; margin-bottom: 15px; color: #1e293b; }
+        .btn { background: var(--btn-blue); color: white; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: auto; }
+    </style>
+</head>
+<body>
 
-        .nav-actions { display: flex; gap: 40px; }
-        .action-btn { display: flex; flex-direction: column; align-items: center; cursor: pointer; color: #1e293b; }
-        .action-btn i { font-size: 22px; margin-bottom: 4px; color: #334155; }
-        .action-btn span { font-size: 11px; font-weight: 700; text-transform: uppercase; }
+    <div class="top-banner">
+        <i class="fa-solid fa-gift"></i> 10% Rabatt für Neukunden <span class="promo-pill">WELCOME10</span>
+    </div>
 
-        /* --- 4. 布局 --- */
-        .layout { max-width: 1400px; margin: 0 auto; display: flex; padding: 40px; gap: 50px; }
-        .sidebar { width: 260px; flex-shrink: 0; }
-        .cat-box { background: white; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; }
-        .cat-item { display: block; padding: 15px 20px; color: #475569; font-size: 15px; text-decoration: none; border-bottom: 1px solid #f8fafc; transition: 0.2s; }
-        .cat-item:hover, .cat-item.active { background: #f0f9ff; color: var(--brand-blue-dark); font-weight: 700; border-left: 4px solid var(--brand-blue-dark);
+    <header class="header">
+        <div class="logo">WEDER<span>PHARMA</span></div>
+        <div style="flex-grow: 1; max-width: 500px; margin: 0 40px;">
+            <input type="text" placeholder="Suche..." style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;">
+        </div>
+        <div style="display:flex; gap:20px; font-weight: bold;">
+            <span>Account</span>
+            <span>Cart</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div style="padding:15px; font-size:12px; color:#94a3b8; font-weight:bold;">KATEGORIEN</div>
+            <a href="#" class="cat-item active">Alle Produkte</a>
+            <a href="#" class="cat-item">Gastroenterologie</a>
+            <a href="#" class="cat-item">Kardiologie</a>
+            <a href="#" class="cat-item">Neurologie</a>
+            <a href="#" class="cat-item">Vitamine</a>
+        </aside>
+
+        <main class="grid">
+            <div class="card">
+                <span class="c-tag">Vitamine</span>
+                <h3 class="c-title">Omega-3 Premium 1400</h3>
+                <p style="color:#64748b; font-size:14px; margin-bottom:20px;">Schweizer Reinheitsstandard für Ihr Herz.</p>
+                <a href="#" class="btn">In den Warenkorb</a>
+            </div>
+            <div class="card">
+                <span class="c-tag">Gastro</span>
+                <h3 class="c-title">Weder-Lyte® Solution</h3>
+                <p style="color:#64748b; font-size:14px; margin-bottom:20px;">Elektrolytkonzentrat zur Genesung.</p>
+                <a href="#" class="btn">In den Warenkorb</a>
+            </div>
+            <div class="card">
+                <span class="c-tag">Herz</span>
+                <h3 class="c-title">Swiss-Cardio 10mg</h3>
+                <p style="color:#64748b; font-size:14px; margin-bottom:20px;">Behandlung von Bluthochdruck.</p>
+                <a href="#" class="btn">In den Warenkorb</a>
+            </div>
+            <div class="card">
+                <span class="c-tag">Neurologie</span>
+                <h3 class="c-title">Neuro-Tone Pro</h3>
+                <p style="color:#64748b; font-size:14px; margin-bottom:20px;">Unterstützung der kognitiven Funktion.</p>
+                <a href="#" class="btn">In den Warenkorb</a>
+            </div>
+            <div class="card">
+                <span class="c-tag">Schmerz</span>
+                <h3 class="c-title">Weder Pain-Relief</h3>
+                <p style="color:#64748b; font-size:14px; margin-bottom:20px;">Schnelle Hilfe bei akuten Schmerzen.</p>
+                <a href="#" class="btn">In den Warenkorb</a>
+            </div>
+            <div class="card">
+                <span class="c-tag">ZNS</span>
+                <h3 class="c-title">Somna-Weder®</h3>
+                <p style="color:#64748b; font-size:14px; margin-bottom:20px;">Sanftes Präparat bei Schlafstörungen.</p>
+                <a href="#" class="btn">In den Warenkorb</a>
+            </div>
+            <div class="card">
+                <span class="c-tag">Energie</span>
+                <h3 class="c-title">Magnesium 400 + B
