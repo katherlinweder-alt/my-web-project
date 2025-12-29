@@ -12,7 +12,6 @@
         .nav-link.active { color: #0076a3; border-bottom-color: #0076a3; }
         .p-card { background: white; border: 1px solid #e1f0f7; padding: 20px; border-radius: 12px; display: flex; flex-direction: column; transition: 0.3s; height: 100%; }
         .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        /* 占位图样式：防止图片崩溃导致排版全乱 */
         .img-box { background: #f0f4f8; border-radius: 8px; height: 150px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 1rem; }
     </style>
 </head>
@@ -27,13 +26,22 @@
     </div>
 
     <nav class="bg-white border-b border-blue-100 sticky top-0 z-50">
-        <div class="max-w-[1440px] mx-auto px-6 py-4 flex items-center justify-between gap-4">
-            <div class="text-2xl font-black text-[#0076a3] cursor-pointer" onclick="location.reload()">WEDERPHARMA</div>
-            <div class="flex items-center gap-6 text-[#003a5a]">
+        <div class="max-w-[1440px] mx-auto px-6 py-4 flex flex-wrap md:flex-nowrap items-center justify-between gap-4">
+            <div class="text-2xl font-black text-[#0076a3] cursor-pointer shrink-0" onclick="location.reload()">WEDERPHARMA</div>
+            
+            <div class="order-3 md:order-2 w-full md:flex-grow md:max-w-xl">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                    <input type="text" id="searchBox" oninput="doSearch()" class="w-full pl-10 pr-4 py-2 rounded-full bg-gray-50 border border-transparent outline-none focus:bg-white focus:border-blue-200 transition" placeholder="Suche...">
+                </div>
+            </div>
+
+            <div class="order-2 md:order-3 flex items-center gap-6 text-[#003a5a] shrink-0">
                 <div class="text-center cursor-pointer"><i class="fa-regular fa-user text-xl"></i><p class="text-[9px] font-bold uppercase" id="l-acc">Anmelden</p></div>
                 <div class="text-center cursor-pointer relative"><i class="fa-solid fa-cart-shopping text-xl"></i><p class="text-[9px] font-bold uppercase" id="l-cart">Korb</p></div>
             </div>
         </div>
+        
         <div class="max-w-[1440px] mx-auto px-6 pb-3 flex gap-8 overflow-x-auto whitespace-nowrap">
             <div id="btn-all" class="nav-link active" onclick="filterItems('all', this)">Alle</div>
             <div class="nav-link" onclick="filterItems('Medikamente', this)">Medikamente</div>
@@ -49,7 +57,7 @@
                 <p id="p-s" class="text-[#0076a3] mb-6 font-medium text-sm md:text-base">Gültig für alle Vitamine bis Ende des Monats.</p>
                 <button class="bg-[#0076a3] text-white px-8 py-3 rounded-full font-bold shadow-md hover:bg-[#003a5a]">Jetzt Shoppen</button>
             </div>
-            <i class="fa-solid fa-kit-medical text-7xl text-white opacity-40"></i>
+            <i class="fa-solid fa-pills text-7xl text-white opacity-40"></i>
         </div>
 
         <h2 id="h-best" class="text-2xl font-black mb-8 text-[#003a5a]">Bestseller</h2>
@@ -77,77 +85,5 @@
         <div class="bg-[#003a5a] rounded-3xl p-10 text-center text-white mb-20">
             <h3 class="text-xl font-bold mb-4" id="news-t">Newsletter</h3>
             <div class="flex max-w-sm mx-auto gap-2">
-                <input type="text" placeholder="Email" class="flex-grow p-2 rounded-lg text-black outline-none">
-                <button class="bg-[#0076a3] px-6 py-2 rounded-lg font-bold">OK</button>
-            </div>
-        </div>
-    </main>
-
-    <footer class="py-12 text-center text-gray-400 text-[10px] border-t">
-        © 2025 WEDERPHARMA ZÜRICH | ALL RIGHTS RESERVED
-    </footer>
-
-    <script>
-        const products = [
-            { id:1, cat:'Vitamine', de:"Omega-3 1400mg Pure", zh:"深海鱼油 1400mg", price:"28.95", brand:"WEDER", img:"https://images.unsplash.com/photo-1550573105-4584e8d05967?auto=format&fit=crop&w=300" },
-            { id:2, cat:'Medikamente', de:"Magnesium 400 Forte", zh:"高浓度镁片 400", price:"19.50", brand:"SANDOZ", img:"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300" },
-            { id:3, cat:'Beauty', de:"Hautpflege Serum", zh:"修护精华液", price:"24.20", brand:"LA ROCHE", img:"https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=300" },
-            { id:4, cat:'Vitamine', de:"Vitamin D3 Tropfen", zh:"维他命 D3 滴剂", price:"32.00", brand:"SWISS", img:"https://images.unsplash.com/photo-1550573105-4584e8d05967?auto=format&fit=crop&w=301" },
-            { id:5, cat:'Medikamente', de:"Schmerzgel Forte", zh:"止痛凝胶", price:"15.80", brand:"VOLTAREN", img:"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=301" }
-        ];
-
-        const dict = {
-            zh: { acc:"登录", cart:"购物车", best:"畅销推荐", pT:"维他命 8折", pS:"冬日健康守护", e1t:"快速送达", e1s:"全瑞士配送", e2t:"瑞士品质", e2s:"专业药房认证", e3t:"专家建议", e3s:"随时为您解答", news:"保持健康！订阅我们的资讯" },
-            de: { acc:"Anmelden", cart:"Korb", best:"Bestseller", pT:"20% Rabatt", pS:"Für Ihre Gesundheit im Winter.", e1t:"Schnelle Lieferung", e1s:"Ganz Schweiz.", e2t:"Schweizer Qualität", e2s:"Geprüfte Produkte.", e3t:"Experten-Rat", e3s:"Wir helfen Ihnen.", news:"Newsletter abonnieren" }
-        };
-
-        function initPage() {
-            const lang = document.getElementById('langSwitch').value;
-            // 更新静态文字
-            document.getElementById('l-acc').innerText = dict[lang].acc;
-            document.getElementById('l-cart').innerText = dict[lang].cart;
-            document.getElementById('h-best').innerText = dict[lang].best;
-            document.getElementById('p-t').innerText = dict[lang].pT;
-            document.getElementById('p-s').innerText = dict[lang].pS;
-            document.getElementById('e1-t').innerText = dict[lang].e1t;
-            document.getElementById('e1-s').innerText = dict[lang].e1s;
-            document.getElementById('e2-t').innerText = dict[lang].e2t;
-            document.getElementById('e2-s').innerText = dict[lang].e2s;
-            document.getElementById('e3-t').innerText = dict[lang].e3t;
-            document.getElementById('e3-s').innerText = dict[lang].e3s;
-            document.getElementById('news-t').innerText = dict[lang].news;
-            
-            drawProducts(products);
-        }
-
-        function drawProducts(list) {
-            const lang = document.getElementById('langSwitch').value;
-            const grid = document.getElementById('productGrid');
-            if(!grid) return;
-
-            grid.innerHTML = list.map(p => `
-                <div class="p-card">
-                    <div class="img-box">
-                        <img src="${p.img}" onerror="this.src='https://placehold.co/200x200?text=Pharma'" class="h-full w-full object-contain">
-                    </div>
-                    <p class="text-[10px] text-blue-400 font-bold uppercase">${p.brand}</p>
-                    <h3 class="text-sm font-bold text-[#003a5a] mb-4 h-10 overflow-hidden leading-tight">${p[lang]}</h3>
-                    <div class="mt-auto pt-4 flex justify-between items-center border-t border-gray-50">
-                        <span class="text-lg font-black text-[#0076a3]">${p.price} <small class="text-[10px]">CHF</small></span>
-                        <div class="bg-[#0076a3] text-white w-8 h-8 rounded-full flex items-center justify-center text-xs shadow-sm"><i class="fa-solid fa-plus"></i></div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function filterItems(cat, el) {
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            el.classList.add('active');
-            drawProducts(cat === 'all' ? products : products.filter(p => p.cat === cat));
-        }
-
-        // 核心执行：确保加载即运行
-        initPage();
-    </script>
-</body>
-</html>
+                <input type="text" placeholder="Email" class="flex-grow p-2 rounded-lg text-black outline-none border-none">
+                <button class="bg-[#0076a3] px-6 py-2 rounded-lg font-bold">OK</button
