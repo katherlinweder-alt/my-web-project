@@ -8,15 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body { font-family: 'Inter', sans-serif; background: #f8fbfe; margin:0; padding:0; }
-        .p-card { background: white; border: 1px solid #e1f0f7; padding: 20px; border-radius: 12px; display: flex; flex-direction: column; height: 100%; }
-        .img-box { height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+        .p-card { background: white; border: 1px solid #e1f0f7; padding: 20px; border-radius: 12px; display: flex; flex-direction: column; height: 100%; transition: 0.2s; }
+        .p-card:hover { transform: translateY(-4px); box-shadow: 0 8px 15px rgba(0,0,0,0.05); }
+        .img-box { height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
     </style>
 </head>
 <body>
 
     <div class="bg-[#bde4f4] px-6 py-2 text-[11px] font-bold text-[#003a5a] flex justify-between items-center">
         <span>SWISS PHARMA QUALITY</span>
-        <select id="langSwitch" onchange="applyLang()" class="bg-transparent outline-none font-bold">
+        <select id="langSwitch" onchange="applyLang()" class="bg-transparent outline-none font-bold cursor-pointer">
             <option value="de">DEUTSCH</option>
             <option value="zh">中文</option>
         </select>
@@ -26,96 +27,41 @@
         <div class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-4">
             <div class="text-2xl font-black text-[#0076a3] cursor-pointer" onclick="location.reload()">WEDERPHARMA</div>
             <div class="flex-grow max-w-xl order-3 md:order-2 w-full">
-                <input type="text" id="searchBox" oninput="doSearch()" class="w-full px-5 py-2 rounded-full bg-gray-50 border outline-none focus:border-blue-300" placeholder="Suche...">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                    <input type="text" id="searchBox" oninput="doSearch()" class="w-full pl-10 pr-4 py-2 rounded-full bg-gray-50 border outline-none focus:border-blue-300" placeholder="Suche...">
+                </div>
             </div>
             <div class="flex items-center gap-6 order-2 md:order-3 text-[#003a5a]">
-                <div class="text-center"><i class="fa-regular fa-user text-xl"></i><p class="text-[9px] font-bold uppercase" id="l-acc">Anmelden</p></div>
-                <div class="text-center relative"><i class="fa-solid fa-cart-shopping text-xl"></i><p class="text-[9px] font-bold uppercase" id="l-cart">Korb</p></div>
+                <div class="text-center cursor-pointer"><i class="fa-regular fa-user text-xl"></i><p class="text-[9px] font-bold uppercase" id="l-acc">Anmelden</p></div>
+                <div class="text-center cursor-pointer relative"><i class="fa-solid fa-cart-shopping text-xl"></i><p class="text-[9px] font-bold uppercase" id="l-cart">Korb</p></div>
             </div>
         </div>
     </nav>
 
     <main class="max-w-[1440px] mx-auto px-6 py-8">
-        <div class="bg-blue-100 rounded-3xl p-8 mb-10 border border-blue-200">
+        <div class="bg-gradient-to-r from-blue-100 to-blue-50 rounded-3xl p-8 mb-12 border border-blue-200">
             <h1 id="p-t" class="text-3xl font-black text-[#003a5a]">20% Rabatt</h1>
             <p id="p-s" class="text-blue-700 mt-2 font-medium">Winter-Angebote für Ihre Gesundheit.</p>
         </div>
 
         <h2 id="h-best" class="text-2xl font-black mb-6 text-[#003a5a]">Bestseller</h2>
-        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-24">
-            <div class="p-card" data-de="Omega-3" data-zh="深海鱼油">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1550573105-4584e8d05967?w=200" class="max-h-full"></div>
+        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-16">
+            <div class="p-card" data-de="Omega-3 1400mg Pure" data-zh="深海鱼油 1400mg">
+                <div class="img-box"><img src="https://images.unsplash.com/photo-1550573105-4584e8d05967?w=300" class="max-h-full"></div>
                 <p class="text-[10px] text-blue-400 font-bold uppercase">WEDER</p>
                 <h3 class="text-sm font-bold text-[#003a5a] h-10 overflow-hidden item-name">Omega-3 1400mg Pure</h3>
                 <p class="text-lg font-black text-[#0076a3] mt-auto">28.95 CHF</p>
             </div>
-            <div class="p-card" data-de="Magnesium" data-zh="高浓度镁片">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200" class="max-h-full"></div>
+            <div class="p-card" data-de="Magnesium 400 Forte" data-zh="高浓度镁片 400">
+                <div class="img-box"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300" class="max-h-full"></div>
                 <p class="text-[10px] text-blue-400 font-bold uppercase">SANDOZ</p>
                 <h3 class="text-sm font-bold text-[#003a5a] h-10 overflow-hidden item-name">Magnesium 400 Forte</h3>
                 <p class="text-lg font-black text-[#0076a3] mt-auto">19.50 CHF</p>
             </div>
-            <div class="p-card" data-de="Serum" data-zh="修护精华液">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200" class="max-h-full"></div>
+            <div class="p-card" data-de="Hautpflege Serum" data-zh="修护精华液">
+                <div class="img-box"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=300" class="max-h-full"></div>
                 <p class="text-[10px] text-blue-400 font-bold uppercase">LA ROCHE</p>
                 <h3 class="text-sm font-bold text-[#003a5a] h-10 overflow-hidden item-name">Hautpflege Serum</h3>
                 <p class="text-lg font-black text-[#0076a3] mt-auto">24.20 CHF</p>
             </div>
-            <div class="p-card" data-de="Vitamin D3" data-zh="维他命 D3">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1550573105-4584e8d05967?w=201" class="max-h-full"></div>
-                <p class="text-[10px] text-blue-400 font-bold uppercase">SWISS</p>
-                <h3 class="text-sm font-bold text-[#003a5a] h-10 overflow-hidden item-name">Vitamin D3 Tropfen</h3>
-                <p class="text-lg font-black text-[#0076a3] mt-auto">32.00 CHF</p>
-            </div>
-            <div class="p-card" data-de="Voltaren" data-zh="止痛凝胶">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=201" class="max-h-full"></div>
-                <p class="text-[10px] text-blue-400 font-bold uppercase">VOLTAREN</p>
-                <h3 class="text-sm font-bold text-[#003a5a] h-10 overflow-hidden item-name">Schmerzgel Forte</h3>
-                <p class="text-lg font-black text-[#0076a3] mt-auto">15.80 CHF</p>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 border-t pt-20">
-            <div class="bg-white p-8 rounded-2xl border border-blue-100 text-center">
-                <i class="fa-solid fa-truck-fast text-[#0076a3] text-3xl mb-4"></i>
-                <h4 class="font-bold text-[#003a5a]" id="e1">Schnelle Lieferung</h4>
-            </div>
-            <div class="bg-white p-8 rounded-2xl border border-blue-100 text-center">
-                <i class="fa-solid fa-certificate text-[#0076a3] text-3xl mb-4"></i>
-                <h4 class="font-bold text-[#003a5a]" id="e2">Schweizer Qualität</h4>
-            </div>
-            <div class="bg-white p-8 rounded-2xl border border-blue-100 text-center">
-                <i class="fa-solid fa-user-doctor text-[#0076a3] text-3xl mb-4"></i>
-                <h4 class="font-bold text-[#003a5a]" id="e3">Experten-Rat</h4>
-            </div>
-        </div>
-
-        <div class="bg-[#003a5a] rounded-3xl p-12 text-center text-white mb-20">
-            <h3 class="text-2xl font-bold mb-4" id="l-news">Bleiben Sie gesund!</h3>
-            <div class="flex max-w-md mx-auto gap-2">
-                <input type="text" class="flex-grow p-3 rounded-xl text-black" placeholder="E-Mail">
-                <button class="bg-[#0076a3] px-8 rounded-xl font-bold">OK</button>
-            </div>
-        </div>
-    </main>
-
-    <footer class="py-12 text-center text-gray-400 text-xs border-t bg-white">
-        WEDERPHARMA ZÜRICH | SWITZERLAND | © 2025
-    </footer>
-
-    <script>
-        const translations = {
-            zh: { acc:"登录", cart:"购物车", best:"畅销推荐", pT:"20% 优惠", pS:"冬季健康守护", e1:"快速送达", e2:"瑞士品质", e3:"专家建议", news:"关注我们", search:"搜索产品..." },
-            de: { acc:"Anmelden", cart:"Korb", best:"Bestseller", pT:"20% Rabatt", pS:"Winter-Angebote.", e1:"Schnelle Lieferung", e2:"Schweizer Qualität", e3:"Experten-Rat", news:"Bleiben Sie gesund!", search:"Suche..." }
-        };
-
-        function applyLang() {
-            const lang = document.getElementById('langSwitch').value;
-            const t = translations[lang];
-            
-            // 更新静态文字
-            document.getElementById('l-acc').innerText = t.acc;
-            document.getElementById('l-cart').innerText = t.cart;
-            document.getElementById('h-best').innerText = t.best;
-            document.getElementById('p-t').innerText = t.pT;
-            document.getElementById('p-s
