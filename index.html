@@ -3,48 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDER PHARMA | Swiss Pharmacy</title>
+    <title>WEDER PHARMA | Premium Pharmacy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        :root { --ice-blue: #bde4f4; }
         body { background-color: #f8fafc; font-family: sans-serif; margin: 0; }
         
-        /* 1. 顶栏：浅蓝底 + 纯黑字 (清晰度最高) */
-        .top-promo { 
-            background-color: var(--ice-blue) !important; 
+        /* 1. 顶栏：浅蓝底 + 纯黑字 (确保绝对清晰) */
+        .top-nav { 
+            background-color: #bde4f4 !important; 
             color: #000000 !important; 
             text-align: center; 
-            padding: 16px; 
+            padding: 15px; 
             font-weight: 800; 
             font-size: 15px;
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        
-        .header { 
+
+        /* 2. Header：布局加固 */
+        .header-main { 
             background: white; 
-            padding: 20px 40px; 
+            padding: 15px 40px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             border-bottom: 1px solid #e2e8f0;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
-        .action-item {
+        .nav-right { display: flex; align-items: center; gap: 35px; }
+        
+        /* 账号与购物车样式 */
+        .header-link {
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: #475569;
+            color: #334155;
             cursor: pointer;
-            transition: 0.2s;
+            text-decoration: none;
+            min-width: 50px;
         }
-        .action-item:hover { color: #0ea5e9; }
-        .action-item span { font-size: 10px; font-weight: 700; text-transform: uppercase; margin-top: 4px; }
+        .header-link:hover { color: #0ea5e9; }
+        .header-link i { font-size: 20px; }
+        .header-link span { font-size: 10px; font-weight: 700; text-transform: uppercase; margin-top: 4px; }
 
-        .card { 
+        /* 产品方块 */
+        .product-card { 
             background: white; 
             border: 1px solid #e2e8f0; 
             border-radius: 16px; 
@@ -53,90 +59,92 @@
             flex-direction: column; 
             transition: 0.3s;
         }
-        .card:hover { transform: translateY(-5px); border-color: #0ea5e9; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .product-card:hover { transform: translateY(-5px); border-color: #0ea5e9; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body>
 
-    <div class="top-promo">
-        <i class="fa-solid fa-bolt"></i> 
-        <span id="promo_txt">10% RABATT FÜR NEUKUNDEN</span> | <span class="bg-white px-2 py-0.5 rounded border border-slate-200">WELCOME10</span>
+    <div class="top-nav">
+        <i class="fa-solid fa-truck-fast mr-2"></i> 
+        <span id="txt-promo">10% RABATT FÜR NEUKUNDEN</span> | <strong>WELCOME10</strong>
     </div>
 
-    <header class="header">
-        <div class="text-2xl font-black uppercase tracking-tighter">WEDER<span class="text-sky-500">PHARMA</span></div>
+    <header class="header-main">
+        <div class="text-2xl font-black tracking-tighter uppercase">
+            WEDER<span class="text-sky-500">PHARMA</span>
+        </div>
         
-        <div class="flex items-center gap-10">
-            <select id="langBox" class="border p-1.5 rounded font-bold text-xs bg-white cursor-pointer outline-none border-slate-200">
+        <div class="nav-right">
+            <select id="langBox" class="border border-slate-200 p-1.5 rounded font-bold text-xs bg-white cursor-pointer outline-none">
                 <option value="de">DEUTSCH</option>
                 <option value="zh">中文 (ZH)</option>
             </select>
             
-            <div class="action-item">
-                <i class="fa-regular fa-circle-user text-xl"></i>
-                <span id="acc_txt">Account</span>
+            <div class="header-link">
+                <i class="fa-regular fa-user"></i>
+                <span id="txt-acc">Account</span>
             </div>
 
-            <div class="action-item">
-                <i class="fa-solid fa-cart-shopping text-xl"></i>
-                <span id="cart_txt">Cart</span>
+            <div class="header-link">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="txt-cart">Cart</span>
             </div>
         </div>
     </header>
 
-    <div class="max-w-7xl mx-auto px-10 py-10 flex gap-10">
-        <aside class="w-60 shrink-0 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-10 py-12 flex gap-10">
+        <aside class="w-64 shrink-0 hidden lg:block">
             <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                <div class="p-4 bg-slate-50 text-[10px] font-black text-slate-400 tracking-widest uppercase border-b border-slate-100">Kategorien</div>
+                <div class="p-4 bg-slate-50 text-[10px] font-black text-slate-400 tracking-widest uppercase border-b">Sortiment</div>
                 <a href="#" class="block p-4 text-sky-600 font-bold bg-sky-50 border-l-4 border-sky-500">Alle Produkte</a>
                 <a href="#" class="block p-4 text-slate-600 hover:bg-slate-50">Gastroenterologie</a>
-                <a href="#" class="block p-4 text-slate-600 hover:bg-slate-50 border-t border-slate-100">Kardiologie</a>
-                <a href="#" class="block p-4 text-slate-600 hover:bg-slate-50 border-t border-slate-100">Vitamine</a>
+                <a href="#" class="block p-4 text-slate-600 hover:bg-slate-50">Kardiologie</a>
+                <a href="#" class="block p-4 text-slate-600 hover:bg-slate-50">Neurologie</a>
             </div>
         </aside>
 
-        <main class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 flex-grow">
-            <div class="card">
-                <span class="text-[10px] font-black text-sky-500 uppercase mb-2 tracking-widest">Vitamine</span>
+        <main class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 flex-grow">
+            <div class="product-card">
+                <span class="text-[10px] font-extrabold text-sky-500 uppercase mb-2">Vitamine</span>
                 <h3 class="text-lg font-bold mb-3">Omega-3 Premium 1400</h3>
                 <p class="text-sm text-slate-400 mb-6">Schweizer Reinheit für Ihr Herz.</p>
-                <a href="#" class="mt-auto bg-sky-500 text-white text-center py-3 rounded-xl font-bold hover:bg-sky-600 transition-colors">In den Warenkorb</a>
+                <a href="#" class="mt-auto bg-sky-500 text-white text-center py-3 rounded-xl font-bold hover:bg-sky-600 transition-all">In den Warenkorb</a>
             </div>
-            <div class="card">
-                <span class="text-[10px] font-black text-sky-500 uppercase mb-2 tracking-widest">Gastro</span>
+            <div class="product-card">
+                <span class="text-[10px] font-extrabold text-sky-500 uppercase mb-2">Gastro</span>
                 <h3 class="text-lg font-bold mb-3">Weder-Lyte® Solution</h3>
                 <p class="text-sm text-slate-400 mb-6">Elektrolyt-Balance bei Infekten.</p>
-                <a href="#" class="mt-auto bg-sky-500 text-white text-center py-3 rounded-xl font-bold hover:bg-sky-600">In den Warenkorb</a>
+                <a href="#" class="mt-auto bg-sky-500 text-white text-center py-3 rounded-xl font-bold">In den Warenkorb</a>
             </div>
-            <div class="card">
-                <span class="text-[10px] font-black text-sky-500 uppercase mb-2 tracking-widest">Herz</span>
+            <div class="product-card">
+                <span class="text-[10px] font-extrabold text-sky-500 uppercase mb-2">Herz</span>
                 <h3 class="text-lg font-bold mb-3">Swiss-Cardio 10mg</h3>
                 <p class="text-sm text-slate-400 mb-6">Blutdruckregulation Standard.</p>
-                <a href="#" class="mt-auto bg-sky-500 text-white text-center py-3 rounded-xl font-bold hover:bg-sky-600">In den Warenkorb</a>
+                <a href="#" class="mt-auto bg-sky-500 text-white text-center py-3 rounded-xl font-bold">In den Warenkorb</a>
             </div>
-            <div class="card">
-                <span class="text-[10px] font-black text-sky-500 uppercase mb-2 tracking-widest">Neuro</span>
+            <div class="product-card">
+                <span class="text-[10px] font-extrabold text-sky-500 uppercase mb-2">Neurologie</span>
                 <h3 class="text-lg font-bold mb-3">Neuro-Tone Pro</h3>
                 <p class="text-sm text-slate-400 mb-6">Fokus und Gedächtnisleistung.</p>
-                <a href="#" class="mt-auto bg-sky-500 text-white text-center py-3 rounded-xl font-bold hover:bg-sky-600">In den Warenkorb</a>
+                <a href="#" class="mt-auto bg-sky-500 text-white text-center py-3 rounded-xl font-bold">In den Warenkorb</a>
             </div>
-            <div class="card">
-                <span class="text-[10px] font-black text-sky-500 uppercase mb-2 tracking-widest">Schmerz</span>
+            <div class="product-card">
+                <span class="text-[10px] font-extrabold text-sky-500 uppercase mb-2">Schmerz</span>
                 <h3 class="text-lg font-bold mb-3">Weder Pain-Relief</h3>
                 <p class="text-sm text-slate-400 mb-6">Akute Hilfe bei Beschwerden.</p>
-                <a href="#" class="mt-auto bg-sky-500 text-white text-center py-3 rounded-xl font-bold hover:bg-sky-600">In den Warenkorb</a>
+                <a href="#" class="mt-auto bg-sky-500 text-white text-center py-3 rounded-xl font-bold">In den Warenkorb</a>
             </div>
-            <div class="card">
-                <span class="text-[10px] font-black text-sky-500 uppercase mb-2 tracking-widest">ZNS</span>
+            <div class="product-card">
+                <span class="text-[10px] font-extrabold text-sky-500 uppercase mb-2">ZNS</span>
                 <h3 class="text-lg font-bold mb-3">Somna-Weder®</h3>
                 <p class="text-sm text-slate-400 mb-6">Erholsamer Schlaf garantiert.</p>
-                <a href="#" class="mt-auto bg-sky-500 text-white text-center py-3 rounded-xl font-bold hover:bg-sky-600">In den Warenkorb</a>
+                <a href="#" class="mt-auto bg-sky-500 text-white text-center py-3 rounded-xl font-bold">In den Warenkorb</a>
             </div>
-            <div class="card">
-                <span class="text-[10px] font-black text-sky-500 uppercase mb-2 tracking-widest">Energie</span>
+            <div class="product-card">
+                <span class="text-[10px] font-extrabold text-sky-500 uppercase mb-2">Energie</span>
                 <h3 class="text-lg font-bold mb-3">Magnesium + B12</h3>
                 <p class="text-sm text-slate-400 mb-6">Gegen Müdigkeit und Stress.</p>
-                <a href="#" class="mt-auto bg-sky-500 text-white text-center py-3 rounded-xl font-bold hover:bg-sky-600">In den Warenkorb</a>
+                <a href="#" class="mt-auto bg-sky-500 text-white text-center py-3 rounded-xl font-bold">In den Warenkorb</a>
             </div>
         </main>
     </div>
@@ -146,13 +154,12 @@
             zh: { promo: "新客户首单礼遇：立享 9 折", cart: "购物车", acc: "账户" },
             de: { promo: "10% RABATT FÜR NEUKUNDEN", cart: "Cart", acc: "Account" }
         };
-        document.getElementById('langBox').addEventListener('change', (e) => {
+        document.getElementById('langBox').onchange = (e) => {
             const l = e.target.value;
-            document.getElementById('promo_txt').textContent = dict[l].promo;
-            document.getElementById('cart_txt').textContent = dict[l].cart;
-            document.getElementById('acc_txt').textContent = dict[l].acc;
-        });
+            document.getElementById('txt-promo').innerText = dict[l].promo;
+            document.getElementById('txt-cart').innerText = dict[l].cart;
+            document.getElementById('txt-acc').innerText = dict[l].acc;
+        };
     </script>
 </body>
 </html>
-
