@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -8,84 +7,84 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        :root { --rc-red: #e30613; --rc-red-dark: #c10511; --rc-blue: #0056b3; --rc-green: #28a745; --rc-bg: #f3f5f7; }
+        :root { 
+            --rc-red: #e30613; 
+            --rc-red-dark: #b5050f; /* 深色用于渐变 */
+            --rc-blue: #0056b3; 
+            --rc-green: #28a745; 
+            --rc-bg: #f3f5f7; 
+        }
         body { font-family: 'Inter', 'Segoe UI', Roboto, sans-serif; background-color: var(--rc-bg); margin: 0; }
 
-        /* 1. 大气版红色顶栏 */
+        /* --- 1. 大气版红色顶栏 (关键改动) --- */
         .top-promo { 
-            /* 使用微弱渐变增强质感 */
-            background: linear-gradient(135deg, var(--rc-red) 0%, var(--rc-red-dark) 100%);
+            /* 使用微弱渐变增加高级感，不再是死板的纯红 */
+            background: linear-gradient(to right, var(--rc-red), var(--rc-red-dark));
             color: white; 
             display: flex; justify-content: center; align-items: center; 
-            gap: 20px; 
-            padding: 18px 20px; /* 适中的内边距，不臃肿但宽敞 */
+            gap: 25px; 
+            padding: 16px 20px; /* 增加呼吸感的高度 */
             font-size: 15px; 
-            font-weight: 500; 
-            box-shadow: inset 0 -2px 5px rgba(0,0,0,0.1); /* 内部阴影增加深度 */
-        }
-        
-        /* 礼物盒图标动画 */
-        .top-promo i { 
-            font-size: 20px; 
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-            animation: giftBounce 2s infinite;
+            font-weight: 600; 
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* 优惠码微章 - 增加专业感 */
-        .promo-code {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 4px 12px;
-            border-radius: 4px;
+        /* 礼物盒图标加入轻微跳动效果，更灵动 */
+        .top-promo i.fa-gift { 
+            font-size: 22px; 
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        /* 优惠码徽章：通过背景差色让它显大气 */
+        .code-badge {
+            background: rgba(0, 0, 0, 0.15); /* 半透明黑色背景 */
+            padding: 5px 15px;
+            border-radius: 6px;
             border: 1px dashed rgba(255, 255, 255, 0.4);
-            font-family: monospace;
-            font-weight: bold;
-            letter-spacing: 1px;
-            margin-left: 5px;
+            font-family: 'Courier New', monospace;
+            font-weight: 800;
+            color: #fff;
+            margin-left: 8px;
         }
 
-        @keyframes giftBounce {
+        @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-3px); }
         }
 
-        /* 2. 其他区域保持专业度 */
+        /* --- 2. 其它区域保持专业度 --- */
         .service-nav { background: white; border-bottom: 1px solid #eee; padding: 10px 40px; }
         .service-inner { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .service-item { display: flex; align-items: center; gap: 8px; color: #555; font-size: 12px; font-weight: 500; }
         .service-item i { color: var(--rc-green); }
 
-        .main-header { background: white; border-bottom: 1px solid #d1d1d1; padding: 20px 40px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .main-header { background: white; border-bottom: 1px solid #d1d1d1; padding: 15px 40px; position: sticky; top: 0; z-index: 1000; }
         .header-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; }
-        .logo { font-size: 28px; font-weight: 900; letter-spacing: -1.5px; text-transform: uppercase; margin-right: 60px; }
+        .logo { font-size: 26px; font-weight: 900; letter-spacing: -1.5px; text-transform: uppercase; margin-right: 45px; min-width: 220px; }
         .logo .red { color: var(--rc-red); }
         .logo .blue { color: var(--rc-blue); }
 
-        .search-area { flex-grow: 1; margin-right: 60px; position: relative; }
-        .search-input { width: 100%; padding: 14px 20px 14px 55px; border: 2px solid #e1e4e8; border-radius: 8px; font-size: 15px; outline: none; transition: 0.3s; }
-        .search-input:focus { border-color: var(--rc-blue); box-shadow: 0 0 0 4px rgba(0,86,179,0.1); }
-        .search-icon { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: #999; font-size: 18px; }
+        .search-area { flex-grow: 1; margin-right: 50px; position: relative; }
+        .search-input { width: 100%; padding: 12px 20px 12px 55px; border: 2px solid var(--rc-blue); border-radius: 30px; font-size: 15px; outline: none; }
+        .search-icon { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: var(--rc-blue); font-size: 18px; }
 
-        .nav-actions { display: flex; gap: 40px; }
-        .action-btn { display: flex; flex-direction: column; align-items: center; color: var(--rc-blue); cursor: pointer; transition: 0.2s; }
-        .action-btn:hover { opacity: 0.7; }
-        .action-btn i { font-size: 22px; margin-bottom: 5px; }
-        .action-btn span { font-size: 12px; font-weight: 700; }
+        .nav-actions { display: flex; gap: 35px; align-items: center; }
+        .action-btn { display: flex; flex-direction: column; align-items: center; color: var(--rc-blue); cursor: pointer; text-decoration: none; }
+        .action-btn i { font-size: 20px; margin-bottom: 4px; }
+        .action-btn span { font-size: 11px; font-weight: 700; }
 
-        /* 产品布局 */
-        .layout { max-width: 1400px; margin: 0 auto; display: flex; padding: 40px; gap: 40px; }
+        .layout { max-width: 1400px; margin: 0 auto; display: flex; padding: 30px 40px; gap: 40px; }
         .sidebar { width: 280px; flex-shrink: 0; }
-        .cat-box { background: white; border-radius: 12px; overflow: hidden; position: sticky; top: 130px; border: 1px solid #eef0f2; }
-        .cat-head { padding: 18px 25px; background: #f8f9fa; border-bottom: 1px solid #eee; color: #888; font-size: 12px; font-weight: bold; text-transform: uppercase; }
-        .cat-item { display: block; padding: 15px 25px; color: #444; border-bottom: 1px solid #f9f9f9; font-size: 15px; text-decoration: none; transition: 0.2s; }
-        .cat-item:hover, .cat-item.active { background: #f0f7ff; color: var(--rc-blue); font-weight: bold; padding-left: 30px; border-left: 4px solid var(--rc-blue); }
+        .cat-box { background: white; border: 1px solid #e1e4e8; border-radius: 12px; overflow: hidden; position: sticky; top: 120px; }
+        .cat-head { padding: 15px 20px; background: #fafafa; border-bottom: 1px solid #eee; color: #999; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+        .cat-item { display: block; padding: 13px 20px; color: #333; border-bottom: 1px solid #f9f9f9; font-size: 14px; text-decoration: none; }
+        .cat-item:hover, .cat-item.active { background: #f0f7ff; color: var(--rc-blue); font-weight: bold; border-left: 5px solid var(--rc-blue); }
 
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; flex-grow: 1; }
-        .card { background: white; border-radius: 16px; padding: 30px; display: flex; flex-direction: column; transition: 0.3s; border: 1px solid #eef0f2; }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-        .c-tag { color: var(--rc-blue); font-size: 11px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
-        .c-title { font-size: 19px; font-weight: bold; margin-bottom: 15px; color: #1a1a1a; line-height: 1.3; }
-        .btn-buy { background: var(--rc-blue); color: white; text-align: center; padding: 14px; border-radius: 8px; font-weight: bold; margin-top: auto; transition: 0.3s; }
-        .btn-buy:hover { background: #004494; transform: scale(1.02); }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; flex-grow: 1; }
+        .card { background: white; border: 1px solid #e1e4e8; border-radius: 15px; padding: 25px; display: flex; flex-direction: column; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.06); }
+        .btn-buy { background: var(--rc-blue); color: white; text-align: center; padding: 12px; border-radius: 10px; font-weight: bold; margin-top: auto; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -94,18 +93,17 @@
         <i class="fa-solid fa-gift"></i>
         <span>
             <span data-i18n="p_text">10% Rabatt für Neukunden*</span>
-            <span class="mx-2">|</span>
-            <span>Code:</span>
-            <span class="promo-code">WELCOME10</span>
+            <span class="mx-3 opacity-50">|</span>
+            <span>Code: <span class="code-badge">WELCOME10</span></span>
         </span>
     </div>
 
     <div class="service-nav hidden lg:block">
         <div class="service-inner">
-            <div class="flex gap-12">
-                <div class="service-item"><i class="fa-solid fa-check"></i> <span data-i18n="s1">Über 100.000 Produkte</span></div>
-                <div class="service-item"><i class="fa-solid fa-check"></i> <span data-i18n="s2">Versandkostenfrei ab 50 CHF</span></div>
-                <div class="service-item"><i class="fa-solid fa-check"></i> <span data-i18n="s3">Original Schweizer Apotheke</span></div>
+            <div class="flex gap-10">
+                <div class="service-item"><i class="fa-solid fa-circle-check"></i> <span data-i18n="s1">Über 100.000 Produkte</span></div>
+                <div class="service-item"><i class="fa-solid fa-circle-check"></i> <span data-i18n="s2">Versandkostenfrei ab 50 CHF</span></div>
+                <div class="service-item"><i class="fa-solid fa-circle-check"></i> <span data-i18n="s3">Original Schweizer Apotheke</span></div>
             </div>
             <select id="langBox" class="text-xs font-bold bg-transparent outline-none cursor-pointer text-gray-400">
                 <option value="de">DEUTSCH</option>
@@ -121,7 +119,7 @@
             </div>
             <div class="search-area">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" id="searchInput" placeholder="Wonach suchen Sie?" data-i18n-placeholder="h_search" class="search-input">
+                <input type="text" id="searchInput" placeholder="Suchen..." data-i18n-placeholder="h_search" class="search-input">
             </div>
             <div class="nav-actions">
                 <div class="action-btn">
@@ -152,17 +150,17 @@
 
         <main class="product-grid" id="grid">
             <div class="card">
-                <span class="c-tag" data-i18n="c_vi">Vitamine</span>
-                <h3 class="c-title">Doppelherz® Omega-3 1400</h3>
+                <span class="text-[10px] font-bold text-[#0056b3] uppercase mb-2" data-i18n="c_vi">Vitamine</span>
+                <h3 class="text-[17px] font-bold mb-3 leading-tight min-h-[44px]">Doppelherz® Omega-3 1400</h3>
                 <p class="text-sm text-gray-500 mb-6" data-i18n="d_om">Hochdosierte Omega-3-Fettsäuren für die Herzfunktion.</p>
                 <a href="#" class="btn-buy" data-i18n="b_bu">In den Warenkorb</a>
             </div>
-            <div class="card"><span class="c-tag">Gastro</span><h3 class="c-title">Weder-Lyte®</h3><p class="text-sm text-gray-500 mb-6">Elektrolytkonzentrat zur Infusionslösung.</p><a href="#" class="btn-buy">In den Warenkorb</a></div>
-            <div class="card"><span class="c-tag">Kardiologie</span><h3 class="c-title">Swiss-Cardio 10mg</h3><p class="text-sm text-gray-500 mb-6">Behandlung von Bluthochdruck.</p><a href="#" class="btn-buy">In den Warenkorb</a></div>
-            <div class="card"><span class="c-tag">Neurologie</span><h3 class="c-title">Neuro-Tone Pro</h3><p class="text-sm text-gray-500 mb-6">Unterstützung der kognitiven Funktion.</p><a href="#" class="btn-buy">In den Warenkorb</a></div>
-            <div class="card"><span class="c-tag">Schmerz</span><h3 class="c-title">Weder Pain-Relief</h3><p class="text-sm text-gray-500 mb-6">Schnelle Hilfe bei akuten Schmerzen.</p><a href="#" class="btn-buy">In den Warenkorb</a></div>
-            <div class="card"><span class="c-tag">Schlaf</span><h3 class="c-title">Somna-Weder®</h3><p class="text-sm text-gray-500 mb-6">Präparat bei Schlafstörungen.</p><a href="#" class="btn-buy">In den Warenkorb</a></div>
-            <div class="card"><span class="c-tag">Vitamine</span><h3 class="c-title">Magnesium 400 + B12</h3><p class="text-sm text-gray-500 mb-6">Für Energiestoffwechsel.</p><a href="#" class="btn-buy">In den Warenkorb</a></div>
+            <div class="card"><span class="text-[10px] font-bold text-[#0056b3] uppercase mb-2">Gastro</span><h3 class="text-[17px] font-bold mb-3 min-h-[44px]">Weder-Lyte®</h3><p class="text-sm text-gray-500 mb-6">Elektrolytkonzentrat zur Infusionslösung.</p><a href="#" class="btn-buy">In den Warenkorb</a></div>
+            <div class="card"><span class="text-[10px] font-bold text-[#0056b3] uppercase mb-2">Kardiologie</span><h3 class="text-[17px] font-bold mb-3 min-h-[44px]">Swiss-Cardio 10mg</h3><p class="text-sm text-gray-500 mb-6">Behandlung von Bluthochdruck.</p><a href="#" class="btn-buy">In den Warenkorb</a></div>
+            <div class="card"><span class="text-[10px] font-bold text-[#0056b3] uppercase mb-2">Neurologie</span><h3 class="text-[17px] font-bold mb-3 min-h-[44px]">Neuro-Tone Pro</h3><p class="text-sm text-gray-500 mb-6">Unterstützung der kognitiven Funktion.</p><a href="#" class="btn-buy">In den Warenkorb</a></div>
+            <div class="card"><span class="text-[10px] font-bold text-[#0056b3] uppercase mb-2">Schmerz</span><h3 class="text-[17px] font-bold mb-3 min-h-[44px]">Weder Pain-Relief</h3><p class="text-sm text-gray-500 mb-6">Schnelle Hilfe bei Schmerzen.</p><a href="#" class="btn-buy">In den Warenkorb</a></div>
+            <div class="card"><span class="text-[10px] font-bold text-[#0056b3] uppercase mb-2">ZNS</span><h3 class="text-[17px] font-bold mb-3 min-h-[44px]">Somna-Weder®</h3><p class="text-sm text-gray-500 mb-6">Präparat bei Schlafstörungen.</p><a href="#" class="btn-buy">In den Warenkorb</a></div>
+            <div class="card"><span class="text-[10px] font-bold text-[#0056b3] uppercase mb-2">Vitamine</span><h3 class="text-[17px] font-bold mb-3 min-h-[44px]">Magnesium 400 + B12</h3><p class="text-sm text-gray-500 mb-6">Für Energiestoffwechsel.</p><a href="#" class="btn-buy">In den Warenkorb</a></div>
         </main>
     </div>
 
@@ -170,19 +168,31 @@
         const dict = {
             zh: {
                 p_text: "新客户首单享 10% 折扣*",
-                s1: "10万+ 医药产品", s2: "满 50 CHF 免邮", s3: "瑞士官方认证药房",
-                h_search: "您想找什么产品？", h_acc: "会员登录", h_cart: "购物车",
-                c_title: "全部分类", c_all: "所有产品", c_ga: "胃肠科", c_ka: "心血管", c_ne: "神经科", c_sc: "疼痛治疗", c_vi: "维生素", c_zn: "睡眠/中枢",
+                s1: "超过 100,000 种产品", s2: "满 50 CHF 免邮", s3: "认证瑞士在线药房",
+                h_search: "搜索产品...", h_acc: "账户", h_cart: "购物车",
+                c_title: "分类", c_all: "全部产品", c_ga: "胃肠科", c_ka: "心血管", c_ne: "神经科", c_sc: "疼痛治疗", c_vi: "维生素", c_zn: "睡眠/中枢",
                 d_om: "支持心脏健康的高剂量 Omega-3。", b_bu: "加入购物车"
             },
             de: {
                 p_text: "10% Rabatt für Neukunden*",
                 s1: "Über 100.000 Produkte", s2: "Versandkostenfrei ab 50 CHF", s3: "Original Schweizer Apotheke",
-                h_search: "Wonach suchen Sie?", h_acc: "Anmelden", h_cart: "Warenkorb",
+                h_search: "Suchen...", h_acc: "Anmelden", h_cart: "Warenkorb",
                 c_title: "Kategorien", c_all: "Alle Produkte", c_ga: "Gastroenterologie", c_ka: "Kardiologie", c_ne: "Neurologie", c_sc: "Schmerztherapie", c_vi: "Vitamine", c_zn: "ZNS / Schlaf",
                 d_om: "Hochdosierte Omega-3 für das Herz.", b_bu: "In den Warenkorb"
             }
         };
 
         function setLang(l) {
-            document
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[l][key]) el.textContent = dict[l][key];
+            });
+            document.getElementById('searchInput').placeholder = dict[l]['h_search'];
+        }
+
+        document.getElementById('langBox').onchange = (e) => setLang(e.target.value);
+        window.onload = () => setLang('de');
+    </script>
+</body>
+</html>
+
