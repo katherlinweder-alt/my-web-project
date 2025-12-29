@@ -16,15 +16,13 @@
         .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,118,163,0.1); }
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,58,90,0.6); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
         .modal-box { background: white; padding: 30px; border-radius: 20px; max-width: 700px; width: 95%; position: relative; }
-        .promo-banner { background: linear-gradient(135deg, #e0f2fe 0%, #bde4f4 100%); border-radius: 24px; border: 1px solid #bae6fd; }
-        .info-box { background: white; padding: 24px; border-radius: 16px; border: 1px solid #e1f0f7; text-align: center; }
     </style>
 </head>
 <body>
 
     <div class="bg-[#bde4f4] px-4 md:px-[60px] py-2 text-[11px] font-bold text-[#003a5a] flex justify-between items-center">
         <span><i class="fa-solid fa-truck-fast"></i> SWISS QUALITY DELIVERY</span>
-        <select id="langSwitch" onchange="render(allProducts)" class="bg-transparent border-none cursor-pointer outline-none font-bold text-blue-900">
+        <select id="langSwitch" onchange="startRender()" class="bg-transparent border-none cursor-pointer outline-none font-bold text-blue-900">
             <option value="de">DEUTSCH</option>
             <option value="zh">中文 (ZH)</option>
         </select>
@@ -48,76 +46,23 @@
     </div>
 
     <main class="max-w-[1440px] mx-auto px-4 md:px-[60px] py-6">
-        <div class="promo-banner p-8 md:p-12 mb-10 flex flex-col md:flex-row items-center justify-between shadow-sm">
+        <div class="bg-gradient-to-br from-blue-50 to-[#bde4f4] p-8 md:p-12 mb-10 rounded-[2rem] flex justify-between items-center border border-blue-100 shadow-sm">
             <div>
-                <h1 id="p-t" class="text-2xl md:text-4xl font-black text-[#003a5a] mb-2">20% Rabatt auf Vitamine</h1>
+                <h1 id="p-t" class="text-2xl md:text-4xl font-black text-[#003a5a] mb-2">20% Rabatt</h1>
                 <p id="p-s" class="text-[#0076a3] mb-6 font-medium">Stärken Sie Ihr Immunsystem.</p>
-                <button onclick="filterCat('Vitamine', document.querySelector('.nav-link:nth-child(3)'))" class="bg-[#0076a3] text-white px-8 py-3 rounded-full font-bold shadow-lg" id="p-b">Jetzt Shoppen</button>
+                <button onclick="filterCat('Vitamine', document.querySelector('.nav-link:nth-child(3)'))" class="bg-[#0076a3] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-[#003a5a] transition">Jetzt Shoppen</button>
             </div>
-            <i class="fa-solid fa-snowflake text-6xl text-white opacity-50 mt-4 md:mt-0"></i>
+            <i class="fa-solid fa-plus-medical text-8xl text-white opacity-40 hidden md:block"></i>
         </div>
 
         <h2 id="sectionTitle" class="text-2xl font-black mb-8 text-[#003a5a]">Bestseller</h2>
-        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-20"></div>
+        
+        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 min-h-[400px]"></div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-            <div class="info-box shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24 mb-20">
+            <div class="bg-white p-8 rounded-2xl border border-blue-50 text-center shadow-sm">
                 <i class="fa-solid fa-microscope text-[#0076a3] text-3xl mb-4"></i>
                 <h4 class="font-bold text-[#003a5a] mb-2" id="e1-t">Immunsystem</h4>
                 <p class="text-sm text-gray-500" id="e1-s">Vitamine für den Winter.</p>
             </div>
-            <div class="info-box shadow-sm">
-                <i class="fa-solid fa-leaf text-[#0076a3] text-3xl mb-4"></i>
-                <h4 class="font-bold text-[#003a5a] mb-2" id="e2-t">Hautpflege</h4>
-                <p class="text-sm text-gray-500" id="e2-s">Natürliche Inhaltsstoffe.</p>
-            </div>
-            <div class="info-box shadow-sm">
-                <i class="fa-solid fa-shield-halved text-[#0076a3] text-3xl mb-4"></i>
-                <h4 class="font-bold text-[#003a5a] mb-2" id="e3-t">Qualität</h4>
-                <p class="text-sm text-gray-500" id="e3-s">Geprüfte Apothekenware.</p>
-            </div>
-        </div>
-
-        <div class="bg-[#003a5a] rounded-3xl p-10 text-center text-white mb-20">
-            <h3 class="text-xl font-bold mb-4" id="news-t">Bleiben Sie gesund!</h3>
-            <p class="text-blue-200 text-sm mb-6" id="news-s">Erhalten Sie Gesundheitstipps und exklusive Angebote.</p>
-            <div class="max-w-md mx-auto flex gap-2">
-                <input type="email" placeholder="Email" class="flex-grow px-4 py-2 rounded-lg text-gray-800 outline-none">
-                <button class="bg-[#0076a3] px-6 py-2 rounded-lg font-bold">OK</button>
-            </div>
-        </div>
-    </main>
-
-    <footer class="bg-white border-t border-blue-100 py-16 px-4 md:px-[60px]">
-        <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-sm">
-            <div class="col-span-1 md:col-span-1">
-                <div class="text-xl font-black text-[#0076a3] mb-4">WEDERPHARMA</div>
-                <p class="text-gray-400 leading-relaxed">Swiss Premium Healthcare<br>Zürich, Schweiz.</p>
-                <div class="flex gap-4 mt-6 text-[#0076a3]">
-                    <i class="fa-brands fa-instagram text-xl"></i>
-                    <i class="fa-brands fa-facebook text-xl"></i>
-                    <i class="fa-brands fa-linkedin text-xl"></i>
-                </div>
-            </div>
-            <div>
-                <h4 class="font-bold text-[#003a5a] mb-4 uppercase tracking-widest" id="f-serv">Service</h4>
-                <ul class="text-gray-400 space-y-2">
-                    <li>Versand & Lieferung</li>
-                    <li>Rückgabe</li>
-                    <li>FAQ</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold text-[#003a5a] mb-4 uppercase tracking-widest" id="f-c">Kontakt</h4>
-                <p class="text-gray-400">support@wederpharma.ch<br>+41 44 000 00 00</p>
-            </div>
-            <div>
-                <h4 class="font-bold text-[#003a5a] mb-4 uppercase tracking-widest" id="f-p">Zahlung</h4>
-                <div class="flex gap-4 text-3xl text-gray-200">
-                    <i class="fa-brands fa-cc-visa"></i>
-                    <i class="fa-brands fa-cc-paypal"></i>
-                    <i class="fa-brands fa-cc-apple-pay"></i>
-                </div>
-            </div>
-        </div>
-        <div class="max-w-[1440px] mx-auto mt-16 pt-8 border-t border-gray-50 text-center text-gray-300 text-
+            <div class="bg-white p-8 rounded-2xl border border-blue-5
