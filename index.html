@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA | Swiss Premium Healthcare</title>
+    <title>WEDERPHARMA | Premium Healthcare</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
@@ -12,17 +12,15 @@
         .sticky-nav { background: white; border-bottom: 1px solid var(--ice-blue); position: sticky; top: 0; z-index: 50; }
         .nav-link { font-size: 13px; font-weight: 700; color: var(--dark-navy); cursor: pointer; padding-bottom: 4px; border-bottom: 2px solid transparent; transition: 0.3s; }
         .nav-link.active { color: var(--deep-blue); border-bottom-color: var(--deep-blue); }
-        .promo-banner { background: linear-gradient(90deg, #e0f2fe 0%, #bde4f4 100%); border-radius: 16px; position: relative; overflow: hidden; }
         .p-card { background: white; border: 1px solid #e1f0f7; padding: 20px; border-radius: 12px; transition: 0.3s; cursor: pointer; display: flex; flex-direction: column; height: 100%; }
         .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,118,163,0.1); }
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,58,90,0.6); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
         .modal-box { background: white; padding: 30px; border-radius: 20px; max-width: 700px; width: 95%; position: relative; }
         .cart-dot { background: #ff3b30; color: white; font-size: 10px; padding: 2px 6px; border-radius: 10px; position: absolute; top: -5px; right: -10px; font-weight: bold; }
-        .icon-btn { text-align: center; cursor: pointer; color: var(--dark-navy); transition: 0.2s; }
-        .icon-btn:hover { color: var(--deep-blue); }
     </style>
 </head>
 <body>
+
     <div class="bg-[#bde4f4] px-4 md:px-[60px] py-2 text-[11px] font-bold text-[#003a5a] flex justify-between items-center">
         <span><i class="fa-solid fa-truck-fast"></i> SWISS QUALITY DELIVERY</span>
         <select id="langSwitch" class="bg-transparent border-none cursor-pointer outline-none font-bold text-blue-900">
@@ -35,9 +33,9 @@
         <header class="px-4 md:px-[60px] py-4 flex items-center justify-between gap-4 md:gap-10">
             <div class="text-2xl font-black text-[#0076a3] tracking-tighter cursor-pointer" onclick="goHome()">WEDER<span class="text-[#003a5a]">PHARMA</span></div>
             <div class="flex-grow max-w-xl"><input type="text" id="searchInput" class="w-full px-5 py-2 rounded-full border-2 border-[#f0f8ff] outline-none focus:border-[#0076a3]" placeholder="Suche..."></div>
-            <div class="flex items-center gap-6">
-                <div class="icon-btn" onclick="alert('Account')"><i class="fa-regular fa-user text-xl"></i><p class="text-[9px] font-bold mt-1 uppercase" id="label-account">Anmelden</p></div>
-                <div class="icon-btn relative" onclick="alert('Cart')"><i class="fa-solid fa-cart-shopping text-xl"></i><span id="cartCount" class="cart-dot" style="display:none">0</span><p class="text-[9px] font-bold mt-1 uppercase" id="label-cart">Korb</p></div>
+            <div class="flex items-center gap-6 text-[#003a5a]">
+                <div class="text-center cursor-pointer" onclick="alert('Account')"><i class="fa-regular fa-user text-xl"></i><p class="text-[9px] font-bold mt-1 uppercase" id="l-acc">Anmelden</p></div>
+                <div class="text-center cursor-pointer relative" onclick="alert('Cart')"><i class="fa-solid fa-cart-shopping text-xl"></i><span id="cartCount" class="cart-dot" style="display:none">0</span><p class="text-[9px] font-bold mt-1 uppercase" id="l-cart">Korb</p></div>
             </div>
         </header>
         <nav class="px-4 md:px-[60px] pb-3 flex gap-8 overflow-x-auto whitespace-nowrap">
@@ -49,36 +47,36 @@
     </div>
 
     <main class="max-w-[1440px] mx-auto px-4 md:px-[60px] py-6">
-        <div class="promo-banner p-8 md:p-12 mb-10 flex flex-col md:flex-row items-center justify-between">
-            <div class="max-w-md">
-                <span class="bg-white text-[#0076a3] px-3 py-1 rounded-full text-[10px] font-black uppercase mb-4 inline-block">Winter Special</span>
-                <h1 id="promo-title" class="text-3xl md:text-4xl font-black text-[#003a5a] mb-4 leading-tight">20% Rabatt auf alle Vitamine</h1>
-                <p id="promo-sub" class="text-[#0076a3] font-medium mb-6 text-sm">Stärken Sie Ihr Immunsystem für die kalte Jahreszeit.</p>
-                <button onclick="filterCat('Vitamine', document.querySelector('[onclick*=\'Vitamine\']'))" class="bg-[#0076a3] text-white px-8 py-3 rounded-full font-bold hover:bg-[#003a5a] transition shadow-lg shadow-blue-200" id="promo-btn">Jetzt Shoppen</button>
+        <div class="bg-gradient-to-r from-blue-50 to-[#bde4f4] rounded-3xl p-8 md:p-12 mb-10 flex items-center justify-between border border-blue-100 shadow-sm">
+            <div>
+                <span class="bg-white text-[#0076a3] px-3 py-1 rounded-full text-[10px] font-black uppercase mb-4 inline-block">Special Offer</span>
+                <h1 id="p-t" class="text-2xl md:text-4xl font-black text-[#003a5a] mb-4">20% Rabatt auf Vitamine</h1>
+                <p id="p-s" class="text-[#0076a3] mb-6 text-sm">Gültig bis Ende des Monats.</p>
+                <button onclick="filterCat('Vitamine', document.querySelector('.nav-link:nth-child(3)'))" class="bg-[#0076a3] text-white px-8 py-3 rounded-full font-bold hover:bg-[#003a5a] transition shadow-md" id="p-b">Jetzt Shoppen</button>
             </div>
-            <div class="hidden md:block opacity-20 text-9xl font-black text-[#0076a3]"><i class="fa-solid fa-pills"></i></div>
+            <i class="fa-solid fa-kit-medical text-9xl text-white opacity-40 hidden md:block"></i>
         </div>
 
         <h2 id="sectionTitle" class="text-2xl font-black mb-8 text-[#003a5a]">Bestseller</h2>
-        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"></div>
+        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 min-h-[400px]"></div>
 
-        <section class="mt-24 border-t border-blue-100 pt-16 pb-12">
+        <section class="mt-24 border-t border-blue-100 pt-16">
             <h2 id="expertTitle" class="text-2xl font-black mb-10 text-[#003a5a]">Expertenrat</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-blue-50">
+                <div class="bg-white p-6 rounded-2xl border border-blue-50 shadow-sm text-center">
                     <i class="fa-solid fa-microscope text-[#0076a3] text-2xl mb-4"></i>
-                    <h4 class="font-bold text-[#003a5a] mb-2" id="e1-t">Immunsystem</h4>
-                    <p class="text-sm text-gray-500" id="e1-s">Vitamine für den Winter.</p>
+                    <h4 class="font-bold text-[#003a5a] mb-2" id="e1">Immunsystem</h4>
+                    <p class="text-sm text-gray-500">Vitamine für den Winter.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-blue-50">
+                <div class="bg-white p-6 rounded-2xl border border-blue-50 shadow-sm text-center">
                     <i class="fa-solid fa-leaf text-[#0076a3] text-2xl mb-4"></i>
-                    <h4 class="font-bold text-[#003a5a] mb-2" id="e2-t">Hautpflege</h4>
-                    <p class="text-sm text-gray-500" id="e2-s">Natürliche Beauty-Tipps.</p>
+                    <h4 class="font-bold text-[#003a5a] mb-2" id="e2">Hautpflege</h4>
+                    <p class="text-sm text-gray-500">Natürliche Inhaltsstoffe.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-blue-50">
-                    <i class="fa-solid fa-shield-halved text-[#0076a3] text-2xl mb-4"></i>
-                    <h4 class="font-bold text-[#003a5a] mb-2" id="e3-t">Sicherheit</h4>
-                    <p class="text-sm text-gray-500" id="e3-s">Geprüfte Schweizer Qualität.</p>
+                <div class="bg-white p-6 rounded-2xl border border-blue-50 shadow-sm text-center">
+                    <i class="fa-solid fa-shield text-[#0076a3] text-2xl mb-4"></i>
+                    <h4 class="font-bold text-[#003a5a] mb-2" id="e3">Qualität</h4>
+                    <p class="text-sm text-gray-500">Geprüfte Apothekenware.</p>
                 </div>
             </div>
         </section>
@@ -88,11 +86,11 @@
         <div class="modal-box" onclick="event.stopPropagation()"><div id="modalBody"></div></div>
     </div>
 
-    <footer class="bg-white border-t border-[#bde4f4] py-12 px-4 md:px-[60px]">
+    <footer class="bg-white border-t border-[#bde4f4] py-12 px-4 md:px-[60px] mt-12">
         <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
             <div><div class="text-xl font-black text-[#0076a3] mb-4">WEDERPHARMA</div><p class="text-gray-400 text-sm">Zürich, Schweiz.</p></div>
-            <div><h4 class="font-bold text-[#003a5a] mb-4" id="f-c">KONTAKT</h4><p class="text-gray-400 text-sm">support@wederpharma.ch</p></div>
-            <div><h4 class="font-bold text-[#003a5a] mb-4" id="f-p">ZAHLUNG</h4><div class="flex gap-4 text-2xl text-gray-200"><i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-paypal"></i></div></div>
+            <div class="text-gray-400 text-sm"><h4 class="font-bold text-[#003a5a] mb-4">KONTAKT</h4>support@wederpharma.ch</div>
+            <div class="text-gray-400 text-sm"><h4 class="font-bold text-[#003a5a] mb-4">PAYMENT</h4>Visa / Mastercard / PayPal</div>
         </div>
     </footer>
 
@@ -100,12 +98,12 @@
         let cart = 0;
         const products = [
             { id:1, cat:'Vitamine', de:"Omega-3 1400mg Pure", zh:"深海鱼油 1400mg", price:"28.95", brand:"WEDER PREMIUM", img:"http://googleusercontent.com/image_collection/image_retrieval/4020337774286386754_0", desc:"Hochreines Omega-3." },
-            { id:2, cat:'Medikamente', de:"Magnesium 400 Forte", zh:"高浓度镁片 400", price:"19.50", brand:"SANDOZ", img:"http://googleusercontent.com/image_collection/image_retrieval/7777956848299349303_0", desc:"Für die Muskeln." },
+            { id:2, cat:'Medikamente', de:"Magnesium 400 Forte", zh:"高浓度镁片 400", price:"19.50", brand:"SANDOZ", img:"http://googleusercontent.com/image_collection/image_retrieval/7777956848299349303_0", desc:"Für Muskeln." },
             { id:3, cat:'Beauty', de:"La Roche-Posay Effaclar", zh:"理肤泉 清痘精华", price:"24.20", brand:"LA ROCHE-POSAY", img:"http://googleusercontent.com/image_collection/image_retrieval/9554631290270592904_0", desc:"Hautpflege." },
-            { id:4, cat:'Vitamine', de:"Vitamin D3 K2 Tropfen", zh:"维他命 D3 K2 滴剂", price:"32.00", brand:"SWISS DEFENCE", img:"http://googleusercontent.com/image_collection/image_retrieval/14036632179103918853_0", desc:"Knochenschutz." },
+            { id:4, cat:'Vitamine', de:"Vitamin D3 K2 Tropfen", zh:"维他命 D3 K2 滴剂", price:"32.00", brand:"SWISS DEFENCE", img:"http://googleusercontent.com/image_collection/image_retrieval/14036632179103918853_0", desc:"Knochenstärkung." },
             { id:5, cat:'Medikamente', de:"Voltaren Schmerzgel", zh:"扶他林 止痛膏", price:"15.80", brand:"VOLTAREN", img:"http://googleusercontent.com/image_collection/image_retrieval/6273907050997022979_0", desc:"Gegen Schmerzen." }
         ];
 
         const dict = {
-            zh: { promoT: "维他命系列 8折优惠", promoS: "为寒冷季节增强免疫力。", promoB: "立即选购", acc: "登录", cart: "购物车", search: "搜索...", best: "畅销推荐", exp: "专家建议", e1t: "免疫系统", e1s: "冬日维他命", e2t: "皮肤护理", e2s: "天然成分", e3t: "安全保障", e3s: "瑞士品质", contact: "联系我们", pay: "支付方式" },
-            de: { promoT: "20% Rabatt auf alle Vitamine", promoS: "Stärken Sie Ihr Immunsystem für die kalte Jahreszeit.", promoB: "Jetzt Shoppen", acc: "Anmelden", cart: "Korb", search: "Suche...", best: "Bestseller", exp: "Expertenrat", e1t: "Immunsystem
+            zh: { acc: "登录", cart: "购物车", search: "搜索...", best: "畅销推荐", exp: "专家建议", pT: "维他命系列 8折", pS: "限时优惠", pB: "立即抢购" },
+            de: { acc: "Anmelden", cart: "Korb", search: "Suche...", best: "Bestseller", exp: "Expertenrat", pT: "20% Rabatt auf Vitamine", p
