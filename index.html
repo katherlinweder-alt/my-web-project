@@ -3,65 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA | Redcare Style</title>
+    <title>WEDERPHARMA | Ihr Premium Gesundheitspartner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        :root { --rc-red: #e30613; --ice-blue: #bde4f4; }
-        body { font-family: 'Inter', sans-serif; background: white; margin: 0; }
-        .top-strip { background: var(--ice-blue); padding: 8px 60px; font-size: 12px; font-weight: 700; display: flex; justify-content: space-between; }
-        .mid-header { padding: 20px 60px; display: flex; align-items: center; gap: 50px; border-bottom: 1px solid #eee; }
+        :root { --rc-red: #e30613; --ice-blue: #bde4f4; --dark-blue: #003a5a; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: #f8f9fa; margin: 0; color: #333; }
+        .top-strip { background: var(--ice-blue); padding: 8px 60px; font-size: 12px; font-weight: 700; display: flex; justify-content: space-between; color: var(--dark-blue); }
+        .mid-header { background: white; padding: 20px 60px; display: flex; align-items: center; gap: 50px; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 50; }
         .logo { font-size: 28px; font-weight: 900; color: var(--rc-red); letter-spacing: -1.5px; }
-        .logo span { color: #1a1a1a; }
-        .search-input { width: 100%; padding: 14px 25px; border: 2px solid #ddd; border-radius: 4px; font-size: 15px; outline: none; }
-        .action-box { text-align: center; color: #444; cursor: pointer; position: relative; }
-        .action-box i { font-size: 24px; }
-        .action-box p { font-size: 11px; font-weight: 700; margin-top: 5px; }
-        .product-card { border: 1px solid #eee; padding: 20px; border-radius: 4px; position: relative; transition: 0.2s; }
-        .product-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
-        .price-box { font-size: 24px; font-weight: 900; color: var(--rc-red); margin-top: 15px; }
-        .add-btn { position: absolute; bottom: 20px; right: 20px; background: var(--rc-red); color: white; width: 44px; height: 44px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; }
+        .logo span { color: var(--dark-blue); }
+        .search-input { width: 100%; padding: 12px 25px; border: 2px solid #eee; border-radius: 50px; font-size: 15px; outline: none; transition: 0.3s; }
+        .search-input:focus { border-color: var(--rc-red); }
+        .banner { background: linear-gradient(90deg, #e30613 0%, #ff4d4d 100%); color: white; padding: 40px 60px; border-radius: 8px; margin: 20px 60px; display: flex; justify-content: space-between; align-items: center; }
+        .product-card { background: white; border: 1px solid #eee; padding: 20px; border-radius: 8px; position: relative; transition: 0.3s; height: 100%; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+        .price-box { font-size: 22px; font-weight: 900; color: var(--rc-red); margin-top: 10px; }
+        .add-btn { background: var(--rc-red); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; transition: 0.2s; }
+        .add-btn:hover { background: #b3050f; transform: scale(1.1); }
+        .footer-trust { background: white; border-top: 1px solid #eee; padding: 40px 60px; margin-top: 60px; }
     </style>
 </head>
 <body>
     <div class="top-strip">
-        <div class="flex gap-6"><span><i class="fa-solid fa-truck"></i> Gratis Versand ab 30 CHF</span></div>
-        <select id="langSwitch" class="bg-transparent border-none font-bold cursor-pointer">
-            <option value="de">DEUTSCH</option>
-            <option value="zh">中文 (ZH)</option>
-        </select>
+        <div class="flex gap-6"><span><i class="fa-solid fa-truck"></i> Gratis Versand ab 30 CHF</span><span><i class="fa-solid fa-clock"></i> Lieferung in 1-2 Werktagen</span></div>
+        <select id="langSwitch" class="bg-transparent border-none font-bold cursor-pointer"><option value="de">DEUTSCH</option><option value="zh">中文 (ZH)</option></select>
     </div>
+
     <header class="mid-header">
         <div class="logo">WEDER<span>PHARMA</span></div>
-        <div class="flex-grow max-w-2xl"><input type="text" class="search-input" placeholder="Produkte suchen..."></div>
+        <div class="flex-grow max-w-xl"><input type="text" class="search-input" placeholder="Nach Medikamenten oder Marken suchen..."></div>
         <div class="flex gap-8">
-            <div class="action-box"><i class="fa-regular fa-user"></i><p id="l-acc">Anmelden</p></div>
-            <div class="action-box"><i class="fa-solid fa-cart-shopping"></i><p id="l-cart">Warenkorb</p></div>
+            <div class="text-center cursor-pointer"><i class="fa-regular fa-user text-xl"></i><p class="text-[10px] font-bold" id="l-acc">Anmelden</p></div>
+            <div class="text-center cursor-pointer"><i class="fa-solid fa-cart-shopping text-xl"></i><p class="text-[10px] font-bold" id="l-cart">Warenkorb</p></div>
         </div>
     </header>
-    <main class="max-w-[1440px] mx-auto p-12">
-        <h2 class="text-2xl font-bold mb-10" id="l-title">Unsere Bestseller</h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-8">
-            <div class="product-card">
-                <div class="h-40 bg-slate-50 rounded mb-4 flex items-center justify-center text-slate-300 font-bold">IMAGE</div>
-                <div class="text-[10px] font-bold text-gray-400 uppercase">Swiss Premium</div>
-                <h3 class="text-sm font-semibold mt-2 h-10 overflow-hidden">Omega-3 Fischöl 1400mg Pure</h3>
-                <div class="price-box">28.95 <span class="text-sm">CHF</span></div>
-                <div class="add-btn">+</div>
-            </div>
+
+    <div class="banner">
+        <div><h1 class="text-3xl font-black mb-2" id="b-title">Winter Sale!</h1><p class="text-lg opacity-90" id="b-sub">Bis zu 40% Rabatt auf Winter-Essentials</p></div>
+        <button class="bg-white text-red-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition shadow-lg" id="b-btn">Jetzt Shoppen</button>
+    </div>
+
+    <main class="max-w-[1440px] mx-auto px-[60px] py-10">
+        <h2 class="text-2xl font-bold mb-8" id="l-title">Unsere Bestseller</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6" id="product-grid">
             </div>
     </main>
+
+    <section class="footer-trust">
+        <div class="max-w-6xl mx-auto flex justify-between items-center opacity-60 grayscale hover:grayscale-0 transition duration-500">
+            <i class="fa-brands fa-cc-visa text-4xl"></i><i class="fa-brands fa-cc-mastercard text-4xl"></i><i class="fa-brands fa-cc-paypal text-4xl"></i><i class="fa-brands fa-dhl text-5xl"></i><i class="fa-solid fa-truck-fast text-4xl"></i>
+        </div>
+        <div class="text-center mt-10 text-gray-400 text-xs">© 2024 WEDERPHARMA Switzerland. Alle Rechte vorbehalten.</div>
+    </section>
+
     <script>
-        const dict = { 
-            zh: { acc: "登录", cart: "购物车", title: "热销商品" }, 
-            de: { acc: "Anmelden", cart: "Warenkorb", title: "Unsere Bestseller" } 
+        const products = [
+            { id: 1, de: "Omega-3 Fischöl 1400mg Pure", zh: "深海鱼油 1400mg 提纯", price: "28.95", brand: "WEDER PREMIUM" },
+            { id: 2, de: "Magnesium 400 Forte", zh: "高浓度镁片 400 Forte", price: "19.50", brand: "SANDOZ" },
+            { id: 3, de: "La Roche-Posay Effaclar", zh: "理肤泉 清痘净肤精华", price: "24.20", brand: "LA ROCHE-POSAY" },
+            { id: 4, de: "Vitamin D3 K2 Tropfen", zh: "维他命 D3 K2 滴剂", price: "32.00", brand: "SWISS DEFENCE" },
+            { id: 5, de: "Voltaren Schmerzgel", zh: "扶他林 止痛软膏", price: "15.80", brand: "VOLTAREN" }
+        ];
+
+        const dict = {
+            zh: { acc: "登录", cart: "购物车", title: "热销商品", bTitle: "冬季大促!", bSub: "指定商品低至6折优惠", bBtn: "立即抢购" },
+            de: { acc: "Anmelden", cart: "Warenkorb", title: "Unsere Bestseller", bTitle: "Winter Sale!", bSub: "Bis zu 40% Rabatt auf Winter-Essentials", bBtn: "Jetzt Shoppen" }
         };
-        document.getElementById('langSwitch').onchange = (e) => {
-            const l = e.target.value;
-            document.getElementById('l-acc').innerText = dict[l].acc;
-            document.getElementById('l-cart').innerText = dict[l].cart;
-            document.getElementById('l-title').innerText = dict[l].title;
-        };
+
+        function render(lang) {
+            document.getElementById('l-acc').innerText = dict[lang].acc;
+            document.getElementById('l-cart').innerText = dict[lang].cart;
+            document.getElementById('l-title').innerText = dict[lang].title;
+            document.getElementById('b-title').innerText = dict[lang].bTitle;
+            document.getElementById('b-sub').innerText = dict[lang].bSub;
+            document.getElementById('b-btn').innerText = dict[lang].bBtn;
+            
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <div class="h-40 bg-gray-50 rounded mb-4 flex items-center justify-center text-gray-300 font-bold italic">IMAGE</div>
+                    <div class="text-[10px] font-bold text-red-500 mb-1">${p.brand}</div>
+                    <h3 class="text-sm font-semibold h-10 overflow-hidden leading-snug">${p[lang]}</h3>
+                    <div class="flex justify-between items-end mt-4">
+                        <div class="price-box">${p.price} <span class="text-xs">CHF</span></div>
+                        <div class="add-btn"><i class="fa-solid fa-plus"></i></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('langSwitch').onchange = (e) => render(e.target.value);
+        render('de');
     </script>
 </body>
 </html>
