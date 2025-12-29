@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA | Premium Healthcare</title>
+    <title>WEDERPHARMA | Swiss Premium Healthcare</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
@@ -17,6 +17,7 @@
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,58,90,0.6); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
         .modal-box { background: white; padding: 30px; border-radius: 20px; max-width: 700px; width: 95%; position: relative; }
         .promo-banner { background: linear-gradient(135deg, #e0f2fe 0%, #bde4f4 100%); border-radius: 20px; border: 1px solid #bae6fd; }
+        .info-box { background: white; padding: 24px; border-radius: 16px; border: 1px solid #e1f0f7; text-align: center; }
     </style>
 </head>
 <body>
@@ -58,15 +59,35 @@
 
         <h2 id="sectionTitle" class="text-2xl font-black mb-8 text-[#003a5a]">Bestseller</h2>
         
-        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 min-h-[400px]">
+        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 min-h-[400px]"></div>
+
+        <section class="mt-24 border-t border-blue-100 pt-16">
+            <h2 id="expertTitle" class="text-2xl font-black mb-10 text-[#003a5a]">Expertenrat</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="info-box shadow-sm">
+                    <i class="fa-solid fa-microscope text-[#0076a3] text-3xl mb-4"></i>
+                    <h4 class="font-bold text-[#003a5a] mb-2" id="e1-t">Immunsystem</h4>
+                    <p class="text-sm text-gray-500" id="e1-s">Vitamine für den Winter.</p>
+                </div>
+                <div class="info-box shadow-sm">
+                    <i class="fa-solid fa-leaf text-[#0076a3] text-3xl mb-4"></i>
+                    <h4 class="font-bold text-[#003a5a] mb-2" id="e2-t">Hautpflege</h4>
+                    <p class="text-sm text-gray-500" id="e2-s">Natürliche Inhaltsstoffe.</p>
+                </div>
+                <div class="info-box shadow-sm">
+                    <i class="fa-solid fa-shield-halved text-[#0076a3] text-3xl mb-4"></i>
+                    <h4 class="font-bold text-[#003a5a] mb-2" id="e3-t">Qualität</h4>
+                    <p class="text-sm text-gray-500" id="e3-s">Geprüfte Apothekenware.</p>
+                </div>
             </div>
+        </section>
     </main>
 
     <footer class="bg-white border-t border-blue-100 py-12 px-4 md:px-[60px] mt-20">
-        <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div><div class="text-xl font-black text-[#0076a3] mb-2">WEDERPHARMA</div><p class="text-gray-400 text-sm">Zürich, Schweiz.</p></div>
-            <div><h4 class="font-bold text-[#003a5a] mb-2">KONTAKT</h4><p class="text-gray-400 text-sm">support@wederpharma.ch</p></div>
-            <div><h4 class="font-bold text-[#003a5a] mb-2">ZAHLUNG</h4><div class="flex gap-4 text-2xl text-gray-200"><i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-paypal"></i></div></div>
+        <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-sm">
+            <div><div class="text-xl font-black text-[#0076a3] mb-2">WEDERPHARMA</div><p class="text-gray-400">Zürich, Schweiz.</p></div>
+            <div><h4 class="font-bold text-[#003a5a] mb-2" id="f-c">KONTAKT</h4><p class="text-gray-400">support@wederpharma.ch</p></div>
+            <div><h4 class="font-bold text-[#003a5a] mb-2" id="f-p">ZAHLUNG</h4><div class="flex gap-4 text-2xl text-gray-200"><i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-paypal"></i></div></div>
         </div>
     </footer>
 
@@ -84,15 +105,15 @@
         ];
 
         const dict = {
-            zh: { acc: "登录", cart: "购物车", search: "搜索...", best: "畅销推荐", pT: "维他命 8折", pS: "增强冬季免疫力", pB: "立即抢购" },
-            de: { acc: "Anmelden", cart: "Korb", search: "Suche...", best: "Bestseller", pT: "20% Rabatt auf Vitamine", pS: "Stärken Sie Ihr Immunsystem.", pB: "Jetzt Shoppen" }
+            zh: { acc: "登录", cart: "购物车", search: "搜索...", best: "畅销推荐", pT: "维他命 8折", pS: "增强冬季免疫力", pB: "立即抢购", exp: "专家建议", e1t: "免疫系统", e1s: "冬日维他命", e2t: "皮肤护理", e2s: "天然成分", e3t: "安全保障", e3s: "瑞士品质", contact: "联系我们", pay: "支付方式" },
+            de: { acc: "Anmelden", cart: "Korb", search: "Suche...", best: "Bestseller", pT: "20% Rabatt auf Vitamine", pS: "Stärken Sie Ihr Immunsystem.", pB: "Jetzt Shoppen", exp: "Expertenrat", e1t: "Immunsystem", e1s: "Vitamine für den Winter.", e2t: "Hautpflege", e2s: "Natürliche Beauty-Tipps.", e3t: "Sicherheit", e3s: "Geprüfte Qualität", contact: "KONTAKT", pay: "ZAHLUNG" }
         };
 
         let cartCount = 0;
 
         function render(items) {
             const lang = document.getElementById('langSwitch').value;
-            // 更新静态文字
+            // 更新 UI 文字
             document.getElementById('l-acc').innerText = dict[lang].acc;
             document.getElementById('l-cart').innerText = dict[lang].cart;
             document.getElementById('searchInput').placeholder = dict[lang].search;
@@ -100,7 +121,17 @@
             document.getElementById('p-t').innerText = dict[lang].pT;
             document.getElementById('p-s').innerText = dict[lang].pS;
             document.getElementById('p-b').innerText = dict[lang].pB;
+            document.getElementById('expertTitle').innerText = dict[lang].exp;
+            document.getElementById('e1-t').innerText = dict[lang].e1t;
+            document.getElementById('e1-s').innerText = dict[lang].e1s;
+            document.getElementById('e2-t').innerText = dict[lang].e2t;
+            document.getElementById('e2-s').innerText = dict[lang].e2s;
+            document.getElementById('e3-t').innerText = dict[lang].e3t;
+            document.getElementById('e3-s').innerText = dict[lang].e3s;
+            document.getElementById('f-c').innerText = dict[lang].contact;
+            document.getElementById('f-p').innerText = dict[lang].pay;
 
+            // 渲染产品
             const grid = document.getElementById('productGrid');
             grid.innerHTML = items.map(p => `
                 <div class="p-card" onclick="openModal(${p.id})">
@@ -113,8 +144,7 @@
                             <i class="fa-solid fa-plus"></i>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                </div>`).join('');
         }
 
         function updateCart() {
@@ -126,15 +156,13 @@
 
         function doSearch() {
             const val = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = allProducts.filter(p => p.de.toLowerCase().includes(val) || p.zh.toLowerCase().includes(val));
-            render(filtered);
+            render(allProducts.filter(p => p.de.toLowerCase().includes(val) || p.zh.toLowerCase().includes(val)));
         }
 
         function filterCat(cat, el) {
             document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
             el.classList.add('active');
-            const filtered = (cat === 'all') ? allProducts : allProducts.filter(p => p.cat === cat);
-            render(filtered);
+            render(cat === 'all' ? allProducts : allProducts.filter(p => p.cat === cat));
         }
 
         function goHome() {
@@ -160,7 +188,7 @@
 
         function closeModal() { document.getElementById('detailModal').style.display = 'none'; }
 
-        // 立即执行一次渲染
+        // 立即渲染一次
         render(allProducts);
     </script>
 </body>
