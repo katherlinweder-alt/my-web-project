@@ -60,4 +60,106 @@
                 </div>
                 <div class="bg-white p-6 rounded-2xl border border-blue-50 shadow-sm">
                     <i class="fa-solid fa-leaf text-[#0076a3] text-3xl mb-4"></i>
-                    <h4 class="font-bold text-[#003a5a] mb
+                    <h4 class="font-bold text-[#003a5a] mb-2" id="exp-2">Hautpflege</h4>
+                    <p class="text-sm text-gray-500" id="exp-2-sub">Natürliche Inhaltsstoffe.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-blue-50 shadow-sm">
+                    <i class="fa-solid fa-truck text-[#0076a3] text-3xl mb-4"></i>
+                    <h4 class="font-bold text-[#003a5a] mb-2" id="exp-3">Versand</h4>
+                    <p class="text-sm text-gray-500" id="exp-3-sub">Diskrete Lieferung.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div><div class="text-xl font-black text-[#0076a3] mb-4">WEDERPHARMA</div><p class="text-gray-500 text-sm">Zürich, Schweiz.</p></div>
+            <div><h4 class="font-bold text-[#003a5a] mb-4" id="f-contact">KONTAKT</h4><p class="text-gray-500 text-sm">support@wederpharma.ch</p></div>
+            <div><h4 class="font-bold text-[#003a5a] mb-4" id="f-pay">ZAHLUNG</h4><div class="flex gap-4 text-2xl text-gray-300"><i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-paypal"></i></div></div>
+        </div>
+    </footer>
+
+    <script>
+        let cart = 0;
+        const products = [
+            { id:1, cat:'Vitamine', de:"Omega-3 1400mg Pure", zh:"深海鱼油 1400mg", price:"28.95", brand:"WEDER PREMIUM", img:"http://googleusercontent.com/image_collection/image_retrieval/4020337774286386754_0", desc:"Hochreines Omega-3.", usage:"1 Kapsel täglich.", ingredients:"Fischöl." },
+            { id:2, cat:'Medikamente', de:"Magnesium 400 Forte", zh:"高浓度镁片 400", price:"19.50", brand:"SANDOZ", img:"http://googleusercontent.com/image_collection/image_retrieval/7777956848299349303_0", desc:"Für Muskeln.", usage:"1 Stick täglich.", ingredients:"Magnesium." },
+            { id:3, cat:'Beauty', de:"La Roche-Posay Effaclar", zh:"理肤泉 清痘精华", price:"24.20", brand:"LA ROCHE-POSAY", img:"http://googleusercontent.com/image_collection/image_retrieval/9554631290270592904_0", desc:"Hautpflege.", usage:"Zweimal täglich.", ingredients:"Salicylsäure." },
+            { id:4, cat:'Vitamine', de:"Vitamin D3 K2 Tropfen", zh:"维他命 D3 K2 滴剂", price:"32.00", brand:"SWISS DEFENCE", img:"http://googleusercontent.com/image_collection/image_retrieval/14036632179103918853_0", desc:"Knochenstärkung.", usage:"1 Tropfen täglich.", ingredients:"D3/K2." },
+            { id:5, cat:'Medikamente', de:"Voltaren Schmerzgel", zh:"扶他林 止痛膏", price:"15.80", brand:"VOLTAREN", img:"http://googleusercontent.com/image_collection/image_retrieval/6273907050997022979_0", desc:"Gegen Schmerzen.", usage:"Lokal auftragen.", ingredients:"Diclofenac." }
+        ];
+
+        const dict = {
+            zh: { search: "搜索产品...", bestseller: "畅销推荐", expert: "专家建议与健康", exp1: "免疫系统", exp1s: "冬日必备维他命", exp2: "皮肤护理", exp2s: "天然护肤成分", exp3: "快速配送", exp3s: "全瑞士私人送货", contact: "联系我们", pay: "支付方式" },
+            de: { search: "Produkte suchen...", bestseller: "Bestseller", expert: "Expertenrat & Gesundheit", exp1: "Immunsystem", exp1s: "Vitamine für den Winter.", exp2: "Hautpflege", exp2s: "Natürliche Inhaltsstoffe.", exp3: "Versand", exp3s: "Diskrete Lieferung.", contact: "KONTAKT", pay: "ZAHLUNG" }
+        };
+
+        function render(items) {
+            const lang = document.getElementById('langSwitch').value;
+            document.getElementById('searchInput').placeholder = dict[lang].search;
+            document.getElementById('sectionTitle').innerText = dict[lang].bestseller;
+            document.getElementById('expertTitle').innerText = dict[lang].expert;
+            document.getElementById('exp-1').innerText = dict[lang].exp1;
+            document.getElementById('exp-1-sub').innerText = dict[lang].exp1s;
+            document.getElementById('exp-2').innerText = dict[lang].exp2;
+            document.getElementById('exp-2-sub').innerText = dict[lang].exp2s;
+            document.getElementById('exp-3').innerText = dict[lang].exp3;
+            document.getElementById('exp-3-sub').innerText = dict[lang].exp3s;
+            document.getElementById('f-contact').innerText = dict[lang].contact;
+            document.getElementById('f-pay').innerText = dict[lang].pay;
+
+            document.getElementById('productGrid').innerHTML = items.map(p => `
+                <div class="product-card" onclick="openModal(${p.id})">
+                    <img src="${p.img}" class="h-32 md:h-40 w-full object-contain mb-4">
+                    <div class="text-[9px] font-bold text-blue-400 uppercase">${p.brand}</div>
+                    <h3 class="text-xs md:text-sm font-bold text-[#003a5a] mb-4">${p[lang]}</h3>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="text-lg font-black text-[#0076a3]">${p.price} <small class="text-[10px]">CHF</small></span>
+                        <div class="bg-[#0076a3] text-white p-2 rounded-lg text-xs" onclick="event.stopPropagation();updateCart(1)"><i class="fa-solid fa-plus"></i></div>
+                    </div>
+                </div>`).join('');
+        }
+
+        function updateCart(n) { cart += n; const b = document.getElementById('cartCount'); b.innerText = cart; b.style.display = 'block'; }
+        
+        function goHome() { 
+            document.getElementById('searchInput').value = ""; 
+            filterCat('all', document.getElementById('nav-all')); 
+        }
+
+        function openModal(id) {
+            const p = products.find(x => x.id === id);
+            const lang = document.getElementById('langSwitch').value;
+            document.getElementById('modalBody').innerHTML = `
+                <div class="flex flex-col md:flex-row gap-8">
+                    <img src="${p.img}" class="w-full md:w-1/2 object-contain h-64">
+                    <div class="flex-grow">
+                        <h2 class="text-2xl font-black text-[#003a5a]">${p[lang]}</h2>
+                        <p class="text-blue-500 mb-6">${p.brand}</p>
+                        <p class="text-sm mb-4">${p.desc}</p>
+                        <p class="text-3xl font-black text-[#0076a3] mb-8">${p.price} CHF</p>
+                        <button onclick="updateCart(1);closeModal()" class="w-full bg-[#0076a3] text-white py-4 rounded-xl font-bold">In den Warenkorb</button>
+                    </div>
+                </div>`;
+            document.getElementById('detailModal').style.display = 'flex';
+        }
+
+        function closeModal() { document.getElementById('detailModal').style.display = 'none'; }
+        
+        document.getElementById('searchInput').oninput = (e) => {
+            const val = e.target.value.toLowerCase();
+            render(products.filter(p => p.de.toLowerCase().includes(val) || p.zh.toLowerCase().includes(val)));
+        };
+
+        function filterCat(cat, el) {
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            el.classList.add('active');
+            render(cat === 'all' ? products : products.filter(p => p.cat === cat));
+        }
+
+        document.getElementById('langSwitch').onchange = () => render(products);
+        render(products);
+    </script>
+</body>
+</html>
