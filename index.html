@@ -3,120 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA | Professional Swiss Pharmacy</title>
+    <title>WEDERPHARMA | Professional Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; margin: 0; background-color: #fcfcfc; }
-        /* 目录条的硬核样式 - 确保它绝对可见 */
-        .category-bar {
-            background-color: #003a5a !important; /* 深蓝色背景 */
-            min-height: 50px;
+        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: #ffffff; }
+        /* 强制目录可见 - 核心样式 */
+        .forced-category-bar {
+            background-color: #003a5a !important;
+            height: 52px !important;
+            width: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            overflow: visible !important;
+        }
+        .forced-link {
+            color: white !important;
+            text-decoration: none !important;
+            font-weight: 700 !important;
+            font-size: 14px !important;
+            padding: 0 15px !important;
+            height: 100%;
             display: flex;
             align-items: center;
-            width: 100%;
         }
-        .cat-link {
-            color: white !important;
-            font-weight: 700;
-            text-decoration: none;
-            padding: 10px 20px;
-            font-size: 14px;
-            white-space: nowrap;
-        }
-        .cat-link:hover {
-            background-color: #0076a3;
-        }
+        .forced-link:hover { background-color: #0076a3; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body>
 
-    <div class="bg-gray-100 py-2 px-6 text-right">
-        <div class="max-w-7xl mx-auto text-[10px] font-bold text-gray-500 gap-4 flex justify-end">
-            <span class="cursor-pointer" onclick="setLang('de')">DEUTSCH</span>
-            <span class="cursor-pointer" onclick="setLang('zh')">中文</span>
+    <div style="background-color: #f8fafc; border-bottom: 1px solid #eee; padding: 8px 24px;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: flex-end; gap: 20px; font-size: 11px; font-weight: bold; color: #94a3b8;">
+            <span style="cursor: pointer;" onclick="setLang('de')">DEUTSCH</span>
+            <span style="cursor: pointer;" onclick="setLang('zh')">中文</span>
         </div>
     </div>
 
-    <header class="bg-white border-b sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-10">
-            <div class="text-3xl font-black tracking-tighter cursor-pointer" onclick="location.reload()">
-                <span class="text-[#0076a3]">WEDER</span><span class="text-red-600">PHARMA</span>
+    <header style="background: white; padding: 20px 24px;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px;">
+            <div style="font-size: 28px; font-weight: 900; cursor: pointer; white-space: nowrap;" onclick="location.reload()">
+                <span style="color: #0076a3;">WEDER</span><span style="color: #ef4444;">PHARMA</span>
             </div>
             
-            <div class="flex-grow max-w-2xl relative">
-                <input type="text" id="sBox" oninput="search()" class="w-full bg-gray-50 border border-gray-200 px-5 py-3 rounded-lg outline-none" placeholder="Suche Produkte...">
-                <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-[#0076a3]"></i>
+            <div style="flex-grow: 1; max-width: 600px; position: relative;">
+                <input type="text" id="sBox" oninput="search()" style="width: 100%; background: #f1f5f9; border: 1px solid #e2e8f0; padding: 12px 20px; border-radius: 8px; outline: none;" placeholder="Suchen Sie Produkte...">
+                <i class="fa-solid fa-magnifying-glass" style="position: absolute; right: 15px; top: 15px; color: #0076a3;"></i>
             </div>
 
-            <div class="flex items-center gap-6">
-                <i class="fa-solid fa-cart-shopping text-2xl text-gray-700"></i>
-            </div>
-        </div>
-
-        <div class="category-bar">
-            <div class="max-w-7xl mx-auto px-4 flex items-center w-full overflow-x-auto">
-                <div class="bg-[#0076a3] text-white px-6 py-3 font-black text-sm mr-4 flex items-center gap-2">
-                    <i class="fa-solid fa-bars"></i> KATEGORIEN
+            <div style="display: flex; align-items: center; gap: 25px; color: #475569;">
+                <div style="display: flex; flex-direction: column; align-items: center; cursor: pointer;">
+                    <i class="fa-regular fa-user" style="font-size: 20px;"></i>
+                    <span style="font-size: 10px; font-weight: bold; margin-top: 4px;">KONTO</span>
                 </div>
-                <nav class="flex">
-                    <a href="#" class="cat-link" data-de="Arzneimittel" data-zh="药品">Arzneimittel</a>
-                    <a href="#" class="cat-link" data-de="Vitamine" data-zh="维他命">Vitamine</a>
-                    <a href="#" class="cat-link" data-de="Beauty" data-zh="美容">Beauty</a>
-                    <a href="#" class="cat-link" data-de="Baby" data-zh="母婴">Baby</a>
-                    <a href="#" class="cat-link" data-de="Abnehmen" data-zh="瘦身">Abnehmen</a>
-                    <a href="#" class="cat-link text-yellow-300" data-de="% Angebote" data-zh="% 特价">% Angebote</a>
-                </nav>
+                <div style="display: flex; flex-direction: column; align-items: center; cursor: pointer; position: relative;">
+                    <i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i>
+                    <span style="font-size: 10px; font-weight: bold; margin-top: 4px;">KORB</span>
+                    <span style="position: absolute; top: -5px; right: -5px; background: #ef4444; color: white; font-size: 9px; width: 16px; height: 16px; border-radius: 50%; display: flex; items-center: center; justify-content: center;">0</span>
+                </div>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-10">
-        <div class="bg-blue-50 p-12 rounded-3xl mb-12 flex justify-between items-center border border-blue-100">
-            <div>
-                <h1 class="text-5xl font-black text-gray-800 mb-4">Winter Angebote</h1>
-                <p class="text-xl text-gray-600">Bis zu 20% Rabatt auf alles.</p>
+    <div class="forced-category-bar">
+        <div style="max-width: 1200px; margin: 0 auto; width: 100%; display: flex; align-items: center; padding: 0 24px;">
+            <div style="background-color: #0076a3; color: white; padding: 0 20px; height: 52px; display: flex; align-items: center; font-weight: 800; font-size: 14px; margin-right: 10px; cursor: pointer;">
+                <i class="fa-solid fa-bars" style="margin-right: 10px;"></i> <span id="c-all">ALLE KATEGORIEN</span>
             </div>
-            <i class="fa-solid fa-pills text-blue-200 text-[120px]"></i>
+            <nav style="display: flex; height: 52px;" class="no-scrollbar">
+                <a href="#" class="forced-link" data-de="Arzneimittel" data-zh="药品">Arzneimittel</a>
+                <a href="#" class="forced-link" data-de="Beauty" data-zh="美容">Beauty</a>
+                <a href="#" class="forced-link" data-de="Vitamine" data-zh="维他命">Vitamine</a>
+                <a href="#" class="forced-link" data-de="Baby" data-zh="母婴">Baby</a>
+                <a href="#" class="forced-link" data-de="Abnehmen" data-zh="瘦身">Abnehmen</a>
+                <a href="#" class="forced-link" style="color: #fbbf24 !important;" data-de="% Angebote" data-zh="% 特价">% Angebote</a>
+            </nav>
+        </div>
+    </div>
+
+    <main style="max-width: 1200px; margin: 0 auto; padding: 40px 24px;">
+        <div style="background: linear-gradient(to right, #e0f2fe, #f0f9ff); border-radius: 24px; padding: 60px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; border: 1px solid #bae6fd;">
+            <div>
+                <h1 style="font-size: 48px; font-weight: 900; color: #1e293b; margin-bottom: 10px;" id="p-t">Gesundheit online.</h1>
+                <p style="font-size: 18px; color: #64748b;" id="p-s">Ihre Schweizer Apotheke mit Bestpreis-Garantie.</p>
+                <button style="margin-top: 30px; background: #0076a3; color: white; padding: 12px 32px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer;">Jetzt Shoppen</button>
+            </div>
+            <i class="fa-solid fa-pills" style="font-size: 120px; color: #7dd3fc;"></i>
         </div>
 
-        <h2 id="h-best" class="text-3xl font-bold mb-8">Bestseller</h2>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
-            <div class="bg-white border p-6 rounded-2xl product-card" data-de="Omega-3" data-zh="鱼油">
-                <img src="https://images.unsplash.com/photo-1550573105-4584e8d05967?w=300" class="mb-4">
-                <h3 class="font-bold text-gray-800 item-name uppercase">Omega-3 1400mg</h3>
-                <p class="text-red-600 font-black text-xl mt-4">28.95 CHF</p>
-                <button class="w-full mt-4 bg-[#0076a3] text-white py-2 rounded-lg font-bold">In den Korb</button>
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 30px;" id="h-best">Unsere Bestseller</h2>
+        <div id="grid" style="display: grid; grid-template-cols: repeat(auto-fill, minmax(200px, 1fr)); gap: 30px;">
+            <div class="product-item" data-de="Omega-3 1400mg" data-zh="深海鱼油 1400mg" style="background: white; border: 1px solid #f1f5f9; padding: 20px; border-radius: 16px; text-align: center;">
+                <img src="https://images.unsplash.com/photo-1550573105-4584e8d05967?w=300" style="width: 100%; height: 160px; object-fit: contain; margin-bottom: 15px;">
+                <h3 class="item-name" style="font-size: 14px; font-weight: 700; color: #334155; margin-bottom: 10px; height: 40px; overflow: hidden;">Omega-3 1400mg Pure</h3>
+                <div style="font-size: 20px; font-weight: 900; color: #ef4444;">28.95 CHF</div>
+                <button style="width: 100%; margin-top: 15px; background: #f1f5f9; border: none; padding: 10px; border-radius: 6px; color: #0076a3; font-weight: bold; cursor: pointer;">+ Korb</button>
             </div>
         </div>
     </main>
 
-    <footer class="bg-slate-900 text-white py-16 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <div class="text-2xl font-black mb-4">WEDERPHARMA</div>
-            <p class="text-gray-500">Ihre Schweizer Apotheke | Zürich</p>
+    <footer style="background: #001a2c; color: white; padding: 60px 24px; margin-top: 100px; text-align: center;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="font-size: 24px; font-weight: 900; margin-bottom: 10px;">WEDERPHARMA</div>
+            <p style="color: #64748b; font-size: 14px;">Zürich, Schweiz | Ihr Partner für Gesundheit</p>
         </div>
     </footer>
 
     <script>
         function setLang(lang) {
             const isZh = (lang === 'zh');
-            document.getElementById('h-best').innerText = isZh ? "热销推荐" : "Bestseller";
-            document.querySelectorAll('.cat-link').forEach(link => {
+            document.getElementById('c-all').innerText = isZh ? "所有分类" : "ALLE KATEGORIEN";
+            document.getElementById('h-best').innerText = isZh ? "热销产品推荐" : "Unsere Bestseller";
+            document.getElementById('p-t').innerText = isZh ? "健康，在线触达。" : "Gesundheit online.";
+            document.getElementById('p-s').innerText = isZh ? "瑞士品质，价格保障。" : "Ihre Schweizer Apotheke mit Bestpreis-Garantie.";
+            
+            document.querySelectorAll('.forced-link').forEach(link => {
                 link.innerText = isZh ? link.getAttribute('data-zh') : link.getAttribute('data-de');
             });
-            document.querySelectorAll('.product-card').forEach(c => {
-                const title = c.querySelector('.item-name');
-                if(title) title.innerText = isZh ? c.getAttribute('data-zh') : c.getAttribute('data-de');
+            document.querySelectorAll('.product-item').forEach(item => {
+                const title = item.querySelector('.item-name');
+                title.innerText = isZh ? item.getAttribute('data-zh') : item.getAttribute('data-de');
             });
         }
         function search() {
             const val = document.getElementById('sBox').value.toLowerCase();
-            document.querySelectorAll('.product-card').forEach(c => {
-                const de = (c.getAttribute('data-de') || '').toLowerCase();
-                const zh = (c.getAttribute('data-zh') || '').toLowerCase();
-                c.style.display = (de.includes(val) || zh.includes(val)) ? "block" : "none";
+            document.querySelectorAll('.product-item').forEach(item => {
+                const text = item.getAttribute('data-de').toLowerCase() + item.getAttribute('data-zh').toLowerCase();
+                item.style.display = text.includes(val) ? "block" : "none";
             });
         }
     </script>
