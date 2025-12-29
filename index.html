@@ -7,18 +7,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f8fbfe; color: #333; }
-        .nav-link { font-size: 13px; font-weight: 700; color: #003a5a; cursor: pointer; border-bottom: 2px solid transparent; transition: 0.3s; }
-        .nav-link:hover, .nav-link.active { color: #0076a3; border-bottom-color: #0076a3; }
-        .p-card { background: white; border: 1px solid #e1f0f7; padding: 20px; border-radius: 12px; transition: 0.3s; cursor: pointer; }
+        body { font-family: 'Inter', sans-serif; background: #f8fbfe; color: #333; margin:0; }
+        .nav-link { font-size: 13px; font-weight: 700; color: #003a5a; cursor: pointer; border-bottom: 2px solid transparent; }
+        .nav-link.active { color: #0076a3; border-bottom-color: #0076a3; }
+        .p-card { background: white; border: 1px solid #e1f0f7; padding: 20px; border-radius: 12px; display: flex; flex-direction: column; transition: 0.3s; height: 100%; }
         .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        /* 占位图样式：防止图片崩溃导致排版全乱 */
+        .img-box { background: #f0f4f8; border-radius: 8px; height: 150px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 1rem; }
     </style>
 </head>
 <body>
 
     <div class="bg-[#bde4f4] px-6 py-2 text-[11px] font-bold text-[#003a5a] flex justify-between items-center">
         <span>SWISS PHARMA QUALITY</span>
-        <select id="langSwitch" onchange="renderAll()" class="bg-transparent outline-none">
+        <select id="langSwitch" onchange="initPage()" class="bg-transparent outline-none">
             <option value="de">DEUTSCH</option>
             <option value="zh">中文</option>
         </select>
@@ -27,109 +29,125 @@
     <nav class="bg-white border-b border-blue-100 sticky top-0 z-50">
         <div class="max-w-[1440px] mx-auto px-6 py-4 flex items-center justify-between gap-4">
             <div class="text-2xl font-black text-[#0076a3] cursor-pointer" onclick="location.reload()">WEDERPHARMA</div>
-            <div class="flex-grow max-w-xl hidden md:block">
-                <input type="text" id="searchBox" oninput="doSearch()" class="w-full px-5 py-2 rounded-full bg-gray-50 border-none outline-none focus:ring-2 focus:ring-blue-200" placeholder="Suche...">
-            </div>
             <div class="flex items-center gap-6 text-[#003a5a]">
                 <div class="text-center cursor-pointer"><i class="fa-regular fa-user text-xl"></i><p class="text-[9px] font-bold uppercase" id="l-acc">Anmelden</p></div>
                 <div class="text-center cursor-pointer relative"><i class="fa-solid fa-cart-shopping text-xl"></i><p class="text-[9px] font-bold uppercase" id="l-cart">Korb</p></div>
             </div>
         </div>
-        <div class="max-w-[1440px] mx-auto px-6 pb-3 flex gap-8 overflow-x-auto">
-            <div class="nav-link active" onclick="filter('all')">Alle</div>
-            <div class="nav-link" onclick="filter('Medikamente')">Medikamente</div>
-            <div class="nav-link" onclick="filter('Vitamine')">Vitamine</div>
-            <div class="nav-link" onclick="filter('Beauty')">Beauty</div>
+        <div class="max-w-[1440px] mx-auto px-6 pb-3 flex gap-8 overflow-x-auto whitespace-nowrap">
+            <div id="btn-all" class="nav-link active" onclick="filterItems('all', this)">Alle</div>
+            <div class="nav-link" onclick="filterItems('Medikamente', this)">Medikamente</div>
+            <div class="nav-link" onclick="filterItems('Vitamine', this)">Vitamine</div>
+            <div class="nav-link" onclick="filterItems('Beauty', this)">Beauty</div>
         </div>
     </nav>
 
     <main class="max-w-[1440px] mx-auto px-6 py-8">
-        <div class="bg-gradient-to-r from-[#e0f2fe] to-[#bde4f4] rounded-3xl p-10 mb-12 flex justify-between items-center">
+        <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-3xl p-8 mb-12 flex justify-between items-center border border-blue-200">
             <div>
-                <h1 id="p-t" class="text-3xl font-black text-[#003a5a] mb-2">20% Rabatt auf Vitamine</h1>
-                <p id="p-s" class="text-[#0076a3] mb-6">Für Ihre Gesundheit im Winter.</p>
-                <button class="bg-[#0076a3] text-white px-8 py-3 rounded-full font-bold">Jetzt Shoppen</button>
+                <h1 id="p-t" class="text-2xl md:text-4xl font-black text-[#003a5a] mb-2">20% Rabatt</h1>
+                <p id="p-s" class="text-[#0076a3] mb-6 font-medium text-sm md:text-base">Gültig für alle Vitamine bis Ende des Monats.</p>
+                <button class="bg-[#0076a3] text-white px-8 py-3 rounded-full font-bold shadow-md hover:bg-[#003a5a]">Jetzt Shoppen</button>
             </div>
-            <i class="fa-solid fa-pills text-8xl text-white opacity-40"></i>
+            <i class="fa-solid fa-kit-medical text-7xl text-white opacity-40"></i>
         </div>
 
         <h2 id="h-best" class="text-2xl font-black mb-8 text-[#003a5a]">Bestseller</h2>
-        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-5 gap-6">
-            </div>
+        
+        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-5 gap-6"></div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24 mb-20">
-            <div class="bg-white p-8 rounded-2xl border border-blue-50 text-center shadow-sm">
+            <div class="bg-white p-8 rounded-2xl border border-blue-100 text-center">
                 <i class="fa-solid fa-truck text-[#0076a3] text-3xl mb-4"></i>
-                <h4 class="font-bold text-[#003a5a]" id="e1">Schnelle Lieferung</h4>
-                <p class="text-sm text-gray-500 mt-2">Ganz Schweiz.</p>
+                <h4 class="font-bold text-[#003a5a]" id="e1-t">Schnelle Lieferung</h4>
+                <p class="text-xs text-gray-500 mt-2" id="e1-s">Ganz Schweiz.</p>
             </div>
-            <div class="bg-white p-8 rounded-2xl border border-blue-50 text-center shadow-sm">
+            <div class="bg-white p-8 rounded-2xl border border-blue-100 text-center">
                 <i class="fa-solid fa-microscope text-[#0076a3] text-3xl mb-4"></i>
-                <h4 class="font-bold text-[#003a5a]" id="e2">Schweizer Qualität</h4>
-                <p class="text-sm text-gray-500 mt-2">Geprüfte Produkte.</p>
+                <h4 class="font-bold text-[#003a5a]" id="e2-t">Schweizer Qualität</h4>
+                <p class="text-xs text-gray-500 mt-2" id="e2-s">Geprüfte Produkte.</p>
             </div>
-            <div class="bg-white p-8 rounded-2xl border border-blue-50 text-center shadow-sm">
+            <div class="bg-white p-8 rounded-2xl border border-blue-100 text-center">
                 <i class="fa-solid fa-headset text-[#0076a3] text-3xl mb-4"></i>
-                <h4 class="font-bold text-[#003a5a]" id="e3">Experten-Rat</h4>
-                <p class="text-sm text-gray-500 mt-2">Wir helfen Ihnen.</p>
+                <h4 class="font-bold text-[#003a5a]" id="e3-t">Experten-Rat</h4>
+                <p class="text-xs text-gray-500 mt-2" id="e3-s">Wir helfen Ihnen.</p>
             </div>
         </div>
 
-        <div class="bg-[#003a5a] rounded-3xl p-12 text-center text-white mb-20">
-            <h3 class="text-2xl font-bold mb-4">Newsletter</h3>
-            <div class="flex max-w-md mx-auto gap-2">
-                <input type="text" placeholder="E-Mail" class="flex-grow p-3 rounded-xl text-black">
-                <button class="bg-[#0076a3] px-6 rounded-xl font-bold">OK</button>
+        <div class="bg-[#003a5a] rounded-3xl p-10 text-center text-white mb-20">
+            <h3 class="text-xl font-bold mb-4" id="news-t">Newsletter</h3>
+            <div class="flex max-w-sm mx-auto gap-2">
+                <input type="text" placeholder="Email" class="flex-grow p-2 rounded-lg text-black outline-none">
+                <button class="bg-[#0076a3] px-6 py-2 rounded-lg font-bold">OK</button>
             </div>
         </div>
     </main>
 
-    <footer class="bg-white border-t py-12 text-center text-gray-400 text-sm">
-        <p>© 2025 WEDERPHARMA. Zürich, Switzerland.</p>
+    <footer class="py-12 text-center text-gray-400 text-[10px] border-t">
+        © 2025 WEDERPHARMA ZÜRICH | ALL RIGHTS RESERVED
     </footer>
 
     <script>
         const products = [
-            { id:1, cat:'Vitamine', de:"Omega-3 Pure", zh:"深海鱼油", price:"28.95", brand:"WEDER", img:"http://googleusercontent.com/image_collection/image_retrieval/4020337774286386754_0" },
-            { id:2, cat:'Medikamente', de:"Magnesium Forte", zh:"高浓度镁片", price:"19.50", brand:"SANDOZ", img:"http://googleusercontent.com/image_collection/image_retrieval/7777956848299349303_0" },
-            { id:3, cat:'Beauty', de:"La Roche精华", zh:"理肤泉精华", price:"24.20", brand:"LRP", img:"http://googleusercontent.com/image_collection/image_retrieval/9554631290270592904_0" },
-            { id:4, cat:'Vitamine', de:"Vitamin D3", zh:"维他命 D3", price:"32.00", brand:"SWISS", img:"http://googleusercontent.com/image_collection/image_retrieval/14036632179103918853_0" },
-            { id:5, cat:'Medikamente', de:"Voltaren Gel", zh:"扶他林膏", price:"15.80", brand:"VOLTAREN", img:"http://googleusercontent.com/image_collection/image_retrieval/6273907050997022979_0" }
+            { id:1, cat:'Vitamine', de:"Omega-3 1400mg Pure", zh:"深海鱼油 1400mg", price:"28.95", brand:"WEDER", img:"https://images.unsplash.com/photo-1550573105-4584e8d05967?auto=format&fit=crop&w=300" },
+            { id:2, cat:'Medikamente', de:"Magnesium 400 Forte", zh:"高浓度镁片 400", price:"19.50", brand:"SANDOZ", img:"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300" },
+            { id:3, cat:'Beauty', de:"Hautpflege Serum", zh:"修护精华液", price:"24.20", brand:"LA ROCHE", img:"https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=300" },
+            { id:4, cat:'Vitamine', de:"Vitamin D3 Tropfen", zh:"维他命 D3 滴剂", price:"32.00", brand:"SWISS", img:"https://images.unsplash.com/photo-1550573105-4584e8d05967?auto=format&fit=crop&w=301" },
+            { id:5, cat:'Medikamente', de:"Schmerzgel Forte", zh:"止痛凝胶", price:"15.80", brand:"VOLTAREN", img:"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=301" }
         ];
 
-        const words = {
-            zh: { acc:"登录", cart:"购物车", best:"畅销推荐", pT:"维他命 8折", pS:"冬日健康守护", e1:"快速送达", e2:"瑞士品质", e3:"专家建议" },
-            de: { acc:"Anmelden", cart:"Korb", best:"Bestseller", pT:"20% Rabatt auf Vitamine", pS:"Für Ihre Gesundheit im Winter.", e1:"Schnelle Lieferung", e2:"Schweizer Qualität", e3:"Experten-Rat" }
+        const dict = {
+            zh: { acc:"登录", cart:"购物车", best:"畅销推荐", pT:"维他命 8折", pS:"冬日健康守护", e1t:"快速送达", e1s:"全瑞士配送", e2t:"瑞士品质", e2s:"专业药房认证", e3t:"专家建议", e3s:"随时为您解答", news:"保持健康！订阅我们的资讯" },
+            de: { acc:"Anmelden", cart:"Korb", best:"Bestseller", pT:"20% Rabatt", pS:"Für Ihre Gesundheit im Winter.", e1t:"Schnelle Lieferung", e1s:"Ganz Schweiz.", e2t:"Schweizer Qualität", e2s:"Geprüfte Produkte.", e3t:"Experten-Rat", e3s:"Wir helfen Ihnen.", news:"Newsletter abonnieren" }
         };
 
-        function renderAll() {
+        function initPage() {
             const lang = document.getElementById('langSwitch').value;
-            document.getElementById('l-acc').innerText = words[lang].acc;
-            document.getElementById('l-cart').innerText = words[lang].cart;
-            document.getElementById('h-best').innerText = words[lang].best;
-            document.getElementById('p-t').innerText = words[lang].pT;
-            document.getElementById('p-s').innerText = words[lang].pS;
-            document.getElementById('e1').innerText = words[lang].e1;
-            document.getElementById('e2').innerText = words[lang].e2;
-            document.getElementById('e3').innerText = words[lang].e3;
-            showItems(products);
+            // 更新静态文字
+            document.getElementById('l-acc').innerText = dict[lang].acc;
+            document.getElementById('l-cart').innerText = dict[lang].cart;
+            document.getElementById('h-best').innerText = dict[lang].best;
+            document.getElementById('p-t').innerText = dict[lang].pT;
+            document.getElementById('p-s').innerText = dict[lang].pS;
+            document.getElementById('e1-t').innerText = dict[lang].e1t;
+            document.getElementById('e1-s').innerText = dict[lang].e1s;
+            document.getElementById('e2-t').innerText = dict[lang].e2t;
+            document.getElementById('e2-s').innerText = dict[lang].e2s;
+            document.getElementById('e3-t').innerText = dict[lang].e3t;
+            document.getElementById('e3-s').innerText = dict[lang].e3s;
+            document.getElementById('news-t').innerText = dict[lang].news;
+            
+            drawProducts(products);
         }
 
-        function showItems(list) {
+        function drawProducts(list) {
             const lang = document.getElementById('langSwitch').value;
-            document.getElementById('productGrid').innerHTML = list.map(p => `
+            const grid = document.getElementById('productGrid');
+            if(!grid) return;
+
+            grid.innerHTML = list.map(p => `
                 <div class="p-card">
-                    <img src="${p.img}" class="h-32 w-full object-contain mb-4">
-                    <p class="text-[10px] text-blue-400 font-bold">${p.brand}</p>
-                    <h3 class="text-sm font-bold h-10 overflow-hidden">${p[lang]}</h3>
-                    <p class="text-lg font-black text-[#0076a3] mt-2">${p.price} CHF</p>
+                    <div class="img-box">
+                        <img src="${p.img}" onerror="this.src='https://placehold.co/200x200?text=Pharma'" class="h-full w-full object-contain">
+                    </div>
+                    <p class="text-[10px] text-blue-400 font-bold uppercase">${p.brand}</p>
+                    <h3 class="text-sm font-bold text-[#003a5a] mb-4 h-10 overflow-hidden leading-tight">${p[lang]}</h3>
+                    <div class="mt-auto pt-4 flex justify-between items-center border-t border-gray-50">
+                        <span class="text-lg font-black text-[#0076a3]">${p.price} <small class="text-[10px]">CHF</small></span>
+                        <div class="bg-[#0076a3] text-white w-8 h-8 rounded-full flex items-center justify-center text-xs shadow-sm"><i class="fa-solid fa-plus"></i></div>
+                    </div>
                 </div>
             `).join('');
         }
 
-        function filter(c) {
-            showItems(c === 'all' ? products : products.filter(p => p.cat === c));
+        function filterItems(cat, el) {
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            el.classList.add('active');
+            drawProducts(cat === 'all' ? products : products.filter(p => p.cat === cat));
         }
 
-        function doSearch() {
-            const v = document.getElementById('searchBox').
+        // 核心执行：确保加载即运行
+        initPage();
+    </script>
+</body>
+</html>
