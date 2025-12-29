@@ -3,120 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA | Shop Apotheke Style</title>
+    <title>WEDERPHARMA | Professional Swiss Pharmacy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background: #ffffff; margin: 0; }
-        .nav-shadow { box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        /* 强制目录链接样式 */
-        .cat-btn { color: #ffffff; font-weight: 600; font-size: 14px; white-space: nowrap; display: flex; items-center: center; gap: 6px; padding: 12px 15px; transition: background 0.2s; }
-        .cat-btn:hover { background: rgba(255,255,255,0.1); }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: #fcfcfc; }
+        /* 目录条的硬核样式 - 确保它绝对可见 */
+        .category-bar {
+            background-color: #003a5a !important; /* 深蓝色背景 */
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .cat-link {
+            color: white !important;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        .cat-link:hover {
+            background-color: #0076a3;
+        }
     </style>
 </head>
 <body>
 
-    <div class="bg-[#f8fafc] border-b border-gray-100 py-1.5 px-6">
-        <div class="max-w-7xl mx-auto flex justify-end gap-4 text-[11px] font-bold text-gray-400 uppercase">
-            <span class="cursor-pointer hover:text-[#0076a3]" onclick="setLang('de')">DE</span>
-            <span class="cursor-pointer hover:text-[#0076a3]" onclick="setLang('zh')">ZH</span>
+    <div class="bg-gray-100 py-2 px-6 text-right">
+        <div class="max-w-7xl mx-auto text-[10px] font-bold text-gray-500 gap-4 flex justify-end">
+            <span class="cursor-pointer" onclick="setLang('de')">DEUTSCH</span>
+            <span class="cursor-pointer" onclick="setLang('zh')">中文</span>
         </div>
     </div>
 
-    <header class="bg-white sticky top-0 z-50">
+    <header class="bg-white border-b sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-10">
-            <div class="text-3xl font-[900] tracking-tighter flex-shrink-0 cursor-pointer" onclick="location.reload()">
+            <div class="text-3xl font-black tracking-tighter cursor-pointer" onclick="location.reload()">
                 <span class="text-[#0076a3]">WEDER</span><span class="text-red-600">PHARMA</span>
             </div>
             
             <div class="flex-grow max-w-2xl relative">
-                <input type="text" id="sBox" oninput="search()" class="w-full bg-[#f1f5f9] border-none px-5 py-3 rounded-lg outline-none text-sm" placeholder="Suchen Sie nach Produkten oder Marken...">
+                <input type="text" id="sBox" oninput="search()" class="w-full bg-gray-50 border border-gray-200 px-5 py-3 rounded-lg outline-none" placeholder="Suche Produkte...">
                 <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-[#0076a3]"></i>
             </div>
 
-            <div class="flex items-center gap-6 text-gray-700">
-                <div class="flex flex-col items-center cursor-pointer relative group">
-                    <i class="fa-solid fa-cart-shopping text-2xl group-hover:text-[#0076a3]"></i>
-                    <span class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
-                </div>
+            <div class="flex items-center gap-6">
+                <i class="fa-solid fa-cart-shopping text-2xl text-gray-700"></i>
             </div>
         </div>
 
-        <div class="bg-[#003a5a] w-full shadow-lg">
-            <div class="max-w-7xl mx-auto px-4 flex items-center overflow-x-auto no-scrollbar">
-                <div class="bg-[#0076a3] text-white px-6 py-3 font-bold text-sm flex items-center gap-2 cursor-pointer flex-shrink-0">
-                    <i class="fa-solid fa-bars"></i>
-                    <span id="c-all">ALLE KATEGORIEN</span>
+        <div class="category-bar">
+            <div class="max-w-7xl mx-auto px-4 flex items-center w-full overflow-x-auto">
+                <div class="bg-[#0076a3] text-white px-6 py-3 font-black text-sm mr-4 flex items-center gap-2">
+                    <i class="fa-solid fa-bars"></i> KATEGORIEN
                 </div>
-                
-                <nav class="flex items-center ml-2">
-                    <a href="#" class="cat-btn" data-de="Arzneimittel" data-zh="所有药品">
-                        <i class="fa-solid fa-pills opacity-70"></i> <span class="txt">Arzneimittel</span>
-                    </a>
-                    <a href="#" class="cat-btn" data-de="Vitamine" data-zh="维生素">
-                        <i class="fa-solid fa-apple-whole opacity-70"></i> <span class="txt">Vitamine</span>
-                    </a>
-                    <a href="#" class="cat-btn" data-de="Beauty" data-zh="美妆护理">
-                        <i class="fa-solid fa-sparkles opacity-70"></i> <span class="txt">Beauty</span>
-                    </a>
-                    <a href="#" class="cat-btn" data-de="Baby" data-zh="母婴用品">
-                        <i class="fa-solid fa-baby opacity-70"></i> <span class="txt">Baby</span>
-                    </a>
-                    <a href="#" class="cat-btn" data-de="Abnehmen" data-zh="减肥塑身">
-                        <i class="fa-solid fa-weight-scale opacity-70"></i> <span class="txt">Abnehmen</span>
-                    </a>
-                    <a href="#" class="cat-btn text-yellow-400 font-bold" data-de="% Angebote" data-zh="% 特价优惠">
-                        <i class="fa-solid fa-tag"></i> <span class="txt">% Angebote</span>
-                    </a>
+                <nav class="flex">
+                    <a href="#" class="cat-link" data-de="Arzneimittel" data-zh="药品">Arzneimittel</a>
+                    <a href="#" class="cat-link" data-de="Vitamine" data-zh="维他命">Vitamine</a>
+                    <a href="#" class="cat-link" data-de="Beauty" data-zh="美容">Beauty</a>
+                    <a href="#" class="cat-link" data-de="Baby" data-zh="母婴">Baby</a>
+                    <a href="#" class="cat-link" data-de="Abnehmen" data-zh="瘦身">Abnehmen</a>
+                    <a href="#" class="cat-link text-yellow-300" data-de="% Angebote" data-zh="% 特价">% Angebote</a>
                 </nav>
             </div>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-6 py-10">
-        <div class="bg-gray-100 rounded-2xl p-10 mb-12 flex justify-between items-center overflow-hidden">
+        <div class="bg-blue-50 p-12 rounded-3xl mb-12 flex justify-between items-center border border-blue-100">
             <div>
-                <h1 id="p-t" class="text-4xl font-black text-gray-800 mb-4">Ihre Online-Apotheke</h1>
-                <p id="p-s" class="text-gray-600 text-lg">Top-Marken zu reduzierten Preisen.</p>
-                <button class="mt-8 bg-[#0076a3] text-white px-8 py-3 rounded-lg font-bold">Jetzt Shoppen</button>
+                <h1 class="text-5xl font-black text-gray-800 mb-4">Winter Angebote</h1>
+                <p class="text-xl text-gray-600">Bis zu 20% Rabatt auf alles.</p>
             </div>
-            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300" class="h-56">
+            <i class="fa-solid fa-pills text-blue-200 text-[120px]"></i>
         </div>
 
-        <h2 id="h-best" class="text-2xl font-bold mb-8">Bestseller</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            <div class="border rounded-xl p-4 bg-white hover:shadow-xl transition product-item" data-de="Omega-3" data-zh="鱼油">
-                <img src="https://images.unsplash.com/photo-1550573105-4584e8d05967?w=300" class="h-40 w-full object-contain mb-4">
-                <h3 class="text-sm font-bold text-gray-700 h-10 overflow-hidden item-name">Omega-3 1400mg Pure</h3>
-                <div class="mt-4 flex justify-between items-center">
-                    <span class="text-lg font-black text-red-600">28.95 CHF</span>
-                    <button class="bg-[#0076a3] text-white p-2 rounded-lg"><i class="fa-solid fa-cart-plus"></i></button>
-                </div>
-            </div>
-            <div class="border rounded-xl p-4 bg-white hover:shadow-xl transition product-item" data-de="Magnesium" data-zh="镁片">
-                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=301" class="h-40 w-full object-contain mb-4">
-                <h3 class="text-sm font-bold text-gray-700 h-10 overflow-hidden item-name">Magnesium Forte</h3>
-                <div class="mt-4 flex justify-between items-center text-lg font-black">19.50 CHF</div>
+        <h2 id="h-best" class="text-3xl font-bold mb-8">Bestseller</h2>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+            <div class="bg-white border p-6 rounded-2xl product-card" data-de="Omega-3" data-zh="鱼油">
+                <img src="https://images.unsplash.com/photo-1550573105-4584e8d05967?w=300" class="mb-4">
+                <h3 class="font-bold text-gray-800 item-name uppercase">Omega-3 1400mg</h3>
+                <p class="text-red-600 font-black text-xl mt-4">28.95 CHF</p>
+                <button class="w-full mt-4 bg-[#0076a3] text-white py-2 rounded-lg font-bold">In den Korb</button>
             </div>
         </div>
     </main>
 
-    <footer class="bg-[#001a2c] text-white py-10 text-center">
-        <p>© 2025 WEDERPHARMA | Switzerland</p>
+    <footer class="bg-slate-900 text-white py-16 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="text-2xl font-black mb-4">WEDERPHARMA</div>
+            <p class="text-gray-500">Ihre Schweizer Apotheke | Zürich</p>
+        </div>
     </footer>
 
     <script>
         function setLang(lang) {
             const isZh = (lang === 'zh');
-            document.getElementById('c-all').innerText = isZh ? "所有分类" : "ALLE KATEGORIEN";
-            document.getElementById('h-best').innerText = isZh ? "畅销推荐" : "Bestseller";
-            document.getElementById('p-t').innerText = isZh ? "您的在线药房" : "Ihre Online-Apotheke";
-            
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.querySelector('.txt').innerText = isZh ? btn.getAttribute('data-zh') : btn.getAttribute('data-de');
+            document.getElementById('h-best').innerText = isZh ? "热销推荐" : "Bestseller";
+            document.querySelectorAll('.cat-link').forEach(link => {
+                link.innerText = isZh ? link.getAttribute('data-zh') : link.getAttribute('data-de');
             });
-            document.querySelectorAll('.product-item').forEach(c => {
+            document.querySelectorAll('.product-card').forEach(c => {
                 const title = c.querySelector('.item-name');
-                if(title) title.innerText = isZh ? c
+                if(title) title.innerText = isZh ? c.getAttribute('data-zh') : c.getAttribute('data-de');
+            });
+        }
+        function search() {
+            const val = document.getElementById('sBox').value.toLowerCase();
+            document.querySelectorAll('.product-card').forEach(c => {
+                const de = (c.getAttribute('data-de') || '').toLowerCase();
+                const zh = (c.getAttribute('data-zh') || '').toLowerCase();
+                c.style.display = (de.includes(val) || zh.includes(val)) ? "block" : "none";
+            });
+        }
+    </script>
+</body>
+</html>
