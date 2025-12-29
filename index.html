@@ -3,86 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA | Ihre Online-Apotheke</title>
+    <title>WEDERPHARMA | Ihre Schweizer Online-Apotheke</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background: #ffffff; margin:0; display: flex; flex-direction: column; min-height: 100vh; color: #333; }
-        .redcare-shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .product-card { border: 1px solid #eee; transition: all 0.2s; border-radius: 8px; }
-        .product-card:hover { border-color: #0076a3; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .btn-primary { background-color: #0076a3; transition: background 0.2s; }
-        .btn-primary:hover { background-color: #005b7f; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; margin:0; display: flex; flex-direction: column; min-height: 100vh; background: #fff; }
+        .nav-shadow { box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        .product-card { border: 1px solid #f0f0f0; border-radius: 12px; transition: all 0.2s; }
+        .product-card:hover { border-color: #0076a3; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        input::placeholder { color: #9ca3af; }
     </style>
 </head>
-<body>
+<body class="bg-white">
 
-    <div class="bg-[#f3f7f9] border-b border-gray-200 px-6 py-1.5 text-[12px] text-gray-600 flex justify-between items-center">
-        <div class="flex gap-4">
-            <span><i class="fa-solid fa-check text-green-600 mr-1"></i> Gratis Versand ab 59 CHF</span>
-            <span class="hidden md:inline"><i class="fa-solid fa-clock text-blue-500 mr-1"></i> Lieferung in 1-2 Werktagen</span>
-        </div>
-        <div class="flex gap-4 font-semibold">
-            <span class="cursor-pointer hover:text-[#0076a3]" onclick="setLang('de')">DEUTSCH</span>
-            <span class="cursor-pointer hover:text-[#0076a3]" onclick="setLang('zh')">中文</span>
+    <div class="bg-[#f3f7f9] border-b border-gray-200 w-full">
+        <div class="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center text-[12px] text-gray-500 font-medium">
+            <div class="flex gap-6">
+                <span><i class="fa-solid fa-truck text-green-600 mr-1"></i> Gratis Versand ab 59 CHF</span>
+                <span class="hidden md:inline"><i class="fa-solid fa-certificate text-blue-500 mr-1"></i> Original Schweizer Apotheke</span>
+            </div>
+            <div class="flex gap-4">
+                <button onclick="setLang('de')" class="hover:text-[#0076a3] uppercase">Deutsch</button>
+                <span class="text-gray-300">|</span>
+                <button onclick="setLang('zh')" class="hover:text-[#0076a3] uppercase">中文</button>
+            </div>
         </div>
     </div>
 
-    <nav class="bg-white sticky top-0 z-50 px-6 py-4 redcare-shadow">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-10">
-            <div class="text-3xl font-extrabold text-[#0076a3] tracking-tighter cursor-pointer" onclick="location.reload()">
-                WEDER<span class="text-red-500">PHARMA</span>
+    <header class="bg-white sticky top-0 z-50 w-full nav-shadow">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4 md:gap-10">
+            
+            <div class="text-2xl md:text-3xl font-[800] tracking-tighter cursor-pointer flex-shrink-0" onclick="location.reload()">
+                <span class="text-[#0076a3]">WEDER</span><span class="text-red-600">PHARMA</span>
             </div>
             
             <div class="flex-grow relative max-w-2xl">
-                <input type="text" id="sBox" oninput="search()" class="w-full bg-[#f3f7f9] border-2 border-transparent focus:border-[#0076a3] focus:bg-white px-5 py-2.5 rounded-lg outline-none transition-all" placeholder="Produkt, Marke oder Symptom suchen...">
-                <button class="absolute right-3 top-1/2 -translate-y-1/2 text-[#0076a3] text-lg">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+                <div class="relative group">
+                    <input type="text" id="sBox" oninput="search()" 
+                        class="w-full bg-[#f3f7f9] border-2 border-transparent focus:border-[#0076a3] focus:bg-white px-5 py-2.5 rounded-xl outline-none transition-all text-sm" 
+                        placeholder="Suchen Sie nach Produkten, Marken oder Kategorien...">
+                    <button class="absolute right-4 top-1/2 -translate-y-1/2 text-[#0076a3]">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </button>
+                </div>
             </div>
 
-            <div class="flex items-center gap-8 text-gray-700">
-                <div class="flex flex-col items-center cursor-pointer hover:text-[#0076a3]">
-                    <i class="fa-regular fa-user text-xl"></i>
-                    <span class="text-[11px] font-bold mt-1" id="l-acc">ANMELDEN</span>
+            <div class="flex items-center gap-4 md:gap-8 text-gray-700 flex-shrink-0">
+                <div class="flex flex-col items-center cursor-pointer hover:text-[#0076a3] transition-colors group">
+                    <i class="fa-regular fa-user text-xl md:text-2xl"></i>
+                    <span class="text-[10px] font-bold mt-1 hidden md:block" id="l-acc">ANMELDEN</span>
                 </div>
-                <div class="flex flex-col items-center cursor-pointer hover:text-[#0076a3] relative">
-                    <i class="fa-solid fa-cart-shopping text-xl"></i>
-                    <span class="text-[11px] font-bold mt-1" id="l-cart">WARENKORB</span>
-                    <span class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                <div class="flex flex-col items-center cursor-pointer hover:text-[#0076a3] transition-colors relative group">
+                    <i class="fa-solid fa-cart-shopping text-xl md:text-2xl"></i>
+                    <span class="text-[10px] font-bold mt-1 hidden md:block" id="l-cart">WARENKORB</span>
+                    <span class="absolute -top-1 -right-1 bg-red-600 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
                 </div>
             </div>
         </div>
-    </nav>
+    </header>
 
     <main class="max-w-7xl mx-auto px-6 py-8 w-full flex-grow">
         
-        <div class="flex gap-4 mb-8 overflow-x-auto pb-2 text-sm font-medium text-gray-600">
-            <span class="bg-gray-100 px-4 py-2 rounded-full cursor-pointer hover:bg-[#0076a3] hover:text-white">Arzneimittel</span>
-            <span class="bg-gray-100 px-4 py-2 rounded-full cursor-pointer hover:bg-[#0076a3] hover:text-white">Beauty & Pflege</span>
-            <span class="bg-gray-100 px-4 py-2 rounded-full cursor-pointer hover:bg-[#0076a3] hover:text-white">Vitamine</span>
-            <span class="bg-gray-100 px-4 py-2 rounded-full cursor-pointer hover:bg-[#0076a3] hover:text-white">Abnehmen</span>
-        </div>
-
-        <div class="bg-[#eef8ff] rounded-2xl p-8 mb-12 flex flex-col md:flex-row items-center justify-between border border-blue-100">
-            <div>
-                <span class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded mb-4 inline-block">AKTION</span>
-                <h1 id="p-t" class="text-4xl font-bold text-gray-800 mb-2">Bis zu 20% sparen</h1>
-                <p id="p-s" class="text-gray-600 text-lg italic">Exklusive Winter-Angebote für Ihre Gesundheit.</p>
+        <div class="bg-[#eef8ff] rounded-[24px] p-8 md:p-12 mb-12 flex flex-col md:flex-row items-center justify-between border border-blue-50 overflow-hidden relative">
+            <div class="relative z-10 max-w-lg text-center md:text-left">
+                <span class="bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded mb-4 inline-block uppercase tracking-wider">Top Angebot</span>
+                <h1 id="p-t" class="text-3xl md:text-5xl font-bold text-gray-800 mb-4 leading-tight">Ihre Gesundheit, <br><span class="text-[#0076a3]">unser Auftrag.</span></h1>
+                <p id="p-s" class="text-gray-600 text-lg mb-8">Sparen Sie bis zu 20% auf ausgewählte Winter-Produkte.</p>
+                <button class="bg-[#0076a3] hover:bg-[#005b7f] text-white px-8 py-3.5 rounded-xl font-bold transition shadow-lg shadow-blue-200">Jetzt entdecken</button>
             </div>
-            <button class="mt-6 md:mt-0 btn-primary text-white px-10 py-3 rounded-lg font-bold">Jetzt Shoppen</button>
+            <div class="mt-8 md:mt-0 relative z-10">
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400" class="h-64 object-contain drop-shadow-2xl">
+            </div>
+            <div class="absolute top-0 right-0 w-64 h-64 bg-blue-200/20 rounded-full -mr-20 -mt-20 blur-3xl"></div>
         </div>
 
-        <h2 id="h-best" class="text-2xl font-bold mb-6">Unsere Bestseller</h2>
-        <div id="grid" class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-20">
-            
+        <div class="flex justify-between items-end mb-8">
+            <h2 id="h-best" class="text-2xl font-bold text-gray-800">Bestseller für Sie</h2>
+            <a href="#" class="text-[#0076a3] font-bold text-sm hover:underline">Alle anzeigen <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i></a>
+        </div>
+
+        <div id="grid" class="grid grid-cols-2 lg:grid-cols-5 gap-6 mb-24">
             <div class="product-card p-4 flex flex-col bg-white" data-de="Omega-3 1400mg Pure" data-zh="深海鱼油 1400mg">
-                <div class="relative mb-4">
-                    <img src="https://images.unsplash.com/photo-1550573105-4584e8d05967?w=300" class="h-44 w-full object-contain">
-                    <span class="absolute top-0 left-0 bg-yellow-400 text-[10px] font-bold px-2 py-0.5 rounded">TOP</span>
+                <img src="https://images.unsplash.com/photo-1550573105-4584e8d05967?w=300" class="h-40 w-full object-contain mb-4">
+                <p class="text-[10px] text-gray-400 font-bold uppercase mb-1">WederPharma</p>
+                <h3 class="text-sm font-semibold text-gray-700 h-10 overflow-hidden item-name">Omega-3 1400mg Pure</h3>
+                <div class="mt-4 flex flex-col">
+                    <span class="text-xs text-gray-400 line-through font-medium">35.90 CHF</span>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-black text-red-600">28.95 <small class="text-xs uppercase">chf</small></span>
+                        <button class="bg-[#f3f7f9] text-[#0076a3] w-10 h-10 rounded-xl flex items-center justify-center hover:bg-[#0076a3] hover:text-white transition shadow-sm">
+                            <i class="fa-solid fa-cart-plus"></i>
+                        </button>
+                    </div>
                 </div>
-                <p class="text-[11px] text-gray-400 uppercase font-semibold">WederPharma</p>
-                <h3 class="text-sm font-semibold mb-2 h-10 overflow-hidden leading-tight item-name">Omega-3 1400mg Pure</h3>
-                <div class="flex items-center gap-1 mb-4 text-yellow-500 text-[10px]">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star
+            </div>
+            <div class="product-card p-4 flex flex-col bg-white" data-de="Magnesium Forte" data-zh="高浓度镁片">
+                <img src="https://images.
