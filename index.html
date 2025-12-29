@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body { font-family: 'Inter', sans-serif; background: #f8fbfe; margin:0; }
-        .nav-link { font-size: 13px; font-weight: 700; color: #003a5a; cursor: pointer; border-bottom: 2px solid transparent; }
-        .nav-link.active { color: #0076a3; border-bottom-color: #0076a3; }
         .p-card { background: white; border: 1px solid #e1f0f7; padding: 20px; border-radius: 12px; display: flex; flex-direction: column; height: 100%; transition: 0.3s; }
         .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
     </style>
@@ -18,7 +16,7 @@
 
     <div class="bg-[#bde4f4] px-6 py-2 text-[11px] font-bold text-[#003a5a] flex justify-between items-center">
         <span>SWISS PHARMA QUALITY</span>
-        <select id="langSwitch" onchange="initPage()" class="bg-transparent outline-none font-bold">
+        <select id="langSwitch" onchange="initPage()" class="bg-transparent outline-none font-bold cursor-pointer">
             <option value="de">DEUTSCH</option>
             <option value="zh">中文</option>
         </select>
@@ -27,50 +25,42 @@
     <nav class="bg-white border-b sticky top-0 z-50 px-6 py-4">
         <div class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-4">
             <div class="text-2xl font-black text-[#0076a3] cursor-pointer" onclick="location.reload()">WEDERPHARMA</div>
-            
             <div class="flex-grow max-w-xl order-3 md:order-2 w-full">
-                <div class="relative">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                    <input type="text" id="searchBox" oninput="doSearch()" class="w-full pl-10 pr-4 py-2 rounded-full bg-gray-50 border outline-none focus:border-blue-300" placeholder="Suche...">
-                </div>
+                <input type="text" id="searchBox" oninput="doSearch()" class="w-full px-5 py-2 rounded-full bg-gray-50 border outline-none focus:border-blue-300" placeholder="Suche...">
             </div>
-
             <div class="flex items-center gap-6 order-2 md:order-3 text-[#003a5a]">
                 <div class="text-center cursor-pointer"><i class="fa-regular fa-user text-xl"></i><p class="text-[9px] font-bold uppercase" id="l-acc">Anmelden</p></div>
-                <div class="text-center cursor-pointer relative"><i class="fa-solid fa-cart-shopping text-xl"></i><p class="text-[9px] font-bold uppercase" id="l-cart">Korb</p></div>
+                <div class="text-center cursor-pointer"><i class="fa-solid fa-cart-shopping text-xl"></i><p class="text-[9px] font-bold uppercase" id="l-cart">Korb</p></div>
             </div>
         </div>
     </nav>
 
     <main class="max-w-[1440px] mx-auto px-6 py-8">
-        <div class="bg-gradient-to-r from-blue-100 to-blue-50 rounded-3xl p-8 mb-10 border border-blue-200">
+        <div class="bg-blue-100 rounded-3xl p-8 mb-10 border border-blue-200">
             <h1 id="p-t" class="text-3xl font-black text-[#003a5a]">20% Rabatt</h1>
             <p id="p-s" class="text-blue-700 mt-2 font-medium">Winter-Angebote für Ihre Gesundheit.</p>
         </div>
 
         <h2 id="h-best" class="text-2xl font-black mb-6 text-[#003a5a]">Bestseller</h2>
-        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-24 min-h-[300px]">
+        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-24 min-h-[400px]">
             </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
             <div class="bg-white p-8 rounded-2xl border border-blue-100 text-center shadow-sm">
                 <i class="fa-solid fa-truck-fast text-[#0076a3] text-3xl mb-4"></i>
                 <h4 class="font-bold text-[#003a5a]" id="e1">Schnelle Lieferung</h4>
-                <p class="text-xs text-gray-400 mt-1">Ganz Schweiz.</p>
             </div>
             <div class="bg-white p-8 rounded-2xl border border-blue-100 text-center shadow-sm">
                 <i class="fa-solid fa-certificate text-[#0076a3] text-3xl mb-4"></i>
                 <h4 class="font-bold text-[#003a5a]" id="e2">Schweizer Qualität</h4>
-                <p class="text-xs text-gray-400 mt-1">Geprüfte Apotheke.</p>
             </div>
             <div class="bg-white p-8 rounded-2xl border border-blue-100 text-center shadow-sm">
                 <i class="fa-solid fa-user-doctor text-[#0076a3] text-3xl mb-4"></i>
                 <h4 class="font-bold text-[#003a5a]" id="e3">Experten-Rat</h4>
-                <p class="text-xs text-gray-400 mt-1">Wir beraten Sie gerne.</p>
             </div>
         </div>
 
-        <div class="bg-[#003a5a] rounded-3xl p-12 text-center text-white mb-20 shadow-xl">
+        <div class="bg-[#003a5a] rounded-3xl p-12 text-center text-white mb-20">
             <h3 class="text-2xl font-bold mb-4" id="l-news">Bleiben Sie gesund!</h3>
             <div class="flex max-w-md mx-auto gap-2">
                 <input type="text" class="flex-grow p-3 rounded-xl text-black outline-none border-none" placeholder="E-Mail">
@@ -79,14 +69,13 @@
         </div>
     </main>
 
-    <footer class="bg-white border-t py-12 text-center">
-        <div class="text-xl font-black text-[#0076a3] mb-4">WEDERPHARMA</div>
-        <p class="text-gray-400 text-xs">Zürich, Switzerland | © 2025 All Rights Reserved</p>
+    <footer class="bg-white border-t py-12 text-center text-gray-400 text-xs">
+        © 2025 WEDERPHARMA ZÜRICH | SWITZERLAND
     </footer>
 
     <script>
-        // 产品数据
-        const data = [
+        // 统一变量名为 myProducts
+        const myProducts = [
             { id:1, de:"Omega-3 1400mg Pure", zh:"深海鱼油 1400mg", price:"28.95", brand:"WEDER", img:"https://images.unsplash.com/photo-1550573105-4584e8d05967?auto=format&fit=crop&w=300" },
             { id:2, de:"Magnesium 400 Forte", zh:"高浓度镁片 400", price:"19.50", brand:"SANDOZ", img:"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300" },
             { id:3, de:"Hautpflege Serum", zh:"修护精华液", price:"24.20", brand:"LA ROCHE", img:"https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=300" },
@@ -94,38 +83,33 @@
             { id:5, de:"Schmerzgel Forte", zh:"止痛凝胶", price:"15.80", brand:"VOLTAREN", img:"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=301" }
         ];
 
-        // 核心渲染逻辑
         function initPage() {
-            const lang = document.getElementById('langSwitch').value;
-            const isZh = (lang === 'zh');
-            
-            // 1. 翻译文字 (带容错)
-            const safeSetText = (id, text) => {
-                const el = document.getElementById(id);
-                if(el) el.innerText = text;
-            };
+            try {
+                const lang = document.getElementById('langSwitch').value;
+                const isZh = (lang === 'zh');
+                
+                // 1. 更新所有文字 ID
+                const updateText = (id, text) => { if(document.getElementById(id)) document.getElementById(id).innerText = text; };
+                
+                updateText('l-acc', isZh ? "登录" : "Anmelden");
+                updateText('l-cart', isZh ? "购物车" : "Korb");
+                updateText('h-best', isZh ? "畅销推荐" : "Bestseller");
+                updateText('p-t', isZh ? "20% 优惠" : "20% Rabatt");
+                updateText('p-s', isZh ? "冬季健康守护" : "Winter-Angebote.");
+                updateText('e1', isZh ? "快速送达" : "Schnelle Lieferung");
+                updateText('e2', isZh ? "瑞士品质" : "Schweizer Qualität");
+                updateText('e3', isZh ? "专家建议" : "Experten-Rat");
+                updateText('l-news', isZh ? "保持健康！订阅我们的资讯" : "Bleiben Sie gesund!");
+                if(document.getElementById('searchBox')) document.getElementById('searchBox').placeholder = isZh ? "搜索产品..." : "Suche...";
 
-            safeSetText('l-acc', isZh ? "登录" : "Anmelden");
-            safeSetText('l-cart', isZh ? "购物车" : "Korb");
-            safeSetText('h-best', isZh ? "畅销推荐" : "Bestseller");
-            safeSetText('p-t', isZh ? "20% 优惠" : "20% Rabatt");
-            safeSetText('p-s', isZh ? "冬季健康守护" : "Winter-Angebote.");
-            safeSetText('e1', isZh ? "快速送达" : "Schnelle Lieferung");
-            safeSetText('e2', isZh ? "瑞士品质" : "Schweizer Qualität");
-            safeSetText('e3', isZh ? "专家建议" : "Experten-Rat");
-            safeSetText('l-news', isZh ? "保持健康！订阅我们的资讯" : "Bleiben Sie gesund!");
-            
-            if(document.getElementById('searchBox')) {
-                document.getElementById('searchBox').placeholder = isZh ? "搜索产品..." : "Suche...";
-            }
-
-            // 2. 显示产品
-            showItems(data);
+                // 2. 渲染产品
+                renderGrid(myProducts);
+            } catch (e) { console.log("Init error: ", e); }
         }
 
-        function showItems(list) {
-            const lang = document.getElementById('langSwitch').value;
+        function renderGrid(list) {
             const grid = document.getElementById('productGrid');
+            const lang = document.getElementById('langSwitch').value;
             if(!grid) return;
 
             grid.innerHTML = list.map(p => `
@@ -143,15 +127,18 @@
 
         function doSearch() {
             const val = document.getElementById('searchBox').value.toLowerCase();
-            const lang = document.getElementById('langSwitch').value;
-            const filtered = data.filter(p => p.de.toLowerCase().includes(val) || p.zh.toLowerCase().includes(val));
-            showItems(filtered);
+            const filtered = myProducts.filter(p => p.de.toLowerCase().includes(val) || p.zh.toLowerCase().includes(val));
+            renderGrid(filtered);
         }
 
-        // 确保页面加载完成后执行
-        document.addEventListener('DOMContentLoaded', initPage);
-        // 万一 DOMContentLoaded 没触发，强制运行一次
-        setTimeout(initPage, 500);
+        // 终极启动方案：不管是哪种加载方式，确保执行
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPage);
+        } else {
+            initPage();
+        }
+        // 双重保险：0.8秒后再次强制检查，防止因为网络慢导致的空白
+        setTimeout(initPage, 800);
     </script>
 </body>
 </html>
