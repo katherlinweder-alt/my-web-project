@@ -3,76 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA | Ihre Schweizer Online-Apotheke</title>
+    <title>WEDERPHARMA | Shop Apotheke Style</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; margin:0; display: flex; flex-direction: column; min-height: 100vh; background: #fff; }
-        .nav-shadow { box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .cat-link { white-space: nowrap; padding: 12px 0; border-bottom: 3px solid transparent; transition: all 0.2s; font-size: 14px; font-weight: 600; color: #4a5568; }
-        .cat-link:hover { border-bottom-color: #0076a3; color: #0076a3; }
-        .product-card { border: 1px solid #f0f0f0; border-radius: 12px; transition: all 0.2s; background: white; }
-        .product-card:hover { border-color: #0076a3; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        body { font-family: 'Inter', sans-serif; background: #ffffff; margin:0; display: flex; flex-direction: column; min-height: 100vh; }
+        .nav-shadow { box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        /* 目录样式 */
+        .cat-item { display: flex; items-center: center; gap: 8px; padding: 10px 0; border-bottom: 2px solid transparent; color: #334155; font-size: 14px; font-weight: 600; white-space: nowrap; transition: all 0.2s; }
+        .cat-item:hover { color: #0076a3; border-bottom-color: #0076a3; }
+        .cat-item.sale { color: #e11d48; }
+        /* 隐藏滚动条 */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body>
 
-    <div class="bg-[#f8fafc] border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center text-[11px] text-gray-500 font-bold uppercase tracking-wider">
-            <div class="flex gap-6">
-                <span><i class="fa-solid fa-truck text-green-500 mr-1"></i> Gratis Versand ab 59 CHF</span>
-                <span><i class="fa-solid fa-check-double text-blue-500 mr-1"></i> Zertifizierte Apotheke</span>
+    <div class="bg-[#f1f5f9] border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-1.5 flex justify-between items-center text-[11px] font-bold text-gray-500 uppercase">
+            <div class="flex gap-4">
+                <span><i class="fa-solid fa-check text-green-600"></i> Gratis Versand ab 59 CHF</span>
+                <span class="hidden sm:inline"><i class="fa-solid fa-clock text-blue-500"></i> 1-2 Tage Lieferzeit</span>
             </div>
             <div class="flex gap-4">
-                <button onclick="setLang('de')" class="hover:text-[#0076a3]">DE</button>
-                <button onclick="setLang('zh')" class="hover:text-[#0076a3]">ZH</button>
+                <span class="cursor-pointer hover:text-[#0076a3]" onclick="setLang('de')">DE</span>
+                <span class="cursor-pointer hover:text-[#0076a3]" onclick="setLang('zh')">ZH</span>
             </div>
         </div>
     </div>
 
-    <header class="bg-white border-b border-gray-100 sticky top-0 z-50 nav-shadow">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-10">
-            <div class="text-2xl md:text-3xl font-[900] tracking-tighter cursor-pointer flex-shrink-0" onclick="location.reload()">
+    <header class="bg-white sticky top-0 z-50 nav-shadow">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between gap-4 md:gap-8">
+            <div class="text-2xl md:text-3xl font-black tracking-tighter cursor-pointer flex-shrink-0" onclick="location.reload()">
                 <span class="text-[#0076a3]">WEDER</span><span class="text-red-600">PHARMA</span>
             </div>
             
-            <div class="flex-grow relative max-w-2xl hidden md:block">
-                <input type="text" id="sBox" oninput="search()" class="w-full bg-[#f1f5f9] border-2 border-transparent focus:border-[#0076a3] focus:bg-white px-5 py-2.5 rounded-xl outline-none transition-all text-sm" placeholder="Produkte, Marken oder Symptome suchen...">
-                <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-[#0076a3]"></i>
+            <div class="flex-grow max-w-2xl relative">
+                <input type="text" id="sBox" oninput="search()" class="w-full bg-[#f1f5f9] border-2 border-transparent focus:border-[#0076a3] focus:bg-white px-5 py-2.5 rounded-lg outline-none transition-all text-sm" placeholder="Nach Medikamenten oder Marken suchen...">
+                <button class="absolute right-3 top-1/2 -translate-y-1/2 bg-[#0076a3] text-white w-8 h-8 rounded-md flex items-center justify-center hover:bg-[#005a7d]">
+                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                </button>
             </div>
 
-            <div class="flex items-center gap-6 text-gray-700">
-                <div class="flex flex-col items-center cursor-pointer hover:text-[#0076a3]">
+            <div class="flex items-center gap-4 md:gap-6 text-gray-700">
+                <div class="text-center cursor-pointer hover:text-[#0076a3]">
                     <i class="fa-regular fa-user text-xl"></i>
-                    <span class="text-[10px] font-bold mt-1" id="l-acc">ANMELDEN</span>
+                    <p class="text-[9px] font-bold mt-1 uppercase hidden md:block" id="l-acc">Anmelden</p>
                 </div>
-                <div class="flex flex-col items-center cursor-pointer hover:text-[#0076a3] relative">
+                <div class="text-center cursor-pointer hover:text-[#0076a3] relative">
                     <i class="fa-solid fa-cart-shopping text-xl"></i>
-                    <span class="text-[10px] font-bold mt-1" id="l-cart">KORB</span>
+                    <p class="text-[9px] font-bold mt-1 uppercase hidden md:block" id="l-cart">Korb</p>
                     <span class="absolute -top-1 -right-1 bg-red-600 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
                 </div>
             </div>
         </div>
 
-        <div class="bg-white border-t border-gray-50">
-            <div class="max-w-7xl mx-auto px-6 flex gap-8 overflow-x-auto no-scrollbar" id="cat-bar">
-                <a href="#" class="cat-link" data-de="Arzneimittel" data-zh="药品">Arzneimittel</a>
-                <a href="#" class="cat-link" data-de="Vitamine & Co." data-zh="维他命与膳食补充">Vitamine & Co.</a>
-                <a href="#" class="cat-link" data-de="Beauty & Pflege" data-zh="美容护理">Beauty & Pflege</a>
-                <a href="#" class="cat-link" data-de="Baby & Familie" data-zh="母婴家庭">Baby & Familie</a>
-                <a href="#" class="cat-link" data-de="Abnehmen" data-zh="减肥瘦身">Abnehmen</a>
-                <a href="#" class="cat-link" data-de="Tierapotheke" data-zh="宠物医药">Tierapotheke</a>
-                <a href="#" class="cat-link text-red-600" data-de="% Angebote" data-zh="% 特价优惠">% Angebote</a>
+        <div class="bg-white border-t border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 md:px-6 flex items-center gap-8 overflow-x-auto no-scrollbar">
+                <button class="flex items-center gap-2 bg-gray-100 px-4 py-2 my-2 rounded-md font-bold text-sm text-[#003a5a] hover:bg-gray-200 transition flex-shrink-0">
+                    <i class="fa-solid fa-bars"></i>
+                    <span id="c-all">Alle Kategorien</span>
+                </button>
+                
+                <nav class="flex items-center gap-6">
+                    <a href="#" class="cat-item" data-de="Arzneimittel" data-zh="所有药品">Arzneimittel</a>
+                    <a href="#" class="cat-item" data-de="Beauty" data-zh="美容护理">Beauty</a>
+                    <a href="#" class="cat-item" data-de="Vitamine" data-zh="维生素">Vitamine</a>
+                    <a href="#" class="cat-item" data-de="Baby" data-zh="母婴用品">Baby</a>
+                    <a href="#" class="cat-item" data-de="Abnehmen" data-zh="减肥瘦身">Abnehmen</a>
+                    <a href="#" class="cat-item sale" data-de="% Angebote" data-zh="% 特价优惠">% Angebote</a>
+                </nav>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-8 flex-grow">
-        <div class="bg-gradient-to-r from-[#eef2f3] to-[#8e9eab]/10 rounded-3xl p-10 mb-12 flex flex-col md:flex-row items-center">
-            <div class="flex-1 text-center md:text-left">
-                <h1 id="p-t" class="text-4xl font-extrabold text-gray-800 mb-4 uppercase tracking-tight">Winter Sale</h1>
-                <p id="p-s" class="text-gray-600 text-lg mb-6 font-medium">Sparen Sie jetzt bis zu 20% auf Top-Marken.</p>
-                <button class="bg-[#0076a3] text-white px-10 py-3 rounded-full font-bold hover:scale-105 transition shadow-lg">Jetzt sparen</button>
+    <main class="max-w-7xl mx-auto px-4 md:px-6 py-8 flex-grow">
+        <div class="bg-gradient-to-r from-[#e0f2fe] to-[#f0f9ff] rounded-2xl p-8 md:p-12 mb-10 flex flex-col md:flex-row items-center gap-8 border border-blue-100">
+            <div class="flex-1">
+                <span class="text-[#0076a3] font-bold text-sm tracking-widest uppercase">Empfehlung der Woche</span>
+                <h1 id="p-t" class="text-3xl md:text-5xl font-black text-slate-800 mt-2 mb-4">Winter-Check für <br>Ihre Abwehrkräfte</h1>
+                <p id="p-s" class="text-slate-600 text-lg mb-8">Entdecken Sie unsere Top-Produkte für die kalte Jahreszeit.</p>
+                <button class="bg-[#0076a3] text-white px-8 py-3 rounded-lg font-bold hover:shadow-lg transition">Jetzt stöbern</button>
             </div>
-            <img src="
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400" class="h-64 object-contain">
+        </div>
+
+        <h2 id="h-best" class="text-2xl font-bold mb-6">Bestseller</h2>
+        <div id="grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            <div class="product-card border rounded-xl p-4 hover:shadow-md transition bg-white" data
