@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f8fbfe; margin:0; }
+        body { font-family: 'Inter', sans-serif; background: #f8fbfe; margin:0; padding:0; }
         .p-card { background: white; border: 1px solid #e1f0f7; padding: 20px; border-radius: 12px; display: flex; flex-direction: column; height: 100%; transition: 0.3s; }
         .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
     </style>
@@ -16,7 +16,7 @@
 
     <div class="bg-[#bde4f4] px-6 py-2 text-[11px] font-bold text-[#003a5a] flex justify-between items-center">
         <span>SWISS PHARMA QUALITY</span>
-        <select id="langSwitch" onchange="initPage()" class="bg-transparent outline-none font-bold cursor-pointer">
+        <select id="langSwitch" onchange="initPage()" class="bg-transparent outline-none font-bold">
             <option value="de">DEUTSCH</option>
             <option value="zh">中文</option>
         </select>
@@ -30,7 +30,7 @@
             </div>
             <div class="flex items-center gap-6 order-2 md:order-3 text-[#003a5a]">
                 <div class="text-center cursor-pointer"><i class="fa-regular fa-user text-xl"></i><p class="text-[9px] font-bold uppercase" id="l-acc">Anmelden</p></div>
-                <div class="text-center cursor-pointer"><i class="fa-solid fa-cart-shopping text-xl"></i><p class="text-[9px] font-bold uppercase" id="l-cart">Korb</p></div>
+                <div class="text-center cursor-pointer relative"><i class="fa-solid fa-cart-shopping text-xl"></i><p class="text-[9px] font-bold uppercase" id="l-cart">Korb</p></div>
             </div>
         </div>
     </nav>
@@ -49,14 +49,17 @@
             <div class="bg-white p-8 rounded-2xl border border-blue-100 text-center shadow-sm">
                 <i class="fa-solid fa-truck-fast text-[#0076a3] text-3xl mb-4"></i>
                 <h4 class="font-bold text-[#003a5a]" id="e1">Schnelle Lieferung</h4>
+                <p class="text-[10px] text-gray-400 mt-2">Ganz Schweiz.</p>
             </div>
             <div class="bg-white p-8 rounded-2xl border border-blue-100 text-center shadow-sm">
                 <i class="fa-solid fa-certificate text-[#0076a3] text-3xl mb-4"></i>
                 <h4 class="font-bold text-[#003a5a]" id="e2">Schweizer Qualität</h4>
+                <p class="text-[10px] text-gray-400 mt-2">Geprüfte Apotheke.</p>
             </div>
             <div class="bg-white p-8 rounded-2xl border border-blue-100 text-center shadow-sm">
                 <i class="fa-solid fa-user-doctor text-[#0076a3] text-3xl mb-4"></i>
                 <h4 class="font-bold text-[#003a5a]" id="e3">Experten-Rat</h4>
+                <p class="text-[10px] text-gray-400 mt-2">Beratung vom Profi.</p>
             </div>
         </div>
 
@@ -70,12 +73,12 @@
     </main>
 
     <footer class="bg-white border-t py-12 text-center text-gray-400 text-xs">
-        © 2025 WEDERPHARMA ZÜRICH | SWITZERLAND
+        <div class="text-xl font-black text-[#0076a3] mb-2 uppercase">WederPharma</div>
+        <p>© 2025 Zürich, Switzerland</p>
     </footer>
 
     <script>
-        // 统一变量名为 myProducts
-        const myProducts = [
+        const myData = [
             { id:1, de:"Omega-3 1400mg Pure", zh:"深海鱼油 1400mg", price:"28.95", brand:"WEDER", img:"https://images.unsplash.com/photo-1550573105-4584e8d05967?auto=format&fit=crop&w=300" },
             { id:2, de:"Magnesium 400 Forte", zh:"高浓度镁片 400", price:"19.50", brand:"SANDOZ", img:"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300" },
             { id:3, de:"Hautpflege Serum", zh:"修护精华液", price:"24.20", brand:"LA ROCHE", img:"https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=300" },
@@ -88,57 +91,6 @@
                 const lang = document.getElementById('langSwitch').value;
                 const isZh = (lang === 'zh');
                 
-                // 1. 更新所有文字 ID
-                const updateText = (id, text) => { if(document.getElementById(id)) document.getElementById(id).innerText = text; };
-                
-                updateText('l-acc', isZh ? "登录" : "Anmelden");
-                updateText('l-cart', isZh ? "购物车" : "Korb");
-                updateText('h-best', isZh ? "畅销推荐" : "Bestseller");
-                updateText('p-t', isZh ? "20% 优惠" : "20% Rabatt");
-                updateText('p-s', isZh ? "冬季健康守护" : "Winter-Angebote.");
-                updateText('e1', isZh ? "快速送达" : "Schnelle Lieferung");
-                updateText('e2', isZh ? "瑞士品质" : "Schweizer Qualität");
-                updateText('e3', isZh ? "专家建议" : "Experten-Rat");
-                updateText('l-news', isZh ? "保持健康！订阅我们的资讯" : "Bleiben Sie gesund!");
-                if(document.getElementById('searchBox')) document.getElementById('searchBox').placeholder = isZh ? "搜索产品..." : "Suche...";
-
-                // 2. 渲染产品
-                renderGrid(myProducts);
-            } catch (e) { console.log("Init error: ", e); }
-        }
-
-        function renderGrid(list) {
-            const grid = document.getElementById('productGrid');
-            const lang = document.getElementById('langSwitch').value;
-            if(!grid) return;
-
-            grid.innerHTML = list.map(p => `
-                <div class="p-card">
-                    <img src="${p.img}" class="h-32 w-full object-contain mb-2" onerror="this.src='https://placehold.co/200?text=Pharma'">
-                    <p class="text-[10px] text-blue-400 font-bold uppercase">${p.brand}</p>
-                    <h3 class="text-sm font-bold text-[#003a5a] mb-4 h-10 overflow-hidden leading-tight">${lang==='zh' ? p.zh : p.de}</h3>
-                    <div class="mt-auto pt-4 flex justify-between items-center border-t border-gray-50">
-                        <span class="text-lg font-black text-[#0076a3]">${p.price} <small class="text-[10px]">CHF</small></span>
-                        <div class="bg-[#0076a3] text-white w-8 h-8 rounded-full flex items-center justify-center text-xs"><i class="fa-solid fa-plus"></i></div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function doSearch() {
-            const val = document.getElementById('searchBox').value.toLowerCase();
-            const filtered = myProducts.filter(p => p.de.toLowerCase().includes(val) || p.zh.toLowerCase().includes(val));
-            renderGrid(filtered);
-        }
-
-        // 终极启动方案：不管是哪种加载方式，确保执行
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initPage);
-        } else {
-            initPage();
-        }
-        // 双重保险：0.8秒后再次强制检查，防止因为网络慢导致的空白
-        setTimeout(initPage, 800);
-    </script>
-</body>
-</html>
+                // 翻译
+                const t = (id, zh, de) => { if(document.getElementById(id)) document.getElementById(id).innerText = isZh ? zh : de; };
+                t('l-acc', "登录",
