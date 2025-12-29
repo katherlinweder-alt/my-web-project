@@ -1,92 +1,90 @@
+HTML
 
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDER PHARMA</title>
+    <title>WEDER PHARMA | International</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Arial', sans-serif; background: #ffffff; }
-        .card { border: 1px solid #ddd; padding: 20px; display: flex; flex-direction: column; min-height: 250px; }
-        .card:hover { border-color: #0056b3; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .tag { font-size: 10px; font-weight: bold; color: #0056b3; text-transform: uppercase; margin-bottom: 5px; }
-        .btn { border: 1px solid #0056b3; color: #0056b3; padding: 5px 10px; font-size: 12px; margin-top: auto; display: inline-block; width: fit-content; }
+        body { font-family: Arial, sans-serif; background-color: #ffffff; color: #333; }
+        .product-card { border: 1px solid #eeeeee; padding: 20px; display: flex; flex-direction: column; transition: 0.3s; }
+        .product-card:hover { border-color: #0056b3; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .brand-border { border-bottom: 4px solid #0056b3; }
+        .lang-label { font-size: 10px; font-weight: bold; color: #999; text-transform: uppercase; margin-top: 4px; }
+        .btn-link { border: 1px solid #0056b3; color: #0056b3; padding: 5px 12px; font-size: 11px; font-weight: bold; text-decoration: none; margin-top: 15px; display: inline-block; width: fit-content; }
+        .btn-link:hover { background-color: #0056b3; color: #fff; }
     </style>
 </head>
 <body>
 
-    <header class="border-b-4 border-blue-700 p-6 flex justify-between items-center sticky top-0 bg-white z-50">
-        <div>
-            <h1 class="text-2xl font-bold uppercase tracking-tighter">
-                <span class="text-red-600">WEDER</span><span class="text-blue-700">PHARMA</span>
-            </h1>
-            <p class="text-xs text-gray-400">Professional Solutions | 维德制药</p>
+    <header class="brand-border p-6 flex justify-between items-center bg-white sticky top-0 z-50 shadow-sm">
+        <div class="text-2xl font-bold uppercase tracking-tighter">
+            <span class="text-red-600">WEDER</span><span class="text-blue-700">PHARMA</span>
         </div>
-        <select id="langBox" class="border p-1 text-xs">
-            <option value="de">Deutsch</option>
-            <option value="zh">中文</option>
-        </select>
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+            DE | FR | EN | 中文
+        </div>
     </header>
 
-    <main class="max-w-6xl mx-auto flex flex-col md:flex-row p-6 gap-6">
-        <aside class="md:w-48">
-            <div class="bg-gray-100 p-4 rounded">
-                <label class="text-[10px] font-bold block mb-1">SEARCH / 搜索</label>
-                <input type="text" id="search" placeholder="Suchen..." class="w-full p-2 border text-sm">
-            </div>
-        </aside>
+    <main class="max-w-7xl mx-auto p-6">
+        
+        <div class="mb-10 bg-gray-50 p-4 border border-gray-100 rounded flex items-center justify-between">
+            <span class="text-xs font-bold text-gray-500 uppercase">Product Catalog / 产品目录</span>
+            <span class="text-[10px] text-blue-700 font-bold uppercase">Multilingual Global Support</span>
+        </div>
 
-        <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 flex-grow">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
-            <div class="card" data-de="Omega-3 Herzfunktion" data-zh="欧米伽3 心脏健康">
-                <span class="tag">Vitamine</span>
-                <h2 class="font-bold text-lg">Doppelherz® Omega-3 1400</h2>
-                <p class="text-sm text-gray-600 mt-2 lang-text" data-de="Hochdosierte Fettsäuren für das Herz." data-zh="支持心脏健康的高剂量脂肪酸。"></p>
-                <a href="https://www.redcare-apotheke.ch/de/gesundheit/10532502/doppelherz-omega-3-1400.htm" target="_blank" class="btn">Kaufen / 购买</a>
+            <div class="product-card">
+                <div class="text-[10px] font-bold text-blue-700 uppercase mb-2">Vitamine / 维生素</div>
+                <h2 class="text-lg font-bold">Doppelherz® Omega-3 1400</h2>
+                
+                <div class="mt-4">
+                    <p class="text-sm text-gray-700"><strong>DE:</strong> Hochdosierte Omega-3-Fettsäuren für das Herz.</p>
+                    <p class="text-sm text-gray-700 mt-1"><strong>FR:</strong> Acides gras oméga-3 hautement dosés pour le cœur.</p>
+                    <p class="text-sm text-gray-700 mt-1"><strong>EN:</strong> High-dose omega-3 fatty acids for heart health.</p>
+                    <p class="text-sm text-blue-800 mt-1 font-medium"><strong>ZH:</strong> 高剂量 Omega-3 脂肪酸，支持心脏健康。</p>
+                </div>
+
+                <a href="https://www.redcare-apotheke.ch/de/gesundheit/10532502/doppelherz-omega-3-1400.htm" target="_blank" class="btn-link">BUY ONLINE / 立即购买</a>
             </div>
 
-            <div class="card" data-de="Weder-Lyte Gastroenterologie" data-zh="维德电解质 胃肠道">
-                <span class="tag">Gastro</span>
-                <h2 class="font-bold text-lg">Weder-Lyte®</h2>
-                <p class="text-sm text-gray-600 mt-2 lang-text" data-de="Elektrolytkonzentrat zur Dehydratation." data-zh="用于脱水补充的电解质。"></p>
-                <a href="#" class="btn">Details</a>
+            <div class="product-card">
+                <div class="text-[10px] font-bold text-blue-700 uppercase mb-2">Gastro / 胃肠道</div>
+                <h2 class="text-lg font-bold">Weder-Lyte®</h2>
+                
+                <div class="mt-4">
+                    <p class="text-sm text-gray-700"><strong>DE:</strong> Elektrolytkonzentrat zur Dehydratation.</p>
+                    <p class="text-sm text-gray-700 mt-1"><strong>FR:</strong> Concentré d'électrolytes pour perfusion.</p>
+                    <p class="text-sm text-gray-700 mt-1"><strong>EN:</strong> Electrolyte concentrate for infusion.</p>
+                    <p class="text-sm text-blue-800 mt-1 font-medium"><strong>ZH:</strong> 补充电解质的浓缩液。</p>
+                </div>
+
+                <a href="#" class="btn-link">DETAILS / 查看详情</a>
             </div>
 
-            <div class="card" data-de="Weder-Dol Schmerz" data-zh="维德止痛 疼痛治疗">
-                <span class="tag">Schmerz</span>
-                <h2 class="font-bold text-lg">Weder-Dol 500mg</h2>
-                <p class="text-sm text-gray-600 mt-2 lang-text" data-de="Analgetikum bei leichten Schmerzen." data-zh="缓解轻微疼痛。"></p>
-                <a href="#" class="btn">Details</a>
+            <div class="product-card">
+                <div class="text-[10px] font-bold text-blue-700 uppercase mb-2">Schmerz / 疼痛</div>
+                <h2 class="text-lg font-bold">Weder-Dol 500mg</h2>
+                
+                <div class="mt-4">
+                    <p class="text-sm text-gray-700"><strong>DE:</strong> Analgetikum bei Schmerzen.</p>
+                    <p class="text-sm text-gray-700 mt-1"><strong>FR:</strong> Analgésique pour la douleur.</p>
+                    <p class="text-sm text-gray-700 mt-1"><strong>EN:</strong> Analgesic for pain relief.</p>
+                    <p class="text-sm text-blue-800 mt-1 font-medium"><strong>ZH:</strong> 缓解轻至中度疼痛。</p>
+                </div>
+
+                <a href="#" class="btn-link">DETAILS / 查看详情</a>
             </div>
 
         </div>
     </main>
 
-    <script>
-        const langBox = document.getElementById('langBox');
-        const search = document.getElementById('search');
+    <footer class="mt-20 border-t border-gray-200 py-10 px-10 bg-gray-50 text-center">
+        <p class="text-[10px] text-gray-400 uppercase tracking-widest">© 2025 Wederpharma Biotech AG | Swissmedic certified</p>
+    </footer>
 
-        // 切换语言
-        function setLang(l) {
-            document.querySelectorAll('.lang-text').forEach(el => {
-                el.innerText = el.getAttribute('data-' + l);
-            });
-        }
-
-        langBox.onchange = (e) => setLang(e.target.value);
-
-        // 搜索
-        search.oninput = (e) => {
-            const t = e.target.value.toLowerCase();
-            document.querySelectorAll('.card').forEach(c => {
-                const content = c.getAttribute('data-de').toLowerCase() + c.getAttribute('data-zh');
-                c.style.display = content.includes(t) ? 'flex' : 'none';
-            });
-        };
-
-        // 初始显示德语
-        setLang('de');
-    </script>
 </body>
 </html>
