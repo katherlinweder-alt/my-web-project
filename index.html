@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA | Professional Solutions</title>
+    <title>WEDERPHARMA | Produkte</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: Arial, Helvetica, sans-serif; background-color: #ffffff; color: #333333; font-size: 14px; }
@@ -14,48 +14,56 @@
         .category-tag { font-size: 10px; font-weight: bold; color: #0056b3; text-transform: uppercase; margin-bottom: 8px; }
         .product-name { font-size: 18px; font-weight: bold; color: #000000; margin-bottom: 10px; line-height: 1.2; }
         .product-desc { font-size: 13px; color: #666666; line-height: 1.5; margin-bottom: 15px; }
-        .top-nav { border-bottom: 4px solid #0056b3; padding: 15px 40px; }
-        .btn-detail { font-size: 11px; font-weight: bold; text-transform: uppercase; color: #0056b3; border: 1px solid #0056b3; padding: 6px 12px; width: fit-content; text-decoration: none; }
+        .top-nav { border-bottom: 4px solid #0056b3; padding: 12px 40px; }
+        .btn-detail { font-size: 11px; font-weight: bold; text-transform: uppercase; color: #0056b3; border: 1px solid #0056b3; padding: 6px 12px; width: fit-content; text-decoration: none; display: inline-block; }
         .btn-detail:hover { background-color: #0056b3; color: #ffffff; }
+        /* 顶部搜索框样式 */
+        .search-container { position: relative; width: 300px; }
+        .header-search { width: 100%; padding: 8px 12px 8px 35px; border: 1px solid #e5e5e5; border-radius: 4px; font-size: 12px; outline: none; transition: 0.2s; }
+        .header-search:focus { border-color: #0056b3; box-shadow: 0 0 0 2px rgba(0,86,179,0.1); }
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #999; }
     </style>
 </head>
 <body>
 
-    <header class="top-nav flex justify-between items-center bg-white sticky top-0 z-50">
+    <header class="top-nav flex justify-between items-center bg-white sticky top-0 z-50 shadow-sm">
         <div class="flex items-center gap-6">
             <div class="text-2xl text-red-600 tracking-tighter uppercase font-bold">
-                <span data-i18n="brand_w">WEDER</span><span class="text-blue-700" data-i18n="brand_p">PHARMA</span>
+                <span data-i18n="b_w">WEDER</span><span class="text-blue-700" data-i18n="b_p">PHARMA</span>
             </div>
             <select id="lang-select" class="p-1 border border-gray-300 rounded text-[10px] font-bold cursor-pointer bg-gray-50 uppercase focus:outline-none">
                 <option value="de">Deutsch</option>
                 <option value="zh">中文</option>
-                <option value="fr">Français</option>
-                <option value="en">English</option>
             </select>
         </div>
-        <nav class="hidden md:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
-            <a href="#" data-i18n="nav_co">Unternehmen</a>
-            <a href="#" class="text-blue-700" data-i18n="nav_prod">Produkte</a>
-            <a href="#" data-i18n="nav_cont">Kontakt</a>
+
+        <div class="hidden lg:block search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="Produkte suchen..." data-i18n-placeholder="s_lb" class="header-search">
+        </div>
+
+        <nav class="hidden md:flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-gray-600">
+            <a href="#" class="hover:text-blue-700" data-i18n="n_co">Unternehmen</a>
+            <a href="#" class="text-blue-700" data-i18n="n_pr">Produkte</a>
+            <a href="#" class="hover:text-blue-700" data-i18n="n_ct">Kontakt</a>
         </nav>
     </header>
 
+    <div class="lg:hidden p-4 bg-gray-50 border-b">
+        <input type="text" id="searchInputMobile" placeholder="Suchen..." class="w-full p-2 border border-gray-300 rounded text-sm">
+    </div>
+
     <main class="max-w-[1400px] mx-auto flex flex-col md:flex-row py-10 px-6">
         <aside class="md:w-64 flex-shrink-0">
-            <h3 class="font-bold text-gray-900 mb-6 px-4 uppercase text-xs tracking-widest border-b pb-2" data-i18n="side_cat">Kategorien</h3>
+            <h3 class="font-bold text-gray-900 mb-6 px-4 uppercase text-xs tracking-widest border-b pb-2" data-i18n="s_ca">Kategorien</h3>
             <div class="border-t border-l border-r border-gray-100">
-                <a href="#" class="sidebar-link active" data-i18n="cat_all">Alle Produkte</a>
-                <a href="#" class="sidebar-link" data-i18n="cat_gastro">Gastroenterologie</a>
-                <a href="#" class="sidebar-link" data-i18n="cat_cardio">Kardiologie</a>
-                <a href="#" class="sidebar-link" data-i18n="cat_neuro">Neurologie</a>
-                <a href="#" class="sidebar-link" data-i18n="cat_pain">Schmerztherapie</a>
-                <a href="#" class="sidebar-link" data-i18n="cat_vit">Vitamine / Mineralien</a>
-                <a href="#" class="sidebar-link" data-i18n="cat_zns">ZNS / Schlaf</a>
-            </div>
-            
-            <div class="mt-10 px-4 bg-gray-50 py-6">
-                <p class="text-[11px] font-bold uppercase mb-2 text-gray-400" data-i18n="search_l">Suche</p>
-                <input type="text" id="searchInput" placeholder="Suchen..." class="w-full p-2 border border-gray-300 text-xs focus:outline-none focus:border-blue-700">
+                <a href="#" class="sidebar-link active" data-i18n="c_al">Alle Produkte</a>
+                <a href="#" class="sidebar-link" data-i18n="c_ga">Gastroenterologie</a>
+                <a href="#" class="sidebar-link" data-i18n="c_ka">Kardiologie</a>
+                <a href="#" class="sidebar-link" data-i18n="c_ne">Neurologie</a>
+                <a href="#" class="sidebar-link" data-i18n="c_sc">Schmerztherapie</a>
+                <a href="#" class="sidebar-link" data-i18n="c_vi">Vitamine / Mineralien</a>
+                <a href="#" class="sidebar-link" data-i18n="c_zn">ZNS / Schlaf</a>
             </div>
         </aside>
 
@@ -64,65 +72,65 @@
                 
                 <div class="product-item">
                     <div>
-                        <div class="category-tag" data-i18n="cat_vit">Vitamine</div>
+                        <div class="category-tag" data-i18n="c_vi">Vitamine</div>
                         <h2 class="product-name">Doppelherz® Omega-3 1400</h2>
-                        <p class="product-desc" data-i18n="d_omega">Hochdosierte Omega-3-Fettsäuren für die Herzfunktion.</p>
+                        <p class="product-desc" data-i18n="d_om">Hochdosierte Omega-3-Fettsäuren für die Herzfunktion.</p>
                     </div>
-                    <a href="https://www.redcare-apotheke.ch/de/gesundheit/10532502/doppelherz-omega-3-1400.htm" target="_blank" class="btn-detail" data-i18n="btn_buy">Online Kaufen</a>
+                    <a href="https://www.redcare-apotheke.ch/de/gesundheit/10532502/doppelherz-omega-3-1400.htm" target="_blank" class="btn-detail" data-i18n="b_bu">Online Kaufen</a>
                 </div>
 
                 <div class="product-item">
                     <div>
-                        <div class="category-tag" data-i18n="cat_gastro">Gastroenterologie</div>
+                        <div class="category-tag" data-i18n="c_ga">Gastroenterologie</div>
                         <h2 class="product-name">Weder-Lyte®</h2>
-                        <p class="product-desc" data-i18n="d_lyte">Elektrolytkonzentrat zur Herstellung einer Infusionslösung.</p>
+                        <p class="product-desc" data-i18n="d_ly">Elektrolytkonzentrat zur Herstellung einer Infusionslösung.</p>
                     </div>
-                    <a href="#" class="btn-detail" data-i18n="btn_det">Details</a>
+                    <a href="#" class="btn-detail" data-i18n="b_de">Details</a>
                 </div>
 
                 <div class="product-item">
                     <div>
-                        <div class="category-tag" data-i18n="cat_cardio">Kardiologie</div>
+                        <div class="category-tag" data-i18n="c_ka">Kardiologie</div>
                         <h2 class="product-name">Swiss-Cardio 10mg</h2>
-                        <p class="product-desc" data-i18n="d_cardio">Behandlung von Bluthochdruck und koronaren Krankheiten.</p>
+                        <p class="product-desc" data-i18n="d_ca">Behandlung von Bluthochdruck und koronaren Krankheiten.</p>
                     </div>
-                    <a href="#" class="btn-detail" data-i18n="btn_det">Details</a>
+                    <a href="#" class="btn-detail" data-i18n="b_de">Details</a>
                 </div>
 
                 <div class="product-item">
                     <div>
-                        <div class="category-tag" data-i18n="cat_neuro">Neurologie</div>
+                        <div class="category-tag" data-i18n="c_ne">Neurologie</div>
                         <h2 class="product-name">Neuro-Tone Pro</h2>
-                        <p class="product-desc" data-i18n="d_neuro">Unterstützung der kognitiven Funktion bei Erschöpfung.</p>
+                        <p class="product-desc" data-i18n="d_ne">Unterstützung der kognitiven Funktion bei Erschöpfung.</p>
                     </div>
-                    <a href="#" class="btn-detail" data-i18n="btn_det">Details</a>
+                    <a href="#" class="btn-detail" data-i18n="b_de">Details</a>
                 </div>
 
                 <div class="product-item">
                     <div>
-                        <div class="category-tag" data-i18n="cat_zns">ZNS / Schlaf</div>
+                        <div class="category-tag" data-i18n="c_zn">ZNS / Schlaf</div>
                         <h2 class="product-name">Somna-Weder®</h2>
-                        <p class="product-desc" data-i18n="d_somna">Präparat zur Behandlung von Durchschlafstörungen.</p>
+                        <p class="product-desc" data-i18n="d_so">Präparat zur Kurzzeitbehandlung von Schlafstörungen.</p>
                     </div>
-                    <a href="#" class="btn-detail" data-i18n="btn_det">Details</a>
+                    <a href="#" class="btn-detail" data-i18n="b_de">Details</a>
                 </div>
 
                 <div class="product-item">
                     <div>
-                        <div class="category-tag" data-i18n="cat_pain">Schmerz治疗</div>
+                        <div class="category-tag" data-i18n="c_sc">Schmerz</div>
                         <h2 class="product-name">Weder-Dol 500mg</h2>
-                        <p class="product-desc" data-i18n="d_dol">Analgetikum bei leichten bis mäßig starken Schmerzen.</p>
+                        <p class="product-desc" data-i18n="d_do">Analgetikum bei leichten bis mäßig starken Schmerzen.</p>
                     </div>
-                    <a href="#" class="btn-detail" data-i18n="btn_det">Details</a>
+                    <a href="#" class="btn-detail" data-i18n="b_de">Details</a>
                 </div>
 
                 <div class="product-item">
                     <div>
-                        <div class="category-tag" data-i18n="cat_vit">Vitamine</div>
+                        <div class="category-tag" data-i18n="c_vi">Vitamine</div>
                         <h2 class="product-name">Vita-Weder C Plus</h2>
-                        <p class="product-desc" data-i18n="d_vita">Vitamin C Präparat zur Stärkung der Abwehrkräfte.</p>
+                        <p class="product-desc" data-i18n="d_vi">Vitamin C Präparat zur Stärkung der Abwehrkräfte.</p>
                     </div>
-                    <a href="#" class="btn-detail" data-i18n="btn_det">Details</a>
+                    <a href="#" class="btn-detail" data-i18n="b_de">Details</a>
                 </div>
 
             </div>
@@ -130,43 +138,60 @@
     </main>
 
     <footer class="mt-20 border-t border-gray-200 py-10 px-10 bg-gray-50 text-center text-[10px] text-gray-400 uppercase tracking-widest">
-        <span data-i18n="foot">© 2025 Wederpharma Biotech AG | Swissmedic zertifiziert</span>
+        <span data-i18n="foo">© 2025 Wederpharma Biotech AG | Swissmedic zertifiziert</span>
     </footer>
 
     <script>
         const dict = {
             zh: {
-                brand_w: "维德", brand_p: "制药", nav_co: "公司", nav_prod: "产品", nav_cont: "联系",
-                side_cat: "分类", cat_all: "全部产品", cat_gastro: "胃肠科", cat_cardio: "心血管科", cat_neuro: "神经科", cat_pain: "疼痛治疗", cat_vit: "维生素", cat_zns: "睡眠中心",
-                search_l: "搜索产品", d_omega: "心脏健康高剂量 Omega-3。", d_lyte: "补充电解质的输液浓缩液。", d_cardio: "治疗高血压和冠心病。", d_neuro: "支持疲劳时的认知功能。", d_somna: "改善睡眠障碍的制剂。", d_dol: "缓解轻至中度疼痛。", d_vita: "增强免疫系统的维C。",
-                btn_det: "查看详情", btn_buy: "立即购买", foot: "© 2025 维德制药生物科技股份公司 | Swissmedic 认证"
+                b_w: "维德", b_p: "制药", n_co: "公司", n_pr: "产品中心", n_ct: "联系我们",
+                s_ca: "产品分类", c_al: "全部产品", c_ga: "胃肠道科", c_ka: "心血管科", c_ne: "神经内科", c_sc: "疼痛治疗", c_vi: "维生素", c_zn: "睡眠/中枢",
+                s_lb: "搜索产品...", d_om: "支持心脏健康的高剂量 Omega-3 脂肪酸。", d_ly: "补充电解质的输液浓缩液。", d_ca: "用于治疗高血压和冠心病。", d_ne: "支持疲劳时的认知功能。", d_so: "用于改善睡眠障碍的制剂。", d_do: "缓解轻至中度疼痛的止痛药。", d_vi: "增强免疫系统的维C。",
+                b_de: "查看详情", b_bu: "立即购买", foo: "© 2025 维德制药生物科技股份公司 | Swissmedic 认证"
             },
             de: {
-                brand_w: "WEDER", brand_p: "PHARMA", nav_co: "Unternehmen", nav_prod: "Produkte", nav_cont: "Kontakt",
-                side_cat: "Kategorien", cat_all: "Alle Produkte", cat_gastro: "Gastroenterologie", cat_cardio: "Kardiologie", cat_neuro: "Neurologie", cat_pain: "Schmerztherapie", cat_vit: "Vitamine", cat_zns: "ZNS / Schlaf",
-                search_l: "Suche", d_omega: "Hochdosierte Omega-3 für das Herz.", d_lyte: "Elektrolytkonzentrat zur Dehydratation.", d_cardio: "Behandlung von Bluthochdruck.", d_neuro: "Unterstützung der kognitiven Funktion.", d_somna: "Behandlung von Schlafstörungen.", d_dol: "Analgetikum bei Schmerzen.", d_vita: "Stärkung der Abwehrkräfte.",
-                btn_det: "Details", btn_buy: "Online Kaufen", foot: "© 2025 Wederpharma Biotech AG | Swissmedic zertifiziert"
+                b_w: "WEDER", b_p: "PHARMA", n_co: "Unternehmen", n_pr: "Produkte", n_ct: "Kontakt",
+                s_ca: "Kategorien", c_al: "Alle Produkte", c_ga: "Gastroenterologie", c_ka: "Kardiologie", c_ne: "Neurologie", c_sc: "Schmerztherapie", c_vi: "Vitamine", c_zn: "ZNS / Schlaf",
+                s_lb: "Produkte suchen...", d_om: "Hochdosierte Omega-3 für das Herz.", d_ly: "Elektrolytkonzentrat zur Infusionslösung.", d_ca: "Behandlung von Bluthochdruck.", d_ne: "Unterstützung der kognitiven Funktion.", d_so: "Präparat bei Schlafstörungen.", d_do: "Analgetikum bei Schmerzen.", d_vi: "Stärkung der Abwehrkräfte.",
+                b_de: "Details", b_bu: "Online Kaufen", foo: "© 2025 Wederpharma Biotech AG | Swissmedic zertifiziert"
             }
         };
 
         const langSelect = document.getElementById('lang-select');
         const searchInput = document.getElementById('searchInput');
+        const searchInputMobile = document.getElementById('searchInputMobile');
 
         function translate(l) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (dict[l][key]) el.textContent = dict[l][key];
             });
+            // 更新搜索框占位符
+            const placeholder = dict[l]['s_lb'];
+            searchInput.placeholder = placeholder;
+            searchInputMobile.placeholder = placeholder;
+            localStorage.setItem('lang', l);
         }
 
         langSelect.onchange = (e) => translate(e.target.value);
-        searchInput.oninput = (e) => {
-            const val = e.target.value.toLowerCase();
+        
+        // 统一搜索逻辑
+        function performSearch(val) {
+            const term = val.toLowerCase();
             document.querySelectorAll('.product-item').forEach(item => {
-                item.style.display = item.innerText.toLowerCase().includes(val) ? 'flex' : 'none';
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(term) ? 'flex' : 'none';
             });
+        }
+
+        searchInput.oninput = (e) => performSearch(e.target.value);
+        searchInputMobile.oninput = (e) => performSearch(e.target.value);
+
+        window.onload = () => {
+            const saved = localStorage.getItem('lang') || 'de';
+            langSelect.value = saved;
+            translate(saved);
         };
-        window.onload = () => translate('de');
     </script>
 </body>
 </html>
