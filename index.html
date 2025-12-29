@@ -3,106 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA | Swiss Premium Pharmacy</title>
+    <title>WEDERPHARMA | Swiss Pharmacy</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --ice-blue: #bde4f4;   /* 浅蓝色背景 */
-            --ocean-blue: #0c4a6e; /* 确保清晰的深蓝文字 */
-            --brand-blue: #0ea5e9; /* 交互主蓝色 */
+            --light-blue: #bde4f4; /* 浅蓝色背景 */
+            --brand-blue: #0ea5e9;
         }
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; }
-        
-        /* 顶部：浅蓝底+深蓝字 */
-        .top-banner { 
-            background-color: var(--ice-blue); color: var(--ocean-blue); 
-            display: flex; justify-content: center; align-items: center;
-            padding: 18px; font-weight: 800; font-size: 15px;
-        }
-        .promo-pill { background: white; color: black; padding: 2px 10px; border-radius: 6px; margin-left: 10px; font-family: monospace; border: 1px solid rgba(0,0,0,0.1); }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; margin: 0; }
 
-        .header { background: white; padding: 20px 40px; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; position: sticky; top: 0; z-index: 50; }
-        .logo { font-size: 24px; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
+        /* 顶部通知栏：浅蓝背景 + 黑色文字 = 极度清晰 */
+        .top-promo { 
+            background-color: var(--light-blue); 
+            color: #000000; 
+            text-align: center; 
+            padding: 18px; 
+            font-weight: 800; 
+            font-size: 16px; 
+            letter-spacing: 0.5px;
+        }
+        .promo-code { background: white; color: black; padding: 2px 8px; border-radius: 4px; margin-left: 10px; border: 1px solid #ccc; font-family: monospace; }
+
+        /* Header */
+        .main-header { background: white; padding: 20px 40px; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 24px; font-weight: 900; text-transform: uppercase; flex-shrink: 0; }
         .logo span { color: var(--brand-blue); }
 
-        .icon-btn { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #475569; cursor: pointer; }
-        .icon-btn:hover { color: var(--brand-blue); }
-        .icon-btn span { font-size: 10px; font-weight: 700; text-transform: uppercase; }
+        .search-container { flex-grow: 1; margin: 0 40px; position: relative; }
+        .search-bar { width: 100%; padding: 10px 15px 10px 40px; border: 1px solid #ddd; border-radius: 8px; background: #f9fafb; }
+        .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #999; }
 
-        .main-container { max-width: 1400px; margin: 40px auto; display: grid; grid-template-columns: 260px 1fr; gap: 40px; padding: 0 40px; }
-        .sidebar-box { background: white; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; }
-        .cat-link { display: block; padding: 16px 20px; color: #64748b; text-decoration: none; border-bottom: 1px solid #f1f5f9; transition: 0.2s; }
-        .cat-link:hover, .cat-link.active { background: #f0f9ff; color: var(--brand-blue); font-weight: 700; }
+        /* 右侧操作区：语言、账户、购物车 */
+        .header-actions { display: flex; align-items: center; gap: 25px; flex-shrink: 0; }
+        .action-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; color: #444; text-decoration: none; }
+        .action-item:hover { color: var(--brand-blue); }
+        .action-item i { font-size: 20px; margin-bottom: 4px; }
+        .action-item span { font-size: 10px; font-weight: 700; text-transform: uppercase; }
 
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
-        .product-card { background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 30px; display: flex; flex-direction: column; transition: 0.3s; }
-        .product-card:hover { transform: translateY(-5px); border-color: var(--brand-blue); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
-        
-        .buy-button { background: var(--brand-blue); color: white; text-align: center; padding: 14px; border-radius: 12px; font-weight: 700; margin-top: auto; text-decoration: none; }
+        /* 语言切换下拉框样式 */
+        #langBox { border: 1px solid #ddd; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: pointer; outline: none; }
+
+        /* 布局 */
+        .page-layout { max-width: 1400px; margin: 40px auto; display: flex; gap: 40px; padding: 0 40px; }
+        .sidebar { width: 240px; flex-shrink: 0; }
+        .cat-menu { background: white; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+        .cat-item { display: block; padding: 14px 20px; border-bottom: 1px solid #f1f5f9; color: #666; text-decoration: none; font-size: 14px; }
+        .cat-item.active { background: #f0f9ff; color: var(--brand-blue); font-weight: bold; border-left: 4px solid var(--brand-blue); }
+
+        /* 7个产品方块 */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; flex-grow: 1; }
+        .product-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; display: flex; flex-direction: column; transition: 0.3s; }
+        .product-card:hover { transform: translateY(-5px); border-color: var(--brand-blue); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .c-tag { font-size: 10px; font-weight: 800; color: var(--brand-blue); text-transform: uppercase; margin-bottom: 8px; }
+        .c-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #111; }
+        .btn-buy { background: var(--brand-blue); color: white; text-align: center; padding: 12px; border-radius: 10px; font-weight: 700; text-decoration: none; margin-top: auto; }
     </style>
 </head>
 <body>
 
-    <div class="top-banner">
-        <i data-lucide="sparkles" class="mr-2"></i>
+    <div class="top-promo">
+        <i class="fa-solid fa-bolt"></i>
         <span data-i18n="p_text">10% RABATT FÜR NEUKUNDEN</span>
-        <span class="promo-pill">WELCOME10</span>
+        <span class="promo-code">WELCOME10</span>
     </div>
 
-    <header class="header">
+    <header class="main-header">
         <div class="logo">WEDER<span>PHARMA</span></div>
-        <div class="flex-grow mx-12">
-            <div class="relative">
-                <i data-lucide="search" class="absolute left-4 top-3 text-gray-400 w-5 h-5"></i>
-                <input type="text" placeholder="Suche..." class="w-full pl-12 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none">
-            </div>
+        
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" placeholder="Suche..." class="search-bar">
         </div>
-        <div class="flex gap-8 items-center">
-            <select id="langBox" class="text-xs font-bold border rounded px-2 py-1 bg-white cursor-pointer outline-none">
-                <option value="de">DEUTSCH</option>
-                <option value="zh">中文 (ZH)</option>
+
+        <div class="header-actions">
+            <select id="langBox">
+                <option value="de">DE</option>
+                <option value="zh">ZH</option>
             </select>
-            <div class="icon-btn"><i data-lucide="user"></i><span data-i18n="h_acc">Account</span></div>
-            <div class="icon-btn"><i data-lucide="shopping-cart"></i><span data-i18n="h_cart">Cart</span></div>
+            <div class="action-item">
+                <i class="fa-regular fa-user"></i>
+                <span data-i18n="h_acc">Account</span>
+            </div>
+            <div class="action-item">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span data-i18n="h_cart">Cart</span>
+            </div>
         </div>
     </header>
 
-    <div class="main-container">
-        <aside>
-            <div class="sidebar-box">
-                <div class="p-4 text-[10px] font-black text-slate-400 uppercase tracking-widest bg-slate-50">Sortiment</div>
-                <a href="#" class="cat-link active" data-i18n="c_all">Alle Produkte</a>
-                <a href="#" class="cat-link" data-i18n="c_ga">Gastroenterologie</a>
-                <a href="#" class="cat-link" data-i18n="c_ka">Kardiologie</a>
-                <a href="#" class="cat-link" data-i18n="c_ne">Neurologie</a>
-                <a href="#" class="cat-link" data-i18n="c_sc">Schmerztherapie</a>
-                <a href="#" class="cat-link" data-i18n="c_vi">Vitamine</a>
-                <a href="#" class="cat-link" data-i18n="c_zn">ZNS / Schlaf</a>
+    <div class="page-layout">
+        <aside class="sidebar">
+            <div class="cat-menu">
+                <div style="padding:15px; background:#f9fafb; font-size:11px; font-weight:900; color:#999; border-bottom:1px solid #eee;">KATEGORIEN</div>
+                <a href="#" class="cat-item active" data-i18n="c_all">Alle Produkte</a>
+                <a href="#" class="cat-item">Gastroenterologie</a>
+                <a href="#" class="cat-item">Kardiologie</a>
+                <a href="#" class="cat-item">Neurologie</a>
+                <a href="#" class="cat-item">Vitamine</a>
             </div>
         </aside>
 
         <main class="product-grid">
-            <div class="product-card"><span class="text-[10px] font-black text-sky-500 uppercase mb-2">Vitamine</span><h3 class="text-lg font-bold mb-4">Omega-3 Premium 1400</h3><p class="text-sm text-slate-400 mb-8">Schweizer Reinheit für Ihr Herz.</p><a href="#" class="buy-button" data-i18n="b_bu">In den Warenkorb</a></div>
-            <div class="product-card"><span class="text-[10px] font-black text-sky-500 uppercase mb-2">Gastro</span><h3 class="text-lg font-bold mb-4">Weder-Lyte® Solution</h3><p class="text-sm text-slate-400 mb-8">Elektrolyt-Balance bei Infekten.</p><a href="#" class="buy-button" data-i18n="b_bu">In den Warenkorb</a></div>
-            <div class="product-card"><span class="text-[10px] font-black text-sky-500 uppercase mb-2">Herz</span><h3 class="text-lg font-bold mb-4">Swiss-Cardio 10mg</h3><p class="text-sm text-slate-400 mb-8">Blutdruckregulation Standard.</p><a href="#" class="buy-button" data-i18n="b_bu">In den Warenkorb</a></div>
-            <div class="product-card"><span class="text-[10px] font-black text-sky-500 uppercase mb-2">Neuro</span><h3 class="text-lg font-bold mb-4">Neuro-Tone Pro</h3><p class="text-sm text-slate-400 mb-8">Fokus und Gedächtnisleistung.</p><a href="#" class="buy-button" data-i18n="b_bu">In den Warenkorb</a></div>
-            <div class="product-card"><span class="text-[10px] font-black text-sky-500 uppercase mb-2">Schmerz</span><h3 class="text-lg font-bold mb-4">Weder Pain-Relief</h3><p class="text-sm text-slate-400 mb-8">Akute Hilfe bei Beschwerden.</p><a href="#" class="buy-button" data-i18n="b_bu">In den Warenkorb</a></div>
-            <div class="product-card"><span class="text-[10px] font-black text-sky-500 uppercase mb-2">ZNS</span><h3 class="text-lg font-bold mb-4">Somna-Weder®</h3><p class="text-sm text-slate-400 mb-8">Erholsamer Schlaf garantiert.</p><a href="#" class="buy-button" data-i18n="b_bu">In den Warenkorb</a></div>
-            <div class="product-card"><span class="text-[10px] font-black text-sky-500 uppercase mb-2">Energie</span><h3 class="text-lg font-bold mb-4">Magnesium + B12</h3><p class="text-sm text-slate-400 mb-8">Gegen Müdigkeit und Stress.</p><a href="#" class="buy-button" data-i18n="b_bu">In den Warenkorb</a></div>
+            <div class="product-card">
+                <span class="c-tag">Vitamine</span>
+                <h3 class="c-title">Omega-3 Premium 1400</h3>
+                <p style="font-size:13px; color:#666; margin-bottom:20px;">Schweizer Reinheit für Ihr Herz.</p>
+                <a href="#" class="btn-buy" data-i18n="b_bu">In den Warenkorb</a>
+            </div>
+            <div class="product-card">
+                <span class="c-tag">Gastro</span>
+                <h3 class="c-title">Weder-Lyte® Solution</h3>
+                <p style="font-size:13px; color:#666; margin-bottom:20px;">Elektrolyt-Balance bei Infekten.</p>
+                <a href="#" class="btn-buy" data-i18n="b_bu">In den Warenkorb</a>
+            </div>
+            <div class="product-card">
+                <span class="c-tag">Herz</span>
+                <h3 class="c-title">Swiss-Cardio 10mg</h3>
+                <p style="font-size:13px; color:#666; margin-bottom:20px;">Blutdruckregulation Standard.</p>
+                <a href="#" class="btn-buy" data-i18n="b_bu">In den Warenkorb</a>
+            </div>
+            <div class="product-card">
+                <span class="c-tag">Neuro</span>
+                <h3 class="c-title">Neuro-Tone Pro</h3>
+                <p style="font-size:13px; color:#666; margin-bottom:20px;">Fokus und Gedächtnisleistung.</p>
+                <a href="#" class="btn-buy" data-i18n="b_bu">In den Warenkorb</a>
+            </div>
+            <div class="product-card">
+                <span class="c-tag">Schmerz</span>
+                <h3 class="c-title">Weder Pain-Relief</h3>
+                <p style="font-size:13px; color:#666; margin-bottom:20px;">Akute Hilfe bei Beschwerden.</p>
+                <a href="#" class="btn-buy" data-i18n="b_bu">In den Warenkorb</a>
+            </div>
+            <div class="product-card">
+                <span class="c-tag">ZNS</span>
+                <h3 class="c-title">Somna-Weder®</h3>
+                <p style="font-size:13px; color:#666; margin-bottom:20px;">Erholsamer Schlaf garantiert.</p>
+                <a href="#" class="btn-buy" data-i18n="b_bu">In den Warenkorb</a>
+            </div>
+            <div class="product-card">
+                <span class="c-tag">Energie</span>
+                <h3 class="c-title">Magnesium + B12</h3>
+                <p style="font-size:13px; color:#666; margin-bottom:20px;">Gegen Müdigkeit und Stress.</p>
+                <a href="#" class="btn-buy" data-i18n="b_bu">In den Warenkorb</a>
+            </div>
         </main>
     </div>
 
     <script>
         const dict = {
             zh: {
-                p_text: "新客户首单礼遇：9 折", h_acc: "我的账户", h_cart: "购物车", b_bu: "加入购物车",
-                c_all: "全部产品", c_ga: "胃肠科", c_ka: "心血管", c_ne: "神经科", c_sc: "止痛", c_vi: "营养", c_zn: "睡眠"
+                p_text: "新客户首单礼遇：9 折", h_acc: "我的账户", h_cart: "购物车", b_bu: "加入购物车", c_all: "全部产品"
             },
             de: {
-                p_text: "10% RABATT FÜR NEUKUNDEN", h_acc: "Account", h_cart: "Cart", b_bu: "In den Warenkorb",
-                c_all: "Alle Produkte", c_ga: "Gastroenterologie", c_ka: "Kardiologie", c_ne: "Neurologie", c_sc: "Schmerztherapie", c_vi: "Vitamine", c_zn: "ZNS / Schlaf"
+                p_text: "10% RABATT FÜR NEUKUNDEN", h_acc: "Account", h_cart: "Cart", b_bu: "In den Warenkorb", c_all: "Alle Produkte"
             }
         };
         function setL(l) {
@@ -112,7 +167,6 @@
             });
         }
         document.getElementById('langBox').onchange = (e) => setL(e.target.value);
-        lucide.createIcons(); // 初始化图标
     </script>
 </body>
 </html>
