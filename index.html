@@ -1,90 +1,235 @@
-HTML
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDER PHARMA | International</title>
+    <title>WEDERPHARMA | Professional Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #ffffff; color: #333; }
-        .product-card { border: 1px solid #eeeeee; padding: 20px; display: flex; flex-direction: column; transition: 0.3s; }
-        .product-card:hover { border-color: #0056b3; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .brand-border { border-bottom: 4px solid #0056b3; }
-        .lang-label { font-size: 10px; font-weight: bold; color: #999; text-transform: uppercase; margin-top: 4px; }
-        .btn-link { border: 1px solid #0056b3; color: #0056b3; padding: 5px 12px; font-size: 11px; font-weight: bold; text-decoration: none; margin-top: 15px; display: inline-block; width: fit-content; }
-        .btn-link:hover { background-color: #0056b3; color: #fff; }
+        body { 
+            font-family: Arial, Helvetica, sans-serif; 
+            background-color: #ffffff; 
+            color: #333333;
+            font-size: 14px;
+        }
+        .sidebar-link {
+            display: block;
+            padding: 10px 15px;
+            border-bottom: 1px solid #eeeeee;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666666;
+            cursor: pointer;
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            background-color: #f8f8f8;
+            color: #0056b3;
+            border-left: 3px solid #0056b3;
+        }
+        .product-item {
+            border: 1px solid #e5e5e5;
+            padding: 20px;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 240px;
+            background: white;
+        }
+        .product-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-color: #0056b3;
+        }
+        .category-tag {
+            font-size: 10px;
+            font-weight: bold;
+            color: #0056b3;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        .product-desc {
+            font-size: 13px;
+            color: #666666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        .top-nav {
+            border-bottom: 4px solid #0056b3;
+            padding: 15px 40px;
+        }
+        .btn-detail {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #0056b3;
+            border: 1px solid #0056b3;
+            padding: 6px 12px;
+            width: fit-content;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .btn-detail:hover {
+            background-color: #0056b3;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
 
-    <header class="brand-border p-6 flex justify-between items-center bg-white sticky top-0 z-50 shadow-sm">
-        <div class="text-2xl font-bold uppercase tracking-tighter">
-            <span class="text-red-600">WEDER</span><span class="text-blue-700">PHARMA</span>
+    <header class="top-nav flex justify-between items-center bg-white sticky top-0 z-50 shadow-sm">
+        <div class="flex items-center gap-6">
+            <div class="text-2xl text-red-600 tracking-tighter uppercase font-bold">
+                <span data-i18n="brand_w">WEDER</span><span class="text-blue-700" data-i18n="brand_p">PHARMA</span>
+            </div>
+            <select id="lang-select" class="p-1 border border-gray-300 rounded text-[10px] font-bold cursor-pointer bg-gray-50 uppercase">
+                <option value="de">Deutsch</option>
+                <option value="zh">中文</option>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
         </div>
-        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-            DE | FR | EN | 中文
-        </div>
+        <nav class="hidden md:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
+            <a href="#" class="hover:text-blue-700" data-i18n="nav_co">Unternehmen</a>
+            <a href="#" class="text-blue-700" data-i18n="nav_prod">Produkte</a>
+            <a href="#" class="hover:text-blue-700" data-i18n="nav_cont">Kontakt</a>
+        </nav>
     </header>
 
-    <main class="max-w-7xl mx-auto p-6">
-        
-        <div class="mb-10 bg-gray-50 p-4 border border-gray-100 rounded flex items-center justify-between">
-            <span class="text-xs font-bold text-gray-500 uppercase">Product Catalog / 产品目录</span>
-            <span class="text-[10px] text-blue-700 font-bold uppercase">Multilingual Global Support</span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <main class="max-w-[1400px] mx-auto flex flex-col md:flex-row py-10 px-6">
+        <aside class="md:w-64 flex-shrink-0 mb-10 md:mb-0">
+            <h3 class="font-bold text-gray-900 mb-6 px-4 uppercase text-xs tracking-widest border-b pb-2" data-i18n="cat_title">Kategorien</h3>
+            <div class="border-t border-l border-r border-gray-100">
+                <a href="#" class="sidebar-link active" data-i18n="cat_all">Alle Produkte</a>
+                <a href="#" class="sidebar-link" data-i18n="cat_gastro">Gastroenterologie</a>
+                <a href="#" class="sidebar-link" data-i18n="cat_cardio">Kardiologie</a>
+                <a href="#" class="sidebar-link" data-i18n="cat_vit">Vitamine</a>
+            </div>
             
-            <div class="product-card">
-                <div class="text-[10px] font-bold text-blue-700 uppercase mb-2">Vitamine / 维生素</div>
-                <h2 class="text-lg font-bold">Doppelherz® Omega-3 1400</h2>
+            <div class="mt-10 px-4 bg-gray-50 py-6">
+                <p class="text-[11px] font-bold uppercase mb-2 text-gray-400" data-i18n="search_label">Suche</p>
+                <input type="text" id="searchInput" placeholder="Produkt suchen..." data-i18n-placeholder="search_placeholder" class="w-full p-2 border border-gray-300 text-xs focus:outline-none focus:border-blue-700 shadow-sm">
+            </div>
+        </aside>
+
+        <section class="flex-grow md:pl-12">
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 
-                <div class="mt-4">
-                    <p class="text-sm text-gray-700"><strong>DE:</strong> Hochdosierte Omega-3-Fettsäuren für das Herz.</p>
-                    <p class="text-sm text-gray-700 mt-1"><strong>FR:</strong> Acides gras oméga-3 hautement dosés pour le cœur.</p>
-                    <p class="text-sm text-gray-700 mt-1"><strong>EN:</strong> High-dose omega-3 fatty acids for heart health.</p>
-                    <p class="text-sm text-blue-800 mt-1 font-medium"><strong>ZH:</strong> 高剂量 Omega-3 脂肪酸，支持心脏健康。</p>
+                <div class="product-item" data-category="vitamine">
+                    <div>
+                        <div class="category-tag" data-i18n="cat_vit">Vitamine</div>
+                        <h2 class="product-name">Doppelherz® Omega-3 1400</h2>
+                        <p class="product-desc" data-i18n="desc_omega">Hochdosierte Omega-3-Fettsäuren für die Herzfunktion.</p>
+                    </div>
+                    <a href="https://www.redcare-apotheke.ch/de/gesundheit/10532502/doppelherz-omega-3-1400.htm" target="_blank" class="btn-detail" data-i18n="btn_buy">Online Kaufen</a>
                 </div>
 
-                <a href="https://www.redcare-apotheke.ch/de/gesundheit/10532502/doppelherz-omega-3-1400.htm" target="_blank" class="btn-link">BUY ONLINE / 立即购买</a>
-            </div>
-
-            <div class="product-card">
-                <div class="text-[10px] font-bold text-blue-700 uppercase mb-2">Gastro / 胃肠道</div>
-                <h2 class="text-lg font-bold">Weder-Lyte®</h2>
-                
-                <div class="mt-4">
-                    <p class="text-sm text-gray-700"><strong>DE:</strong> Elektrolytkonzentrat zur Dehydratation.</p>
-                    <p class="text-sm text-gray-700 mt-1"><strong>FR:</strong> Concentré d'électrolytes pour perfusion.</p>
-                    <p class="text-sm text-gray-700 mt-1"><strong>EN:</strong> Electrolyte concentrate for infusion.</p>
-                    <p class="text-sm text-blue-800 mt-1 font-medium"><strong>ZH:</strong> 补充电解质的浓缩液。</p>
+                <div class="product-item" data-category="gastro">
+                    <div>
+                        <div class="category-tag" data-i18n="cat_gastro">Gastroenterologie</div>
+                        <h2 class="product-name">Weder-Lyte®</h2>
+                        <p class="product-desc" data-i18n="desc_lyte">Elektrolytkonzentrat zur Herstellung einer Infusionslösung.</p>
+                    </div>
+                    <a href="#" class="btn-detail" data-i18n="btn_details">Details</a>
                 </div>
 
-                <a href="#" class="btn-link">DETAILS / 查看详情</a>
-            </div>
-
-            <div class="product-card">
-                <div class="text-[10px] font-bold text-blue-700 uppercase mb-2">Schmerz / 疼痛</div>
-                <h2 class="text-lg font-bold">Weder-Dol 500mg</h2>
-                
-                <div class="mt-4">
-                    <p class="text-sm text-gray-700"><strong>DE:</strong> Analgetikum bei Schmerzen.</p>
-                    <p class="text-sm text-gray-700 mt-1"><strong>FR:</strong> Analgésique pour la douleur.</p>
-                    <p class="text-sm text-gray-700 mt-1"><strong>EN:</strong> Analgesic for pain relief.</p>
-                    <p class="text-sm text-blue-800 mt-1 font-medium"><strong>ZH:</strong> 缓解轻至中度疼痛。</p>
+                <div class="product-item" data-category="cardio">
+                    <div>
+                        <div class="category-tag" data-i18n="cat_cardio">Kardiologie</div>
+                        <h2 class="product-name">Swiss-Cardio 10mg</h2>
+                        <p class="product-desc" data-i18n="desc_cardio">Behandlung von Bluthochdruck und koronaren Krankheiten.</p>
+                    </div>
+                    <a href="#" class="btn-detail" data-i18n="btn_details">Details</a>
                 </div>
 
-                <a href="#" class="btn-link">DETAILS / 查看详情</a>
             </div>
-
-        </div>
+        </section>
     </main>
 
     <footer class="mt-20 border-t border-gray-200 py-10 px-10 bg-gray-50 text-center">
-        <p class="text-[10px] text-gray-400 uppercase tracking-widest">© 2025 Wederpharma Biotech AG | Swissmedic certified</p>
+        <p class="text-[10px] text-gray-400 uppercase tracking-widest" data-i18n="footer_text">© 2025 Wederpharma Biotech AG | Swissmedic zertifiziert</p>
     </footer>
 
+    <script>
+        const translations = {
+            zh: {
+                brand_w: "维德", brand_p: "制药", nav_co: "公司", nav_prod: "产品", nav_cont: "联系",
+                cat_title: "产品分类", cat_all: "全部产品", cat_gastro: "胃肠科", cat_cardio: "心血管科", cat_vit: "维生素/矿物质",
+                search_label: "搜索", search_placeholder: "搜索产品...",
+                desc_omega: "支持心脏健康的高剂量 Omega-3 脂肪酸。",
+                desc_lyte: "用于补充电解质的输液浓缩液。",
+                desc_cardio: "用于治疗高血压和冠心病。",
+                btn_details: "查看详情", btn_buy: "立即购买",
+                footer_text: "© 2025 维德制药生物科技股份公司 | Swissmedic 认证"
+            },
+            de: {
+                brand_w: "WEDER", brand_p: "PHARMA", nav_co: "Unternehmen", nav_prod: "Produkte", nav_cont: "Kontakt",
+                cat_title: "Kategorien", cat_all: "Alle Produkte", cat_gastro: "Gastroenterologie", cat_cardio: "Kardiologie", cat_vit: "Vitamine",
+                search_label: "Suche", search_placeholder: "Produkt suchen...",
+                desc_omega: "Hochdosierte Omega-3-Fettsäuren für die Herzfunktion.",
+                desc_lyte: "Elektrolytkonzentrat zur Infusionslösung.",
+                desc_cardio: "Behandlung von Bluthochdruck.",
+                btn_details: "Details anzeigen", btn_buy: "Online Kaufen",
+                footer_text: "© 2025 Wederpharma Biotech AG | Swissmedic zertifiziert"
+            },
+            fr: {
+                brand_w: "WEDER", brand_p: "PHARMA", nav_co: "Entreprise", nav_prod: "Produits", nav_cont: "Contact",
+                cat_title: "Catégories", cat_all: "Tous les produits", cat_gastro: "Gastroentérologie", cat_cardio: "Cardiologie", cat_vit: "Vitamines",
+                search_label: "Recherche", search_placeholder: "Chercher...",
+                desc_omega: "Acides gras oméga-3 pour le cœur.",
+                desc_lyte: "Concentré d'électrolytes pour perfusion.",
+                desc_cardio: "Traitement de l'hypertension.",
+                btn_details: "Voir Détails", btn_buy: "Acheter en ligne",
+                footer_text: "© 2025 Wederpharma Biotech AG | Certifié Swissmedic"
+            },
+            en: {
+                brand_w: "WEDER", brand_p: "PHARMA", nav_co: "Company", nav_prod: "Products", nav_cont: "Contact",
+                cat_title: "Categories", cat_all: "All Products", cat_gastro: "Gastroenterology", cat_cardio: "Cardiology", cat_vit: "Vitamins",
+                search_label: "Search", search_placeholder: "Search...",
+                desc_omega: "High-dose omega-3 for heart function.",
+                desc_lyte: "Electrolyte concentrate for infusion.",
+                desc_cardio: "Treatment of high blood pressure.",
+                btn_details: "View Details", btn_buy: "Buy Online",
+                footer_text: "© 2025 Wederpharma Biotech AG | Swissmedic certified"
+            }
+        };
+
+        const langSelect = document.getElementById('lang-select');
+        const searchInput = document.getElementById('searchInput');
+
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            const placeholderKey = searchInput.getAttribute('data-i18n-placeholder');
+            if (translations[lang][placeholderKey]) searchInput.placeholder = translations[lang][placeholderKey];
+            localStorage.setItem('pref_lang', lang);
+        }
+
+        langSelect.addEventListener('change', (e) => updateLanguage(e.target.value));
+
+        // 实时搜索功能
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.product-item').forEach(item => {
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(term) ? 'flex' : 'none';
+            });
+        });
+
+        window.onload = () => {
+            const saved = localStorage.getItem('pref_lang') || 'de';
+            langSelect.value = saved;
+            updateLanguage(saved);
+        };
+    </script>
 </body>
 </html>
