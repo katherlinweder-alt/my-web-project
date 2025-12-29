@@ -1,83 +1,19 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEDERPHARMA | Professional Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { 
-            font-family: Arial, Helvetica, sans-serif; 
-            background-color: #ffffff; 
-            color: #333333;
-            font-size: 14px;
-        }
-        .sidebar-link {
-            display: block;
-            padding: 10px 15px;
-            border-bottom: 1px solid #eeeeee;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #666666;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-        .sidebar-link:hover, .sidebar-link.active {
-            background-color: #f8f8f8;
-            color: #0056b3;
-            border-left: 3px solid #0056b3;
-        }
-        .product-item {
-            border: 1px solid #e5e5e5;
-            padding: 20px;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 240px;
-        }
-        .product-item:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border-color: #cccccc;
-        }
-        .category-tag {
-            font-size: 10px;
-            font-weight: bold;
-            color: #0056b3;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-        .product-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: #000000;
-            margin-bottom: 10px;
-            line-height: 1.2;
-        }
-        .product-desc {
-            font-size: 13px;
-            color: #666666;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-        .top-nav {
-            border-bottom: 4px solid #0056b3;
-            padding: 15px 40px;
-        }
-        .btn-detail {
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: #0056b3;
-            border: 1px solid #0056b3;
-            padding: 6px 12px;
-            width: fit-content;
-        }
-        .btn-detail:hover {
-            background-color: #0056b3;
-            color: #ffffff;
-        }
+        body { font-family: Arial, Helvetica, sans-serif; background-color: #ffffff; color: #333333; font-size: 14px; }
+        .sidebar-link { display: block; padding: 10px 15px; border-bottom: 1px solid #eeeeee; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: #666666; transition: all 0.2s; cursor: pointer; }
+        .sidebar-link:hover, .sidebar-link.active { background-color: #f8f8f8; color: #0056b3; border-left: 3px solid #0056b3; }
+        .product-item { border: 1px solid #e5e5e5; padding: 20px; transition: all 0.3s; display: flex; flex-direction: column; justify-content: space-between; min-height: 240px; }
+        .product-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: #cccccc; }
+        .category-tag { font-size: 10px; font-weight: bold; color: #0056b3; text-transform: uppercase; margin-bottom: 8px; }
+        .product-name { font-size: 18px; font-weight: bold; color: #000000; margin-bottom: 10px; line-height: 1.2; }
+        .product-desc { font-size: 13px; color: #666666; line-height: 1.5; margin-bottom: 15px; }
+        .top-nav { border-bottom: 4px solid #0056b3; padding: 15px 40px; }
+        .btn-detail { font-size: 11px; font-weight: bold; text-transform: uppercase; color: #0056b3; border: 1px solid #0056b3; padding: 6px 12px; width: fit-content; }
+        .btn-detail:hover { background-color: #0056b3; color: #ffffff; }
     </style>
 </head>
 <body>
@@ -87,7 +23,7 @@
             <div class="text-2xl text-red-600 tracking-tighter uppercase font-bold">
                 <span data-i18n="brand_weder">WEDER</span><span class="text-blue-700" data-i18n="brand_pharma">PHARMA</span>
             </div>
-            <select id="lang-select" class="ml-6 p-1 border border-gray-300 rounded text-[10px] uppercase font-bold cursor-pointer focus:outline-none bg-gray-50">
+            <select id="lang-select" class="ml-6 p-1 border border-gray-300 rounded text-[10px] uppercase font-bold cursor-pointer bg-gray-50 focus:outline-none">
                 <option value="de">Deutsch</option>
                 <option value="zh">中文</option>
                 <option value="fr">Français</option>
@@ -102,7 +38,6 @@
     </header>
 
     <main class="max-w-[1400px] mx-auto flex flex-col md:flex-row py-10 px-6">
-        
         <aside class="md:w-64 flex-shrink-0 mb-10 md:mb-0">
             <h3 class="font-bold text-gray-900 mb-6 px-4 uppercase text-xs tracking-widest border-b pb-2" data-i18n="sidebar_title">Kategorien</h3>
             <div class="border-t border-l border-r border-gray-100">
@@ -110,6 +45,9 @@
                 <a href="#" class="sidebar-link" data-i18n="cat_gastro">Gastroenterologie</a>
                 <a href="#" class="sidebar-link" data-i18n="cat_cardio">Kardiologie</a>
                 <a href="#" class="sidebar-link" data-i18n="cat_neuro">Neurologie</a>
+                <a href="#" class="sidebar-link" data-i18n="cat_pain">Schmerztherapie</a>
+                <a href="#" class="sidebar-link" data-i18n="cat_vit">Vitamine</a>
+                <a href="#" class="sidebar-link" data-i18n="cat_sleep">ZNS / Schlaf</a>
             </div>
         </aside>
 
@@ -121,30 +59,28 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="product-item">
-                    <div>
-                        <div class="category-tag" data-i18n="cat_gastro">Gastroenterologie</div>
-                        <h2 class="product-name">Weder-Lyte®</h2>
-                        <p class="product-desc" data-i18n="desc_lyte">Elektrolytkonzentrat zur Herstellung einer Infusionslösung.</p>
-                    </div>
-                    <a href="#" class="btn-detail" data-i18n="btn_details">Details anzeigen</a>
+                    <div><div class="category-tag" data-i18n="cat_gastro">Gastroenterologie</div><h2 class="product-name">Weder-Lyte®</h2><p class="product-desc" data-i18n="desc_lyte">Elektrolytkonzentrat zur Dehydratation.</p></div>
+                    <a href="#" class="btn-detail" data-i18n="btn_details">Details</a>
                 </div>
-
                 <div class="product-item">
-                    <div>
-                        <div class="category-tag" data-i18n="cat_cardio">Kardiologie</div>
-                        <h2 class="product-name">Swiss-Cardio 10mg</h2>
-                        <p class="product-desc" data-i18n="desc_cardio">Filmtabletten zur Behandlung von Bluthochdruck.</p>
-                    </div>
-                    <a href="#" class="btn-detail" data-i18n="btn_details">Details anzeigen</a>
+                    <div><div class="category-tag" data-i18n="cat_cardio">Kardiologie</div><h2 class="product-name">Swiss-Cardio 10mg</h2><p class="product-desc" data-i18n="desc_cardio">Behandlung von Bluthochdruck.</p></div>
+                    <a href="#" class="btn-detail" data-i18n="btn_details">Details</a>
                 </div>
-
                 <div class="product-item">
-                    <div>
-                        <div class="category-tag" data-i18n="cat_neuro">Neurologie</div>
-                        <h2 class="product-name">Neuro-Tone Pro</h2>
-                        <p class="product-desc" data-i18n="desc_neuro">Unterstützung der kognitiven Funktion.</p>
-                    </div>
-                    <a href="#" class="btn-detail" data-i18n="btn_details">Details anzeigen</a>
+                    <div><div class="category-tag" data-i18n="cat_neuro">Neurologie</div><h2 class="product-name">Neuro-Tone Pro</h2><p class="product-desc" data-i18n="desc_neuro">Unterstützung der kognitiven Funktion.</p></div>
+                    <a href="#" class="btn-detail" data-i18n="btn_details">Details</a>
+                </div>
+                <div class="product-item">
+                    <div><div class="category-tag" data-i18n="cat_sleep">ZNS / Schlaf</div><h2 class="product-name">Somna-Weder®</h2><p class="product-desc" data-i18n="desc_sleep">Behandlung von Einschlafstörungen.</p></div>
+                    <a href="#" class="btn-detail" data-i18n="btn_details">Details</a>
+                </div>
+                <div class="product-item">
+                    <div><div class="category-tag" data-i18n="cat_pain">Schmerz</div><h2 class="product-name">Weder-Dol 500mg</h2><p class="product-desc" data-i18n="desc_dol">Analgetikum bei Schmerzen.</p></div>
+                    <a href="#" class="btn-detail" data-i18n="btn_details">Details</a>
+                </div>
+                <div class="product-item">
+                    <div><div class="category-tag" data-i18n="cat_vit">Vitamine</div><h2 class="product-name">Vita-Weder C Plus</h2><p class="product-desc" data-i18n="desc_vita">Stärkung der Abwehrkräfte.</p></div>
+                    <a href="#" class="btn-detail" data-i18n="btn_details">Details</a>
                 </div>
             </div>
         </section>
@@ -157,48 +93,32 @@
     <script>
         const translations = {
             zh: {
-                brand_weder: "维德", brand_pharma: "制药",
-                nav_company: "公司", nav_products: "产品", nav_contact: "联系",
-                sidebar_title: "产品分类", cat_all: "所有产品",
-                cat_gastro: "胃肠道科", cat_cardio: "心血管科", cat_neuro: "神经科",
+                brand_weder: "维德", brand_pharma: "制药", nav_company: "公司", nav_products: "产品中心", nav_contact: "联系我们",
+                sidebar_title: "分类", cat_all: "所有产品", cat_gastro: "胃肠道", cat_cardio: "心血管", cat_neuro: "神经内科", cat_pain: "疼痛治疗", cat_vit: "维生素", cat_sleep: "睡眠辅助",
                 page_title: "产品目录", page_subtitle: "我们的药物解决方案概览。",
-                desc_lyte: "用于制备脱水输液的电解质浓缩液。",
-                desc_cardio: "用于治疗高血压和冠心病的薄膜包衣片。",
-                desc_neuro: "支持疲劳时的认知功能活性成分组合。",
+                desc_lyte: "用于补充电解质的浓缩液。", desc_cardio: "治疗高血压和冠心病。", desc_neuro: "支持疲劳时的认知功能。", desc_sleep: "用于短期治疗入睡障碍。", desc_dol: "缓解轻至中度疼痛。", desc_vita: "高剂量维C，增强免疫系统。",
                 btn_details: "查看详情", footer_text: "© 2025 维德制药生物科技股份公司 | Swissmedic 认证"
             },
             de: {
-                brand_weder: "WEDER", brand_pharma: "PHARMA",
-                nav_company: "Unternehmen", nav_products: "Produkte", nav_contact: "Kontakt",
-                sidebar_title: "Kategorien", cat_all: "Alle Produkte",
-                cat_gastro: "Gastroenterologie", cat_cardio: "Kardiologie", cat_neuro: "Neurologie",
+                brand_weder: "WEDER", brand_pharma: "PHARMA", nav_company: "Unternehmen", nav_products: "Produkte", nav_contact: "Kontakt",
+                sidebar_title: "Kategorien", cat_all: "Alle Produkte", cat_gastro: "Gastroenterologie", cat_cardio: "Kardiologie", cat_neuro: "Neurologie", cat_pain: "Schmerztherapie", cat_vit: "Vitamine", cat_sleep: "ZNS / Schlaf",
                 page_title: "Produktkatalog", page_subtitle: "Übersicht über unsere pharmazeutischen Lösungen.",
-                desc_lyte: "Elektrolytkonzentrat zur Herstellung einer Infusionslösung.",
-                desc_cardio: "Filmtabletten zur Behandlung von Bluthochdruck.",
-                desc_neuro: "Unterstützung der kognitiven Funktion.",
-                btn_details: "Details anzeigen", footer_text: "© 2025 Wederpharma Biotech AG | Swissmedic zertifiziert"
+                desc_lyte: "Elektrolytkonzentrat zur Dehydratation.", desc_cardio: "Behandlung von Bluthochdruck.", desc_neuro: "Unterstützung der kognitiven Funktion.", desc_sleep: "Behandlung von Einschlafstörungen.", desc_dol: "Analgetikum bei Schmerzen.", desc_vita: "Stärkung der Abwehrkräfte.",
+                btn_details: "Details", footer_text: "© 2025 Wederpharma Biotech AG | Swissmedic zertifiziert"
             },
             fr: {
-                brand_weder: "WEDER", brand_pharma: "PHARMA",
-                nav_company: "Entreprise", nav_products: "Produits", nav_contact: "Contact",
-                sidebar_title: "Catégories", cat_all: "Tous les produits",
-                cat_gastro: "Gastroentérologie", cat_cardio: "Cardiologie", cat_neuro: "Neurologie",
+                brand_weder: "WEDER", brand_pharma: "PHARMA", nav_company: "Entreprise", nav_products: "Produits", nav_contact: "Contact",
+                sidebar_title: "Catégories", cat_all: "Tous les produits", cat_gastro: "Gastroentérologie", cat_cardio: "Cardiologie", cat_neuro: "Neurologie", cat_pain: "Gestion de la douleur", cat_vit: "Vitamines", cat_sleep: "SNC / Sommeil",
                 page_title: "Catalogue", page_subtitle: "Aperçu de nos solutions pharmaceutiques.",
-                desc_lyte: "Concentré d'électrolytes pour solution de perfusion.",
-                desc_cardio: "Comprimés pelliculés pour l'hypertension artérielle.",
-                desc_neuro: "Soutien des fonctions cognitives.",
-                btn_details: "Voir détails", footer_text: "© 2025 Wederpharma Biotech AG | Certifié Swissmedic"
+                desc_lyte: "Concentré d'électrolytes pour perfusion.", desc_cardio: "Traitement de l'hypertension.", desc_neuro: "Soutien des fonctions cognitives.", desc_sleep: "Traitement des troubles du sommeil.", desc_dol: "Analgésique pour la douleur.", desc_vita: "Renforcement du système immunitaire.",
+                btn_details: "Voir Détails", footer_text: "© 2025 Wederpharma Biotech AG | Certifié Swissmedic"
             },
             en: {
-                brand_weder: "WEDER", brand_pharma: "PHARMA",
-                nav_company: "Company", nav_products: "Products", nav_contact: "Contact",
-                sidebar_title: "Categories", cat_all: "All Products",
-                cat_gastro: "Gastroenterology", cat_cardio: "Cardiology", cat_neuro: "Neurology",
+                brand_weder: "WEDER", brand_pharma: "PHARMA", nav_company: "Company", nav_products: "Products", nav_contact: "Contact",
+                sidebar_title: "Categories", cat_all: "All Products", cat_gastro: "Gastroenterology", cat_cardio: "Cardiology", cat_neuro: "Neurology", cat_pain: "Pain Therapy", cat_vit: "Vitamins", cat_sleep: "CNS / Sleep",
                 page_title: "Product Catalog", page_subtitle: "Overview of our pharmaceutical solutions.",
-                desc_lyte: "Electrolyte concentrate for infusion solution.",
-                desc_cardio: "Film-coated tablets for high blood pressure.",
-                desc_neuro: "Support of cognitive function.",
-                btn_details: "View Details", footer_text: "© 2025 Wederpharma Biotech AG | Swissmedic certified"
+                desc_lyte: "Electrolyte concentrate for infusion.", desc_cardio: "Treatment of high blood pressure.", desc_neuro: "Support of cognitive function.", desc_sleep: "Treatment of sleep disorders.", desc_dol: "Analgesic for pain relief.", desc_vita: "Strengthening the immune system.",
+                btn_details: "Details", footer_text: "© 2025 Wederpharma Biotech AG | Swissmedic certified"
             }
         };
 
@@ -221,6 +141,7 @@
     </script>
 </body>
 </html>
+
 
 
 
