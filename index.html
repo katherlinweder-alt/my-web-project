@@ -1,48 +1,166 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEDERPHARMA | Swiss Premium Quality</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>body{font-family:Inter,sans-serif;background:#f8fbfe;display:flex;flex-direction:column;min-height:100vh} main{flex:1}</style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background: #f8fbfe; margin:0; display: flex; flex-direction: column; min-height: 100vh; }
+        .p-card { background: white; border: 1px solid #e1f0f7; border-radius: 16px; transition: all 0.3s ease; height: 100%; display: flex; flex-direction: column; }
+        .p-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0, 118, 163, 0.08); }
+        main { flex: 1 0 auto; }
+    </style>
 </head>
 <body>
-    <header class="bg-white border-b sticky top-0 z-50 p-4">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="text-2xl font-black text-[#0076a3] cursor-pointer" onclick="location.reload()">WEDERPHARMA</div>
-            <input type="text" id="s" oninput="doS()" class="hidden md:block w-1/3 bg-gray-50 border px-4 py-2 rounded-full outline-none" placeholder="Suche...">
-            <div class="flex gap-4"><i class="fa-regular fa-user text-xl"></i><i class="fa-solid fa-cart-shopping text-xl"></i></div>
+
+    <div class="bg-[#bde4f4] px-6 py-2 text-[11px] font-bold text-[#003a5a] flex justify-between items-center">
+        <span>SWISS PHARMA QUALITY</span>
+        <div class="flex gap-4">
+            <span class="cursor-pointer hover:underline" onclick="setLang('de')">DEUTSCH</span>
+            <span class="cursor-pointer hover:underline" onclick="setLang('zh')">中文</span>
         </div>
-    </header>
-    <main class="max-w-6xl mx-auto p-6 w-full">
-        <div class="bg-[#0076a3] rounded-3xl p-8 mb-10 text-white shadow-lg">
-            <h1 class="text-3xl font-black mb-2">20% Rabatt</h1><p>Winter-Angebote für Ihre Gesundheit.</p>
+    </div>
+
+    <nav class="bg-white border-b sticky top-0 z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-8">
+            <div class="text-2xl font-black text-[#0076a3] tracking-tighter cursor-pointer" onclick="location.reload()">WEDERPHARMA</div>
+            
+            <div class="flex-grow max-w-xl relative hidden md:block">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="sBox" oninput="search()" class="w-full pl-11 pr-4 py-2.5 rounded-full bg-gray-50 border border-gray-100 outline-none focus:border-[#0076a3] transition-all" placeholder="Suche...">
+            </div>
+
+            <div class="flex items-center gap-6 text-[#003a5a]">
+                <div class="text-center cursor-pointer group">
+                    <i class="fa-regular fa-user text-xl group-hover:text-[#0076a3]"></i>
+                    <p class="text-[9px] font-bold uppercase mt-1" id="l-acc">Anmelden</p>
+                </div>
+                <div class="text-center cursor-pointer group">
+                    <i class="fa-solid fa-cart-shopping text-xl group-hover:text-[#0076a3]"></i>
+                    <p class="text-[9px] font-bold uppercase mt-1" id="l-cart">Korb</p>
+                </div>
+            </div>
         </div>
-        <div id="g" class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-16">
-            <div class="bg-white p-4 rounded-xl border p-i" data-n="Omega 3"><img src="https://images.unsplash.com/photo-1550573105-4584e8d05967?w=200" class="h-32 mx-auto mb-4 object-contain"><h3 class="font-bold text-sm h-8">Omega-3 Pure</h3><p class="text-[#0076a3] font-black mt-4">28.95 CHF</p></div>
-            <div class="bg-white p-4 rounded-xl border p-i" data-n="Magnesium"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200" class="h-32 mx-auto mb-4 object-contain"><h3 class="font-bold text-sm h-8">Magnesium Forte</h3><p class="text-[#0076a3] font-black mt-4">19.50 CHF</p></div>
-            <div class="bg-white p-4 rounded-xl border p-i" data-n="Serum"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200" class="h-32 mx-auto mb-4 object-contain"><h3 class="font-bold text-sm h-8">Haut Serum</h3><p class="text-[#0076a3] font-black mt-4">24.20 CHF</p></div>
-            <div class="bg-white p-4 rounded-xl border p-i" data-n="Vitamin D3"><img src="https://images.unsplash.com/photo-1550573105-4584e8d05967?w=201" class="h-32 mx-auto mb-4 object-contain"><h3 class="font-bold text-sm h-8">Vitamin D3</h3><p class="text-[#0076a3] font-black mt-4">32.00 CHF</p></div>
-            <div class="bg-white p-4 rounded-xl border p-i" data-n="Voltaren"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=201" class="h-32 mx-auto mb-4 object-contain"><h3 class="font-bold text-sm h-8">Schmerzgel</h3><p class="text-[#0076a3] font-black mt-4">15.80 CHF</p></div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-10 w-full">
+        <div class="bg-gradient-to-br from-[#0076a3] to-[#003a5a] rounded-[32px] p-10 mb-12 text-white relative overflow-hidden shadow-xl">
+            <div class="relative z-10">
+                <h1 id="p-t" class="text-4xl font-black mb-2 tracking-tight">20% Rabatt</h1>
+                <p id="p-s" class="text-blue-100 text-lg">Winter-Angebote für Ihre Gesundheit.</p>
+                <button class="mt-6 bg-white text-[#0076a3] px-6 py-2.5 rounded-full font-bold text-sm hover:bg-blue-50 transition">Jetzt entdecken</button>
+            </div>
+            <i class="fa-solid fa-pills absolute right-[-20px] bottom-[-20px] text-white/10 text-[200px] rotate-12"></i>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 border-t pt-10">
-            <div class="text-center"><i class="fa-solid fa-truck text-[#0076a3] text-2xl mb-2"></i><h4 class="font-bold">Schnelle Lieferung</h4></div>
-            <div class="text-center"><i class="fa-solid fa-certificate text-[#0076a3] text-2xl mb-2"></i><h4 class="font-bold">Schweizer Qualität</h4></div>
-            <div class="text-center"><i class="fa-solid fa-user-doctor text-[#0076a3] text-2xl mb-2"></i><h4 class="font-bold">Experten-Rat</h4></div>
+
+        <h2 id="h-best" class="text-2xl font-black mb-8 text-[#003a5a]">Bestseller</h2>
+        <div id="grid" class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-20">
+            <div class="p-card p-5" data-de="Omega-3 1400mg Pure" data-zh="深海鱼油 1400mg">
+                <img src="https://images.unsplash.com/photo-1550573105-4584e8d05967?w=300" class="h-40 w-full object-contain mb-4">
+                <p class="text-[10px] text-[#0076a3] font-bold uppercase mb-1">WederPharma</p>
+                <h3 class="font-bold text-sm mb-4 h-10 overflow-hidden item-name">Omega-3 1400mg Pure</h3>
+                <div class="mt-auto pt-4 border-t flex justify-between items-center font-black text-[#0076a3]">
+                    <span>28.95 CHF</span>
+                    <div class="bg-[#0076a3] text-white w-8 h-8 rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-plus text-xs"></i></div>
+                </div>
+            </div>
+            <div class="p-card p-5" data-de="Magnesium 400 Forte" data-zh="高浓度镁片 400">
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300" class="h-40 w-full object-contain mb-4">
+                <p class="text-[10px] text-[#0076a3] font-bold uppercase mb-1">Sandoz</p>
+                <h3 class="font-bold text-sm mb-4 h-10 overflow-hidden item-name">Magnesium 400 Forte</h3>
+                <div class="mt-auto pt-4 border-t flex justify-between items-center font-black text-[#0076a3]">
+                    <span>19.50 CHF</span>
+                    <div class="bg-[#0076a3] text-white w-8 h-8 rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-plus text-xs"></i></div>
+                </div>
+            </div>
+            <div class="p-card p-5" data-de="Hautpflege Serum" data-zh="修护精华液">
+                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=300" class="h-40 w-full object-contain mb-4">
+                <p class="text-[10px] text-[#0076a3] font-bold uppercase mb-1">La Roche</p>
+                <h3 class="font-bold text-sm mb-4 h-10 overflow-hidden item-name">Hautpflege Serum</h3>
+                <div class="mt-auto pt-4 border-t flex justify-between items-center font-black text-[#0076a3]">
+                    <span>24.20 CHF</span>
+                    <div class="bg-[#0076a3] text-white w-8 h-8 rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-plus text-xs"></i></div>
+                </div>
+            </div>
+            <div class="p-card p-5" data-de="Vitamin D3 Tropfen" data-zh="维他命 D3 滴剂">
+                <img src="https://images.unsplash.com/photo-1550573105-4584e8d05967?w=301" class="h-40 w-full object-contain mb-4">
+                <p class="text-[10px] text-[#0076a3] font-bold uppercase mb-1">Swiss Pharma</p>
+                <h3 class="font-bold text-sm mb-4 h-10 overflow-hidden item-name">Vitamin D3 Tropfen</h3>
+                <div class="mt-auto pt-4 border-t flex justify-between items-center font-black text-[#0076a3]">
+                    <span>32.00 CHF</span>
+                    <div class="bg-[#0076a3] text-white w-8 h-8 rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-plus text-xs"></i></div>
+                </div>
+            </div>
+            <div class="p-card p-5" data-de="Schmerzgel Forte" data-zh="止痛凝胶">
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=301" class="h-40 w-full object-contain mb-4">
+                <p class="text-[10px] text-[#0076a3] font-bold uppercase mb-1">Voltaren</p>
+                <h3 class="font-bold text-sm mb-4 h-10 overflow-hidden item-name">Schmerzgel Forte</h3>
+                <div class="mt-auto pt-4 border-t flex justify-between items-center font-black text-[#0076a3]">
+                    <span>15.80 CHF</span>
+                    <div class="bg-[#0076a3] text-white w-8 h-8 rounded-full flex items-center justify-center cursor-pointer"><i class="fa-solid fa-plus text-xs"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 border-t pt-16 text-[#003a5a]">
+            <div class="text-center p-6 bg-white rounded-2xl border border-blue-50">
+                <i class="fa-solid fa-truck-fast text-[#0076a3] text-3xl mb-4"></i>
+                <h4 class="font-bold text-lg mb-1" id="e1">Schnelle Lieferung</h4>
+                <p class="text-[10px] text-gray-400 uppercase tracking-widest">Ganz Schweiz</p>
+            </div>
+            <div class="text-center p-6 bg-white rounded-2xl border border-blue-50">
+                <i class="fa-solid fa-certificate text-[#0076a3] text-3xl mb-4"></i>
+                <h4 class="font-bold text-lg mb-1" id="e2">Schweizer Qualität</h4>
+                <p class="text-[10px] text-gray-400 uppercase tracking-widest">Geprüft</p>
+            </div>
+            <div class="text-center p-6 bg-white rounded-2xl border border-blue-50">
+                <i class="fa-solid fa-user-doctor text-[#0076a3] text-3xl mb-4"></i>
+                <h4 class="font-bold text-lg mb-1" id="e3">Experten-Rat</h4>
+                <p class="text-[10px] text-gray-400 uppercase tracking-widest">Beratung</p>
+            </div>
         </div>
     </main>
-    <footer class="bg-[#001a2c] py-10 text-center text-white/50 text-xs">
-        <div class="text-white font-black mb-2">WEDERPHARMA</div>
-        <p>© 2025 ALL RIGHTS RESERVED</p>
+
+    <footer class="bg-[#001a2c] py-16 text-center w-full">
+        <div class="text-2xl font-black text-white mb-4 tracking-tighter">WEDERPHARMA</div>
+        <p class="text-blue-300/50 text-[10px] tracking-widest uppercase mb-6">Zürich, Switzerland | © 2025 All Rights Reserved</p>
+        <div class="flex justify-center gap-8 text-blue-100/30 text-[10px] font-bold uppercase">
+            <span class="hover:text-white cursor-pointer transition">Impressum</span>
+            <span class="hover:text-white cursor-pointer transition">Datenschutz</span>
+            <span class="hover:text-white cursor-pointer transition">Kontakt</span>
+        </div>
     </footer>
+
     <script>
-        function doS(){
-            const v=document.getElementById('s').value.toLowerCase();
-            document.querySelectorAll('.p-i').forEach(i=>{
-                i.style.display=i.getAttribute('data-n').toLowerCase().includes(v)?"block":"none";
+        function setLang(lang) {
+            const isZh = (lang === 'zh');
+            document.getElementById('l-acc').innerText = isZh ? "登录" : "Anmelden";
+            document.getElementById('l-cart').innerText = isZh ? "购物车" : "Korb";
+            document.getElementById('h-best').innerText = isZh ? "畅销推荐" : "Bestseller";
+            document.getElementById('p-t').innerText = isZh ? "20% 优惠" : "20% Rabatt";
+            document.getElementById('p-s').innerText = isZh ? "冬季健康守护" : "Winter-Angebote.";
+            document.getElementById('e1').innerText = isZh ? "快速送达" : "Schnelle Lieferung";
+            document.getElementById('e2').innerText = isZh ? "瑞士品质" : "Schweizer Qualität";
+            document.getElementById('e3').innerText = isZh ? "专家建议" : "Experten-Rat";
+            document.getElementById('sBox').placeholder = isZh ? "Suchen..." : "Suche...";
+            
+            document.querySelectorAll('.p-card').forEach(c => {
+                const title = c.querySelector('.item-name');
+                if(title) title.innerText = isZh ? c.getAttribute('data-zh') : c.getAttribute('data-de');
             });
         }
+        function search() {
+            const val = document.getElementById('sBox').value.toLowerCase();
+            document.querySelectorAll('.p-card').forEach(c => {
+                const de = (c.getAttribute('data-de') || '').toLowerCase();
+                const zh = (c.getAttribute('data-zh') || '').toLowerCase();
+                c.style.display = (de.includes(val) || zh.includes(val)) ? "flex" : "none";
+            });
+        }
+        window.onload = () => setLang('de');
     </script>
 </body>
 </html>
