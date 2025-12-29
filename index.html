@@ -3,29 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA | Premium Online Apotheke</title>
+    <title>WEDERPHARMA | Votre Santé, Notre Priorité</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        :root { 
-            --ice-blue: #bde4f4; 
-            --deep-blue: #0076a3; 
-            --dark-navy: #003a5a; 
-            --soft-blue: #f0f8ff;
-        }
+        :root { --ice-blue: #bde4f4; --deep-blue: #0076a3; --dark-navy: #003a5a; --soft-blue: #f0f8ff; }
         body { font-family: 'Inter', sans-serif; background: #f8fbfe; margin: 0; color: #333; }
         .top-strip { background: var(--ice-blue); padding: 8px 60px; font-size: 12px; font-weight: 700; display: flex; justify-content: space-between; color: var(--dark-navy); }
         .header-container { background: white; border-bottom: 1px solid var(--ice-blue); position: sticky; top: 0; z-index: 50; }
         .mid-header { padding: 15px 60px; display: flex; align-items: center; gap: 50px; }
         .logo { font-size: 28px; font-weight: 900; color: var(--deep-blue); letter-spacing: -1.5px; }
         .logo span { color: var(--dark-navy); }
-        .search-input { width: 100%; padding: 10px 20px; border: 2px solid var(--soft-blue); border-radius: 50px; font-size: 14px; outline: none; transition: 0.3s; }
+        .search-input { width: 100%; padding: 10px 20px; border: 2px solid var(--soft-blue); border-radius: 50px; font-size: 14px; outline: none; }
         .nav-bar { background: white; padding: 0 60px 10px 60px; display: flex; gap: 30px; }
-        .nav-item { font-size: 13px; font-weight: 700; color: var(--dark-navy); cursor: pointer; padding: 5px 0; border-bottom: 2px solid transparent; transition: 0.2s; text-transform: uppercase; }
+        .nav-item { font-size: 13px; font-weight: 700; color: var(--dark-navy); cursor: pointer; padding: 5px 0; border-bottom: 2px solid transparent; text-transform: uppercase; }
         .nav-item:hover { color: var(--deep-blue); border-bottom: 2px solid var(--deep-blue); }
         .banner { background: linear-gradient(135deg, #bde4f4 0%, #0076a3 100%); color: white; padding: 40px 60px; border-radius: 12px; margin: 20px 60px; display: flex; justify-content: space-between; align-items: center; }
-        .product-card { background: white; border: 1px solid #e1f0f7; padding: 20px; border-radius: 12px; position: relative; transition: 0.3s; }
+        .product-card { background: white; border: 1px solid #e1f0f7; padding: 20px; border-radius: 12px; transition: 0.3s; display: flex; flex-direction: column; }
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,118,163,0.1); }
+        .product-img { height: 160px; width: 100%; object-fit: contain; margin-bottom: 15px; }
         .price-box { font-size: 22px; font-weight: 900; color: var(--deep-blue); margin-top: 10px; }
         .add-btn { background: var(--deep-blue); color: white; width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
     </style>
@@ -62,11 +58,11 @@
     </main>
     <script>
         const products = [
-            { id: 1, de: "Omega-3 1400mg Pure", zh: "深海鱼油 1400mg", price: "28.95", brand: "WEDER PREMIUM" },
-            { id: 2, de: "Magnesium 400 Forte", zh: "高浓度镁片 400", price: "19.50", brand: "SANDOZ" },
-            { id: 3, de: "La Roche-Posay Effaclar", zh: "理肤泉 清痘精华", price: "24.20", brand: "LA ROCHE-POSAY" },
-            { id: 4, de: "Vitamin D3 K2 Tropfen", zh: "维他命 D3 K2 滴剂", price: "32.00", brand: "SWISS DEFENCE" },
-            { id: 5, de: "Voltaren Schmerzgel", zh: "扶他林 止痛膏", price: "15.80", brand: "VOLTAREN" }
+            { id: 1, de: "Omega-3 1400mg Pure", zh: "深海鱼油 1400mg", price: "28.95", brand: "WEDER PREMIUM", img: "http://googleusercontent.com/image_collection/image_retrieval/4020337774286386754_0" },
+            { id: 2, de: "Magnesium 400 Forte", zh: "高浓度镁片 400", price: "19.50", brand: "SANDOZ", img: "http://googleusercontent.com/image_collection/image_retrieval/7777956848299349303_0" },
+            { id: 3, de: "La Roche-Posay Effaclar", zh: "理肤泉 清痘精华", price: "24.20", brand: "LA ROCHE-POSAY", img: "http://googleusercontent.com/image_collection/image_retrieval/9554631290270592904_0" },
+            { id: 4, de: "Vitamin D3 K2 Tropfen", zh: "维他命 D3 K2 滴剂", price: "32.00", brand: "SWISS DEFENCE", img: "http://googleusercontent.com/image_collection/image_retrieval/14036632179103918853_0" },
+            { id: 5, de: "Voltaren Schmerzgel", zh: "扶他林 止痛膏", price: "15.80", brand: "VOLTAREN", img: "http://googleusercontent.com/image_collection/image_retrieval/6273907050997022979_0" }
         ];
         const dict = {
             zh: { acc: "登录账户", cart: "购物车", title: "畅销推荐", bTitle: "春季特别礼遇", bSub: "健康护航，精选补剂", bBtn: "立即探索", m: ["药品", "维他命", "美容护肤", "母婴", "特价"] },
@@ -83,7 +79,7 @@
             const grid = document.getElementById('product-grid');
             grid.innerHTML = products.map(p => `
                 <div class="product-card">
-                    <div class="h-40 bg-blue-50/50 rounded mb-4 flex items-center justify-center text-blue-200 font-bold italic text-xs">NO IMAGE</div>
+                    <img src="${p.img}" class="product-img" alt="${p[lang]}">
                     <div class="text-[10px] font-bold text-blue-400 mb-1 uppercase">${p.brand}</div>
                     <h3 class="text-sm font-semibold h-10 overflow-hidden text-blue-900">${p[lang]}</h3>
                     <div class="flex justify-between items-end mt-4">
