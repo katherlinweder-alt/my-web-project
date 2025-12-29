@@ -1,173 +1,180 @@
+非常抱歉，代码在刚才的传输中可能因为长度限制导致最后一部分脚本（Script）没有闭合，或者布局标签出现了错位。
+
+我重新为您整理了一份结构最稳固、完全对齐 Redcare 比例的完整代码。这次我精简了冗余的 CSS，确保每一行都完整闭合，直接覆盖即可恢复正常。
+
+请全选并彻底覆盖 index.html：
+HTML
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA | Ihr Online-Apotheke</title>
+    <title>WEDERPHARMA | Professional Online Pharmacy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root { --redcare-red: #e30613; --redcare-blue: #0056b3; --text-gray: #666; }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f3f5f7; margin: 0; }
+        :root { --rc-red: #e30613; --rc-blue: #0056b3; --rc-gray: #666666; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f5f7; margin: 0; }
         
-        /* 1. 红色促销条 - 完美复刻 */
-        .promo-banner { background-color: var(--redcare-red); color: white; text-align: center; padding: 8px; font-size: 13px; font-weight: 600; }
-        .promo-banner a { background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 4px; margin-left: 10px; text-decoration: none; }
+        /* 1. 红色促销条 */
+        .promo-bar { background-color: var(--rc-red); color: white; text-align: center; padding: 10px; font-weight: bold; font-size: 13px; }
+        .promo-bar a { text-decoration: underline; margin-left: 8px; }
 
-        /* 2. 中间服务条 - 灰色细线边框 */
-        .service-bar { background-color: white; border-bottom: 1px solid #eee; padding: 6px 40px; }
-        .service-item { display: flex; items-center: center; gap: 5px; color: var(--text-gray); font-size: 12px; }
-        .check-icon { color: #28a745; font-weight: bold; }
+        /* 2. 白色服务承诺条 */
+        .service-bar { background-color: white; border-bottom: 1px solid #eee; padding: 8px 40px; }
+        .service-item { display: flex; align-items: center; gap: 6px; color: var(--rc-gray); font-size: 12px; }
+        .check { color: #28a745; font-weight: bold; }
 
-        /* 3. 主头部 - 搜索框居中 */
-        .main-header { background: white; border-bottom: 1px solid #e1e4e8; padding: 15px 40px; position: sticky; top: 0; z-index: 100; }
-        .header-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+        /* 3. 主头部导航 */
+        .header-main { background: white; border-bottom: 1px solid #e1e4e8; padding: 15px 40px; position: sticky; top: 0; z-index: 1000; }
+        .header-wrap { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; gap: 30px; }
         
-        /* 搜索框加强版 */
-        .search-wrapper { flex-grow: 1; position: relative; max-width: 700px; }
+        /* 搜索框比例对齐 Redcare */
+        .search-box { flex-grow: 1; position: relative; max-width: 800px; }
         .search-input { 
             width: 100%; padding: 12px 20px 12px 50px; 
-            border: 2px solid var(--redcare-blue); border-radius: 30px; 
-            font-size: 15px; outline: none;
+            border: 2px solid var(--rc-blue); border-radius: 30px; 
+            font-size: 14px; outline: none;
         }
-        .search-submit { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--redcare-blue); font-size: 20px; border: none; background: none; cursor: pointer; }
+        .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--rc-blue); font-size: 18px; }
 
-        /* 右侧图标组 */
-        .header-icons { display: flex; align-items: center; gap: 25px; color: var(--redcare-blue); font-weight: 600; font-size: 13px; }
-        .icon-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+        /* 右侧图标 */
+        .nav-icons { display: flex; gap: 20px; color: var(--rc-blue); font-weight: 600; font-size: 12px; }
+        .icon-btn { display: flex; flex-direction: column; align-items: center; cursor: pointer; min-width: 60px; }
 
+        /* 布局容器 */
+        .content-wrap { max-width: 1400px; margin: 0 auto; padding: 30px 40px; display: flex; gap: 30px; }
+        
         /* 侧边栏 */
-        .sidebar { background: white; border-radius: 8px; border: 1px solid #e1e4e8; overflow: hidden; }
-        .cat-btn { display: block; padding: 12px 20px; border-bottom: 1px solid #f8f8f8; color: #333; text-decoration: none; transition: 0.2s; }
-        .cat-btn:hover, .cat-btn.active { background: #f0f7ff; color: var(--redcare-blue); border-left: 4px solid var(--redcare-blue); font-weight: bold; }
+        .sidebar { width: 260px; flex-shrink: 0; background: white; border: 1px solid #e1e4e8; border-radius: 8px; overflow: hidden; height: fit-content; }
+        .cat-link { display: block; padding: 12px 20px; border-bottom: 1px solid #f8f8f8; color: #333; text-decoration: none; font-size: 13px; }
+        .cat-link:hover, .cat-link.active { background: #f0f7ff; color: var(--rc-blue); font-weight: bold; border-left: 4px solid var(--rc-blue); }
 
         /* 产品卡片 */
-        .product-card { background: white; border: 1px solid #e1e4e8; border-radius: 12px; padding: 25px; display: flex; flex-direction: column; height: 100%; transition: 0.3s; }
-        .product-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.07); }
-        .add-to-cart { background: var(--redcare-blue); color: white; text-align: center; padding: 12px; border-radius: 8px; font-weight: bold; text-decoration: none; margin-top: auto; }
+        .prod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; flex-grow: 1; }
+        .prod-card { background: white; border: 1px solid #e1e4e8; border-radius: 12px; padding: 25px; display: flex; flex-direction: column; transition: 0.3s; }
+        .prod-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .buy-now { background: var(--rc-blue); color: white; text-align: center; padding: 12px; border-radius: 8px; font-weight: bold; text-decoration: none; margin-top: auto; }
     </style>
 </head>
 <body>
 
-    <div class="promo-banner">
-        <span data-i18n="p_text">10% Rabatt für Neukunden*</span>
-        <a href="#" data-i18n="p_btn">Gutschein sichern</a>
+    <div class="promo-bar">
+        <span data-i18n="p_msg">10% Rabatt für Neukunden*</span>
+        <a href="#" data-i18n="p_code">Gutschein: WELCOME10</a>
     </div>
 
     <div class="service-bar hidden md:block">
-        <div class="max-w-[1400px] mx-auto flex justify-between items-center">
+        <div class="max-width-[1400px] mx-auto flex justify-between items-center px-10">
             <div class="flex gap-10">
-                <div class="service-item"><span class="check-icon">✓</span> <span data-i18n="s1">Über 100.000 Produkte</span></div>
-                <div class="service-item"><span class="check-icon">✓</span> <span data-i18n="s2">Gratis Versand ab 50 CHF</span></div>
-                <div class="service-item"><span class="check-icon">✓</span> <span data-i18n="s3">Geprüfte Schweizer Online-Apotheke</span></div>
+                <div class="service-item"><span class="check">✓</span> <span data-i18n="s1">Über 100.000 Produkte</span></div>
+                <div class="service-item"><span class="check">✓</span> <span data-i18n="s2">Gratis Versand ab 50 CHF</span></div>
+                <div class="service-item"><span class="check">✓</span> <span data-i18n="s3">Original Schweizer Apotheke</span></div>
             </div>
-            <div class="flex gap-4">
-                <select id="lang-select" class="text-xs border-none outline-none cursor-pointer text-gray-500 font-bold">
-                    <option value="de">DEUTSCH</option>
-                    <option value="zh">中文 (ZH)</option>
-                </select>
-            </div>
+            <select id="lang-trigger" class="text-xs font-bold border-none bg-transparent cursor-pointer">
+                <option value="de">DEUTSCH</option>
+                <option value="zh">中文</option>
+            </select>
         </div>
     </div>
 
-    <header class="main-header">
-        <div class="header-container">
+    <header class="header-main shadow-sm">
+        <div class="header-wrap px-10">
             <div class="text-3xl font-black tracking-tighter uppercase flex-shrink-0 cursor-pointer">
                 <span class="text-red-600">WEDER</span><span class="text-blue-700">PHARMA</span>
             </div>
 
-            <div class="search-wrapper">
-                <button class="search-submit">🔍</button>
-                <input type="text" id="searchInput" placeholder="Suchen Sie nach Produkten, Marken oder Symptomen..." data-i18n-placeholder="s_placeholder" class="search-input">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="mainSearch" placeholder="Suchen Sie nach Produkten..." data-i18n-placeholder="h_search" class="search-input">
             </div>
 
-            <div class="header-icons">
-                <div class="icon-item hidden lg:flex">
-                    <span>👤</span>
-                    <span data-i18n="i_login">Anmelden</span>
-                </div>
-                <div class="icon-item">
-                    <span>🛒</span>
-                    <span data-i18n="i_cart">Warenkorb</span>
-                </div>
+            <div class="nav-icons hidden lg:flex">
+                <div class="icon-btn"><span>👤</span><span data-i18n="h_acc">Konto</span></div>
+                <div class="icon-btn"><span>🛒</span><span data-i18n="h_cart">Warenkorb</span></div>
             </div>
         </div>
     </header>
 
-    <main class="max-w-[1400px] mx-auto py-8 px-6 flex flex-col md:flex-row gap-8">
-        <aside class="md:w-64 flex-shrink-0">
-            <div class="sidebar shadow-sm">
-                <div class="p-4 bg-gray-50 border-b font-bold text-xs uppercase tracking-widest text-gray-500" data-i18n="c_title">Kategorien</div>
-                <a class="cat-btn active" data-i18n="c_all">Alle Produkte</a>
-                <a class="cat-btn" data-i18n="c_gas">Gastroenterologie</a>
-                <a class="cat-btn" data-i18n="c_kar">Kardiologie</a>
-                <a class="cat-btn" data-i18n="c_neu">Neurologie</a>
-                <a class="cat-btn" data-i18n="c_sch">Schmerztherapie</a>
-                <a class="cat-btn" data-i18n="c_vit">Vitamine</a>
-            </div>
+    <div class="content-wrap">
+        <aside class="sidebar hidden md:block">
+            <div class="p-4 bg-gray-50 border-b font-bold text-xs text-gray-500 uppercase" data-i18n="c_title">Kategorien</div>
+            <a class="cat-link active" data-i18n="c_all">Alle Produkte</a>
+            <a class="cat-link" data-i18n="c_gas">Gastroenterologie</a>
+            <a class="cat-link" data-i18n="c_kar">Kardiologie</a>
+            <a class="cat-link" data-i18n="c_neu">Neurologie</a>
+            <a class="cat-link" data-i18n="c_sch">Schmerztherapie</a>
+            <a class="cat-link" data-i18n="c_vit">Vitamine</a>
         </aside>
 
-        <section class="flex-grow">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="productGrid">
-                <div class="product-card">
-                    <div class="mb-4">
-                        <span class="text-[10px] font-bold text-blue-700 uppercase" data-i18n="c_vit">Vitamine</span>
-                        <h3 class="text-lg font-bold mt-1">Doppelherz® Omega-3 1400</h3>
-                        <p class="text-sm text-gray-500 mt-2" data-i18n="d_ome">Hochdosierte Omega-3-Fettsäuren für die Herzfunktion.</p>
-                    </div>
-                    <a href="https://www.redcare-apotheke.ch/de/gesundheit/10532502/doppelherz-omega-3-1400.htm" target="_blank" class="add-to-cart" data-i18n="b_buy">In den Warenkorb</a>
+        <main class="prod-grid" id="grid">
+            <div class="prod-card">
+                <div>
+                    <div class="text-[10px] font-bold text-blue-700 uppercase" data-i18n="c_vit">Vitamine</div>
+                    <h3 class="text-lg font-bold mt-1">Doppelherz® Omega-3 1400</h3>
+                    <p class="text-sm text-gray-500 mt-2" data-i18n="d_ome">Hochdosierte Omega-3-Fettsäuren für die Herzfunktion.</p>
                 </div>
-                <div class="product-card">
-                    <div><span class="text-[10px] font-bold text-blue-700 uppercase" data-i18n="c_gas">Gastroenterologie</span><h3 class="text-lg font-bold mt-1">Weder-Lyte®</h3><p class="text-sm text-gray-500 mt-2" data-i18n="d_lyt">Elektrolytkonzentrat zur Infusionslösung.</p></div>
-                    <a href="#" class="add-to-cart" data-i18n="b_det">Details</a>
-                </div>
+                <a href="https://www.redcare-apotheke.ch/de/gesundheit/10532502/doppelherz-omega-3-1400.htm" target="_blank" class="buy-now" data-i18n="b_buy">In den Warenkorb</a>
             </div>
-        </section>
-    </main>
-
-    <footer class="mt-20 border-t border-gray-200 py-10 text-center text-[10px] text-gray-400 uppercase bg-white">
-        <span data-i18n="f_copy">© 2025 Wederpharma Biotech AG | Swissmedic zertifiziert</span>
-    </footer>
+            <div class="prod-card">
+                <div>
+                    <div class="text-[10px] font-bold text-blue-700 uppercase" data-i18n="c_gas">Gastroenterologie</div>
+                    <h3 class="text-lg font-bold mt-1">Weder-Lyte®</h3>
+                    <p class="text-sm text-gray-500 mt-2" data-i18n="d_lyt">Elektrolytkonzentrat zur Infusionslösung.</p>
+                </div>
+                <a href="#" class="buy-now" data-i18n="b_det">Details</a>
+            </div>
+            <div class="prod-card">
+                <div>
+                    <div class="text-[10px] font-bold text-blue-700 uppercase" data-i18n="c_kar">Kardiologie</div>
+                    <h3 class="text-lg font-bold mt-1">Swiss-Cardio 10mg</h3>
+                    <p class="text-sm text-gray-500 mt-2" data-i18n="d_kar">Behandlung von Bluthochdruck.</p>
+                </div>
+                <a href="#" class="buy-now" data-i18n="b_det">Details</a>
+            </div>
+        </main>
+    </div>
 
     <script>
-        const dict = {
+        const i18n = {
             zh: {
-                p_text: "新客户首单享 10% 折扣*", p_btn: "立即领券",
-                s1: "超过 100,000 种产品", s2: "满 50 CHF 免邮", s3: "认证瑞士在线药房",
-                s_placeholder: "搜索药品、品牌或症状...", i_login: "我的账户", i_cart: "购物车",
-                c_title: "所有分类", c_all: "全部产品", c_gas: "胃肠科", c_kar: "心血管科", c_neu: "神经科", c_sch: "疼痛治疗", c_vit: "维生素/矿物质",
-                d_ome: "支持心脏健康的高剂量 Omega-3 脂肪酸。", d_lyt: "补充电解质的输液浓缩液。",
-                b_buy: "加入购物车", b_det: "查看详情", f_copy: "© 2025 维德制药生物科技股份公司 | Swissmedic 认证"
+                p_msg: "新客户首单 10% 折扣*", p_code: "优惠码: WELCOME10",
+                s1: "超过 100,000 种产品", s2: "满 50 CHF 免邮", s3: "瑞士认证在线药房",
+                h_search: "搜索产品、品牌...", h_acc: "我的账户", h_cart: "购物车",
+                c_title: "所有分类", c_all: "全部产品", c_gas: "胃肠科", c_kar: "心血管科", c_neu: "神经科", c_sch: "疼痛治疗", c_vit: "维生素",
+                d_ome: "支持心脏健康的高剂量 Omega-3 脂肪酸。", d_lyt: "补充电解质的输液浓缩液。", d_kar: "治疗高血压和冠心病。",
+                b_buy: "加入购物车", b_det: "查看详情"
             },
             de: {
-                p_text: "10% Rabatt für Neukunden*", p_btn: "Gutschein sichern",
-                s1: "Über 100.000 Produkte", s2: "Gratis Versand ab 50 CHF", s3: "Geprüfte Schweizer Online-Apotheke",
-                s_placeholder: "Suchen Sie nach Produkten, Marken oder Symptomen...", i_login: "Anmelden", i_cart: "Warenkorb",
+                p_msg: "10% Rabatt für Neukunden*", p_code: "Gutschein: WELCOME10",
+                s1: "Über 100.000 Produkte", s2: "Gratis Versand ab 50 CHF", s3: "Original Schweizer Apotheke",
+                h_search: "Suchen Sie nach Produkten...", h_acc: "Konto", h_cart: "Warenkorb",
                 c_title: "Kategorien", c_all: "Alle Produkte", c_gas: "Gastroenterologie", c_kar: "Kardiologie", c_neu: "Neurologie", c_sch: "Schmerztherapie", c_vit: "Vitamine",
-                d_ome: "Hochdosierte Omega-3-Fettsäuren für das Herz.", d_lyt: "Elektrolytkonzentrat zur Infusionslösung.",
-                b_buy: "In den Warenkorb", b_det: "Details", f_copy: "© 2025 Wederpharma Biotech AG | Swissmedic zertifiziert"
+                d_ome: "Hochdosierte Omega-3-Fettsäuren für das Herz.", d_lyt: "Elektrolytkonzentrat zur Infusionslösung.", d_kar: "Behandlung von Bluthochdruck.",
+                b_buy: "In den Warenkorb", b_det: "Details"
             }
         };
 
-        const langSelect = document.getElementById('lang-select');
-        const searchInput = document.getElementById('searchInput');
+        const langEl = document.getElementById('lang-trigger');
+        const searchEl = document.getElementById('mainSearch');
 
-        function translate(l) {
+        function updateLang(l) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (dict[l][key]) el.textContent = dict[l][key];
+                if (i18n[l][key]) el.textContent = i18n[l][key];
             });
-            searchInput.placeholder = dict[l]['s_placeholder'];
+            searchEl.placeholder = i18n[l]['h_search'];
         }
 
-        langSelect.onchange = (e) => translate(e.target.value);
-        searchInput.oninput = (e) => {
+        langEl.onchange = (e) => updateLang(e.target.value);
+        searchEl.oninput = (e) => {
             const val = e.target.value.toLowerCase();
-            document.querySelectorAll('.product-card').forEach(card => {
+            document.querySelectorAll('.prod-card').forEach(card => {
                 card.style.display = card.innerText.toLowerCase().includes(val) ? 'flex' : 'none';
             });
         };
 
-        window.onload = () => translate('de');
+        window.onload = () => updateLang('de');
     </script>
 </body>
 </html>
