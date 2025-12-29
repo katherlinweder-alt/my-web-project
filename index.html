@@ -3,110 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA</title>
+    <title>WEDER PHARMA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        body { background-color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; margin: 0; }
-        
-        /* 1. 顶栏：确保浅蓝底黑字绝对清晰 */
-        .top-bar { 
-            background-color: #bde4f4 !important; 
-            color: #000000 !important; 
-            text-align: center; 
-            padding: 15px; 
-            font-weight: 800; 
-            font-size: 16px;
-        }
-
-        /* 2. Header */
-        .header { 
-            background: white; 
-            padding: 20px 40px; 
-            border-bottom: 1px solid #e2e8f0; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between;
-        }
-        .logo { font-size: 22px; font-weight: 900; color: #0f172a; }
-        .logo span { color: #0ea5e9; }
-
-        /* 3. 布局 */
-        .main-content { 
-            max-width: 1400px; 
-            margin: 40px auto; 
-            display: flex; 
-            gap: 40px; 
-            padding: 0 40px; 
-        }
-
-        /* 4. 侧边栏 */
-        .sidebar { width: 240px; flex-shrink: 0; }
-        .menu-box { background: white; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
-        .menu-item { display: block; padding: 12px 20px; color: #64748b; text-decoration: none; border-bottom: 1px solid #f1f5f9; }
-        .menu-item.active { background: #f0f9ff; color: #0ea5e9; font-weight: bold; }
-
-        /* 5. 产品网格 (7个方块) */
-        .product-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 25px; 
-            flex-grow: 1; 
-        }
-        .card { 
-            background: white; 
-            border: 1px solid #e2e8f0; 
-            border-radius: 16px; 
-            padding: 25px; 
-            display: flex; 
-            flex-direction: column; 
-            transition: 0.3s;
-        }
-        .card:hover { transform: translateY(-5px); border-color: #0ea5e9; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .buy-btn { 
-            background: #0ea5e9; 
-            color: white; 
-            text-align: center; 
-            padding: 12px; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            margin-top: auto; 
-            text-decoration: none;
-        }
-    </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-900 m-0 p-0 font-sans">
 
-    <div class="top-bar">
-        <i class="fa-solid fa-gift"></i> <span data-i18n="p_t">10% RABATT FÜR NEUKUNDEN</span> | WELCOME10
+    <div style="background-color: #bde4f4; color: #000; text-align: center; padding: 15px; font-weight: 800; font-size: 16px; border-bottom: 1px solid rgba(0,0,0,0.1);">
+        <i class="fa-solid fa-star"></i> <span id="p_text">10% RABATT FÜR NEUKUNDEN</span> | WELCOME10
     </div>
 
-    <header class="header">
-        <div class="logo">WEDER<span>PHARMA</span></div>
-        
-        <div class="flex items-center gap-6">
-            <select id="langBox" class="border p-1 rounded font-bold text-sm">
-                <option value="de">DE</option>
-                <option value="zh">ZH</option>
+    <header class="bg-white p-5 flex justify-between items-center border-b border-slate-200 sticky top-0 z-50">
+        <div class="text-2xl font-black uppercase">WEDER<span class="text-sky-500">PHARMA</span></div>
+        <div class="flex items-center gap-8">
+            <select id="langBox" class="border p-1 rounded font-bold text-sm bg-white cursor-pointer">
+                <option value="de">DEUTSCH</option>
+                <option value="zh">中文 (ZH)</option>
             </select>
             <div class="flex flex-col items-center text-slate-600">
                 <i class="fa-solid fa-cart-shopping text-xl"></i>
-                <span class="text-[10px] font-bold uppercase" data-i18n="h_c">Cart</span>
+                <span class="text-[10px] font-bold uppercase" id="h_cart">Cart</span>
             </div>
         </div>
     </header>
 
-    <div class="main-content">
-        <aside class="sidebar">
-            <div class="menu-box">
-                <a href="#" class="menu-item active" data-i18n="c_a">Alle Produkte</a>
-                <a href="#" class="menu-item">Gastroenterologie</a>
-                <a href="#" class="menu-item">Kardiologie</a>
-                <a href="#" class="menu-item">Neurologie</a>
-                <a href="#" class="menu-item">Vitamine</a>
+    <div class="max-w-7xl mx-auto p-10 flex gap-10">
+        <aside class="w-60 shrink-0 hidden md:block">
+            <div class="bg-white border border-slate-200 rounded-xl overflow-hidden font-bold text-sm text-slate-500">
+                <div class="p-4 bg-slate-50 text-[10px] tracking-widest">KATEGORIEN</div>
+                <a href="#" class="block p-4 bg-sky-50 text-sky-600 border-l-4 border-sky-500">Alle Produkte</a>
+                <a href="#" class="block p-4 border-t border-slate-100 hover:bg-slate-50">Gastroenterologie</a>
+                <a href="#" class="block p-4 border-t border-slate-100 hover:bg-slate-50">Vitamine</a>
             </div>
         </aside>
 
-        <main class="product-grid">
-            <div class="card"><h3 class="font-bold mb-2">Omega-3 Premium</h3><p class="text-sm text-slate-400 mb-6">Schweizer Reinheit.</p><a href="#" class="buy-btn" data-i18n="b">Kaufen</a></div>
-            <div class="card"><h3 class="font-bold mb-2">Weder-Lyte®</h3><p class="text-sm text-slate-400 mb-6">Elektrolyt-Balance.</p><a href="#" class="buy-btn" data-i18n="
+        <main class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            <div class="bg-white p-8 border border-slate-200 rounded-2xl flex flex-col hover:shadow-xl transition-all">
+                <span class="text-[10px] font-bold text-sky-500 uppercase mb-2">Vitamine</span>
+                <h3 class="text-lg font-bold mb-4">Omega-3 Premium</h3>
+                <p class="text-sm text-slate-400 mb-8">Schweizer Reinheit für Ihr Herz.</p>
+                <a href="#" class="mt-auto bg-sky-500 text-white text-center p-4 rounded-xl font-bold hover:bg-sky-600">In den Warenkorb</a>
+            </div>
+            <div class="bg-white p-8 border border-slate-200 rounded-2xl flex flex-col"><h3 class="font-bold mb-4">Weder-Lyte®</h3><p class="text-sm text-slate-400 mb-8">Elektrolyt-Balance.</p><a href="#" class="mt-auto bg-sky-500 text-white text-center p-4 rounded-xl font-bold">In den Warenkorb</a></div>
+            <div class="bg-white p-8 border border-slate-200 rounded-2xl flex flex-col"><h3 class="font-bold mb-4">Swiss-Cardio</h3><p class="text-sm text-slate-400 mb-8">Blutdruck-Management.</p><a href="#" class="mt-auto bg-sky-500 text-white text-center p-4 rounded-xl font-bold">In den Warenkorb</a></div>
+            <div class="bg-white p-8 border border-slate-200 rounded-2xl flex flex-col"><h3 class="font-bold mb-4">Neuro-Tone</h3><p class="text-sm text-slate-400 mb-8">Fokus & Gedächtnis.</p><a href="#" class="mt-auto bg-sky-500 text-white text-center p-4 rounded-xl font-bold">In den Warenkorb</a></div>
+            <div class="bg-white p-8 border border-slate-200 rounded-2xl flex flex-col"><h3 class="font-bold mb-4">Pain-Relief</h3><p class="text-sm text-slate-400 mb-
