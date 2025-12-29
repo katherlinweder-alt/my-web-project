@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEDERPHARMA | Premium Redcare Style</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --rc-red: #e30613;      /* 标志性红色 */
+            --rc-green: #008a5a;    /* 信任绿 */
+            --light-bg: #f6f8f9;    /* 背景灰色 */
+            --ice-blue: #bde4f4;    /* 你的顶栏浅蓝 */
+        }
+        body { font-family: 'Inter', sans-serif; background: white; color: #333; }
+
+        /* 1. 顶层：承诺与语言 */
+        .top-strip {
+            background: var(--ice-blue);
+            padding: 8px 60px;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            color: #000;
+        }
+
+        /* 2. 中间：Logo, 搜索, 账户 */
+        .mid-header {
+            padding: 20px 60px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            border-bottom: 1px solid #eee;
+        }
+        .logo { font-size: 28px; font-weight: 900; color: var(--rc-red); letter-spacing: -1.5px; flex-shrink: 0; }
+        .logo span { color: #1a1a1a; }
+
+        .search-container {
+            flex-grow: 1;
+            position: relative;
+            max-width: 800px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 14px 25px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 15px;
+            outline: none;
+        }
+        .search-input:focus { border-color: var(--rc-red); }
+        .search-btn {
+            position: absolute;
+            right: 0; top: 0; height: 100%;
+            width: 55px;
+            background: #f1f1f1;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        /* 3. 动作组 */
+        .action-group { display: flex; gap: 30px; align-items: center; }
+        .action-box { text-align: center; color: #444; cursor: pointer; position: relative; }
+        .action-box i { font-size: 24px; }
+        .action-box p { font-size: 11px; font-weight: 700; margin-top: 5px; }
+
+        /* 4. 分类导航 */
+        .main-nav {
+            padding: 12px 60px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 35px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .main-nav a:hover { color: var(--rc-red); border-bottom: 2px solid var(--rc-red); padding-bottom: 10px; }
+
+        /* 5. 产品网格 (7个产品) */
+        .product-card {
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 4px;
+            position: relative;
+            transition: 0.2s;
+        }
+        .product-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
+        .rating { color: #ffb400; font-size: 12px; margin: 10px 0; }
+        .price-box { font-size: 24px; font-weight: 900; color: var(--rc-red); margin-top: 15px; }
+        .add-btn {
+            position: absolute; bottom: 20px; right: 20px;
+            background: var(--rc-red); color: white;
+            width: 44px; height: 44px; border-radius: 4px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-strip">
+        <div class="flex gap-6">
+            <span><i class="fa-solid fa-truck"></i> Gratis Versand</span>
+            <span><i class="fa-solid fa-clock"></i> Lieferung in 1-2 Werktagen</span>
+        </div>
+        <div class="flex gap-4 items-center">
+            <select id="langSwitch" class="bg-transparent border-none font-bold cursor-pointer">
+                <option value="de">Deutsch</option>
+                <option value="zh">中文</option>
+            </select>
+            <span>Mein Account</span>
+        </div>
+    </div>
+
+    <header class="mid-header">
+        <div class="logo">WEDER<span>PHARMA</span></div>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Suche nach Marken, Symptomen oder Produkten...">
+            <div class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+        </div>
+        <div class="action-group">
+            <div class="action-box">
+                <i class="fa-regular fa-user"></i>
+                <p id="l-acc">Anmelden</p>
+            </div>
+            <div class="action-box">
+                <i class="fa-regular fa-heart"></i>
+                <p>Wunschliste</p>
+            </div>
+            <div class="action-box">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <p id="l-cart">Warenkorb</p>
+                <span class="absolute -top-1 -right-2 bg-red-600 text-white text-[10px] px-1.5 rounded-full">0</span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <a href="#" class="text-red-600 uppercase">Angebote %</a>
+        <a href="#">Arzneimittel</a>
+        <a href="#">Vitamine</a>
+        <a href="#">Beauty & Pflege</a>
+        <a href="#">Baby & Kind</a>
+        <a href="#">Sport & Diät</a>
+    </nav>
+
+    <main class="max-w-[1440px] mx-auto px-15 py-12">
+        <h2 class="text-2xl font-bold mb-10" id="l-title">Unsere Top-Empfehlungen</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+            
+            <div class="product-card">
+                <div class="h-48 bg-slate-50 rounded mb-4 flex items-center justify-center text-slate-200">IMG</div>
+                <div class="text-[10px] font-bold text-gray-400">WEDER PHARMA</div>
+                <h3 class="text-sm font-semibold mt-2 h-10 overflow-hidden leading-snug">Omega-3 Fischöl 1400mg Swiss Premium</h3>
+                <div class="rating">★★★★★ <span class="text-gray-400 ml-1">(45)</span></div>
+                <div class="text-xs text-gray-500 italic">120 Kapseln</div>
+                <div class="price-box">28.95 <span class="text-sm">CHF</span></div>
+                <div class="add-btn">+</div>
+            </div>
+
+            <div class="product-card">
+                <div class="h-48 bg-slate-50 rounded mb-4 flex items-center justify-center text-slate-200">IMG</div>
+                <div class="text-[10px] font-bold text-gray-400">GASTRO</div>
+                <h3 class="text-sm font-semibold mt-2 h-10">Weder-Lyte Elektrolyt Lösung</h3>
+                <div class="rating">★★★★☆ <span class="text-gray-400 ml-1">(12)</span></div>
+                <div class="price-box">14.50 <span class="text-sm">CHF</span></div>
+                <div class="add-btn">+</div>
+            </div>
+            
+            </div>
+    </main>
+
+    <script>
+        const dict = {
+            zh: { acc: "登录", cart: "购物车", title: "为您推荐" },
+            de: { acc: "Anmelden", cart: "Warenkorb", title: "Unsere Top-Empfehlungen" }
+        };
+        document.getElementById('langSwitch').onchange = (e) => {
+            const l = e.target.value;
+            document.getElementById('l-acc').innerText = dict[l].acc;
+            document.getElementById('l-cart').innerText = dict[l].cart;
+            document.getElementById('l-title').innerText = dict[l].title;
+        };
+    </script>
+</body>
+</html>
