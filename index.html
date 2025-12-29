@@ -3,114 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEDERPHARMA | Premium Apotheke</title>
+    <title>WEDERPHARMA | Swiss Premium Healthcare</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        :root { --ice-blue: #bde4f4; --deep-blue: #0076a3; --dark-navy: #003a5a; --soft-blue: #f8fbfe; }
-        body { font-family: 'Inter', sans-serif; background: var(--soft-blue); color: #333; margin:0; }
-        .header-sticky { background: white; border-bottom: 1px solid var(--ice-blue); position: sticky; top: 0; z-index: 50; }
-        .nav-item { font-size: 13px; font-weight: 700; color: var(--dark-navy); cursor: pointer; padding-bottom: 4px; border-bottom: 2px solid transparent; }
-        .nav-item.active { color: var(--deep-blue); border-bottom-color: var(--deep-blue); }
-        .product-card { background: white; border: 1px solid #e1f0f7; padding: 20px; border-radius: 12px; transition: 0.3s; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,118,163,0.1); }
+        :root { --ice-blue: #bde4f4; --deep-blue: #0076a3; --dark-navy: #003a5a; --bg: #f8fbfe; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: #333; margin:0; }
+        .sticky-nav { background: white; border-bottom: 1px solid var(--ice-blue); position: sticky; top: 0; z-index: 50; }
+        .nav-link { font-size: 13px; font-weight: 700; color: var(--dark-navy); cursor: pointer; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+        .nav-link.active { color: var(--deep-blue); border-bottom-color: var(--deep-blue); }
+        .p-card { background: white; border: 1px solid #e1f0f7; padding: 20px; border-radius: 12px; transition: 0.3s; cursor: pointer; display: flex; flex-direction: column; height: 100%; }
+        .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,118,163,0.1); }
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,58,90,0.6); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
-        .modal-content { background: white; padding: 30px; border-radius: 20px; max-width: 700px; width: 95%; position: relative; max-height: 90vh; overflow-y: auto; }
-        .cart-badge { background: #ff3b30; color: white; font-size: 10px; padding: 2px 6px; border-radius: 10px; position: absolute; top: -5px; right: -10px; }
-        footer { background: white; border-top: 1px solid var(--ice-blue); padding: 60px 20px; margin-top: 60px; }
+        .modal-box { background: white; padding: 30px; border-radius: 20px; max-width: 700px; width: 95%; position: relative; }
+        .cart-dot { background: #ff3b30; color: white; font-size: 10px; padding: 2px 6px; border-radius: 10px; position: absolute; top: -5px; right: -10px; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="bg-[#bde4f4] px-4 md:px-[60px] py-2 text-[11px] font-bold text-[#003a5a] flex justify-between">
-        <span><i class="fa-solid fa-truck-fast"></i> GRATIS VERSAND AB 30 CHF</span>
-        <select id="langSwitch" class="bg-transparent border-none cursor-pointer outline-none font-bold text-blue-900"><option value="de">DEUTSCH</option><option value="zh">中文 (ZH)</option></select>
+    <div class="bg-[#bde4f4] px-4 md:px-[60px] py-2 text-[11px] font-bold text-[#003a5a] flex justify-between items-center">
+        <span><i class="fa-solid fa-truck-fast"></i> SWISS QUALITY DELIVERY</span>
+        <select id="langSwitch" class="bg-transparent border-none cursor-pointer outline-none font-bold text-blue-900">
+            <option value="de">DEUTSCH</option>
+            <option value="zh">中文 (ZH)</option>
+        </select>
     </div>
 
-    <div class="header-sticky">
-        <header class="px-4 md:px-[60px] py-4 flex items-center justify-between gap-4 md:gap-10">
+    <div class="sticky-nav">
+        <header class="px-4 md:px-[60px] py-4 flex items-center justify-between gap-4">
             <div class="text-2xl font-black text-[#0076a3] tracking-tighter cursor-pointer" onclick="goHome()">WEDER<span class="text-[#003a5a]">PHARMA</span></div>
-            <div class="flex-grow max-w-2xl"><input type="text" id="searchInput" class="w-full px-5 py-2 rounded-full border-2 border-[#f0f8ff] outline-none focus:border-[#0076a3]" placeholder="Produkte suchen..."></div>
-            <div class="flex gap-5 text-[#003a5a] items-center">
-                <div class="text-center relative cursor-pointer"><i class="fa-solid fa-cart-shopping text-xl"></i><span id="cartCount" class="cart-badge" style="display:none">0</span></div>
+            <div class="flex-grow max-w-xl"><input type="text" id="searchInput" class="w-full px-5 py-2 rounded-full border-2 border-[#f0f8ff] outline-none focus:border-[#0076a3]" placeholder="Suche..."></div>
+            <div class="relative cursor-pointer" onclick="alert('Shopping Cart')">
+                <i class="fa-solid fa-cart-shopping text-xl text-[#003a5a]"></i>
+                <span id="cartCount" class="cart-dot" style="display:none">0</span>
             </div>
         </header>
-        <nav class="px-4 md:px-[60px] pb-3 flex gap-6 overflow-x-auto whitespace-nowrap">
-            <div id="nav-all" class="nav-item active" onclick="filterCat('all', this)">Alle</div>
-            <div class="nav-item" onclick="filterCat('Medikamente', this)">Medikamente</div>
-            <div class="nav-item" onclick="filterCat('Vitamine', this)">Vitamine</div>
-            <div class="nav-item" onclick="filterCat('Beauty', this)">Beauty</div>
+        <nav class="px-4 md:px-[60px] pb-3 flex gap-6 overflow-x-auto">
+            <div id="nav-all" class="nav-link active" onclick="filterCat('all', this)">Alle</div>
+            <div class="nav-link" onclick="filterCat('Medikamente', this)">Medikamente</div>
+            <div class="nav-link" onclick="filterCat('Vitamine', this)">Vitamine</div>
+            <div class="nav-link" onclick="filterCat('Beauty', this)">Beauty</div>
         </nav>
     </div>
 
     <div id="detailModal" class="modal" onclick="closeModal()">
-        <div class="modal-content" onclick="event.stopPropagation()"><div id="modalBody"></div></div>
+        <div class="modal-box" onclick="event.stopPropagation()"><div id="modalBody"></div></div>
     </div>
 
     <main class="max-w-[1440px] mx-auto px-4 md:px-[60px] py-10">
         <h2 id="sectionTitle" class="text-2xl font-black mb-8 text-[#003a5a]">Bestseller</h2>
-        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"></div>
+        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            </div>
 
-        <div class="mt-24 border-t border-blue-100 pt-16">
-            <h2 id="expertTitle" class="text-2xl font-black mb-10 text-[#003a5a]">Expertenrat & Gesundheit</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-                <div class="bg-white p-6 rounded-2xl border border-blue-50 shadow-sm">
-                    <i class="fa-solid fa-microscope text-[#0076a3] text-3xl mb-4"></i>
-                    <h4 class="font-bold text-[#003a5a] mb-2" id="exp-1">Immunsystem</h4>
-                    <p class="text-sm text-gray-500" id="exp-1-sub">Vitamine für den Winter.</p>
+        <section class="mt-24 border-t border-blue-100 pt-16">
+            <h2 id="expertTitle" class="text-2xl font-black mb-10 text-[#003a5a]">Expertenrat</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-blue-50">
+                    <i class="fa-solid fa-microscope text-[#0076a3] text-2xl mb-4"></i>
+                    <h4 class="font-bold text-[#003a5a] mb-2" id="e1-t">Immunsystem</h4>
+                    <p class="text-sm text-gray-500" id="e1-s">Vitamine für den Winter.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-blue-50 shadow-sm">
-                    <i class="fa-solid fa-leaf text-[#0076a3] text-3xl mb-4"></i>
-                    <h4 class="font-bold text-[#003a5a] mb-2" id="exp-2">Hautpflege</h4>
-                    <p class="text-sm text-gray-500" id="exp-2-sub">Natürliche Inhaltsstoffe.</p>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-blue-50">
+                    <i class="fa-solid fa-leaf text-[#0076a3] text-2xl mb-4"></i>
+                    <h4 class="font-bold text-[#003a5a] mb-2" id="e2-t">Hautpflege</h4>
+                    <p class="text-sm text-gray-500" id="e2-s">Natürliche Beauty-Tipps.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-blue-50 shadow-sm">
-                    <i class="fa-solid fa-truck text-[#0076a3] text-3xl mb-4"></i>
-                    <h4 class="font-bold text-[#003a5a] mb-2" id="exp-3">Versand</h4>
-                    <p class="text-sm text-gray-500" id="exp-3-sub">Diskrete Lieferung.</p>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-blue-50">
+                    <i class="fa-solid fa-shield-halved text-[#0076a3] text-2xl mb-4"></i>
+                    <h4 class="font-bold text-[#003a5a] mb-2" id="e3-t">Sicherheit</h4>
+                    <p class="text-sm text-gray-500" id="e3-s">Geprüfte Schweizer Qualität.</p>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 
-    <footer>
+    <footer class="bg-white border-t border-[#bde4f4] py-12 px-4 md:px-[60px]">
         <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div><div class="text-xl font-black text-[#0076a3] mb-4">WEDERPHARMA</div><p class="text-gray-500 text-sm">Zürich, Schweiz.</p></div>
-            <div><h4 class="font-bold text-[#003a5a] mb-4" id="f-contact">KONTAKT</h4><p class="text-gray-500 text-sm">support@wederpharma.ch</p></div>
-            <div><h4 class="font-bold text-[#003a5a] mb-4" id="f-pay">ZAHLUNG</h4><div class="flex gap-4 text-2xl text-gray-300"><i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-paypal"></i></div></div>
+            <div><div class="text-xl font-black text-[#0076a3] mb-4">WEDERPHARMA</div><p class="text-gray-400 text-sm">Zürich, Schweiz.</p></div>
+            <div><h4 class="font-bold text-[#003a5a] mb-4" id="f-c">KONTAKT</h4><p class="text-gray-400 text-sm">support@wederpharma.ch</p></div>
+            <div><h4 class="font-bold text-[#003a5a] mb-4" id="f-p">ZAHLUNG</h4><div class="flex gap-4 text-2xl text-gray-200"><i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-paypal"></i></div></div>
         </div>
     </footer>
 
     <script>
         let cart = 0;
         const products = [
-            { id:1, cat:'Vitamine', de:"Omega-3 1400mg Pure", zh:"深海鱼油 1400mg", price:"28.95", brand:"WEDER PREMIUM", img:"http://googleusercontent.com/image_collection/image_retrieval/4020337774286386754_0", desc:"Hochreines Omega-3.", usage:"1 Kapsel täglich.", ingredients:"Fischöl." },
-            { id:2, cat:'Medikamente', de:"Magnesium 400 Forte", zh:"高浓度镁片 400", price:"19.50", brand:"SANDOZ", img:"http://googleusercontent.com/image_collection/image_retrieval/7777956848299349303_0", desc:"Für Muskeln.", usage:"1 Stick täglich.", ingredients:"Magnesium." },
-            { id:3, cat:'Beauty', de:"La Roche-Posay Effaclar", zh:"理肤泉 清痘精华", price:"24.20", brand:"LA ROCHE-POSAY", img:"http://googleusercontent.com/image_collection/image_retrieval/9554631290270592904_0", desc:"Hautpflege.", usage:"Zweimal täglich.", ingredients:"Salicylsäure." },
-            { id:4, cat:'Vitamine', de:"Vitamin D3 K2 Tropfen", zh:"维他命 D3 K2 滴剂", price:"32.00", brand:"SWISS DEFENCE", img:"http://googleusercontent.com/image_collection/image_retrieval/14036632179103918853_0", desc:"Knochenstärkung.", usage:"1 Tropfen täglich.", ingredients:"D3/K2." },
-            { id:5, cat:'Medikamente', de:"Voltaren Schmerzgel", zh:"扶他林 止痛膏", price:"15.80", brand:"VOLTAREN", img:"http://googleusercontent.com/image_collection/image_retrieval/6273907050997022979_0", desc:"Gegen Schmerzen.", usage:"Lokal auftragen.", ingredients:"Diclofenac." }
+            { id:1, cat:'Vitamine', de:"Omega-3 1400mg Pure", zh:"深海鱼油 1400mg", price:"28.95", brand:"WEDER PREMIUM", img:"http://googleusercontent.com/image_collection/image_retrieval/4020337774286386754_0", desc:"Hochreines Omega-3." },
+            { id:2, cat:'Medikamente', de:"Magnesium 400 Forte", zh:"高浓度镁片 400", price:"19.50", brand:"SANDOZ", img:"http://googleusercontent.com/image_collection/image_retrieval/7777956848299349303_0", desc:"Für die Muskeln." },
+            { id:3, cat:'Beauty', de:"La Roche-Posay Effaclar", zh:"理肤泉 清痘精华", price:"24.20", brand:"LA ROCHE-POSAY", img:"http://googleusercontent.com/image_collection/image_retrieval/9554631290270592904_0", desc:"Hautpflege." },
+            { id:4, cat:'Vitamine', de:"Vitamin D3 K2 Tropfen", zh:"维他命 D3 K2 滴剂", price:"32.00", brand:"SWISS DEFENCE", img:"http://googleusercontent.com/image_collection/image_retrieval/14036632179103918853_0", desc:"Knochenschutz." },
+            { id:5, cat:'Medikamente', de:"Voltaren Schmerzgel", zh:"扶他林 止痛膏", price:"15.80", brand:"VOLTAREN", img:"http://googleusercontent.com/image_collection/image_retrieval/6273907050997022979_0", desc:"Gegen Schmerzen." }
         ];
 
         const dict = {
-            zh: { search: "搜索产品...", bestseller: "畅销推荐", expert: "专家建议与健康", exp1: "免疫系统", exp1s: "冬日必备维他命", exp2: "皮肤护理", exp2s: "天然护肤成分", exp3: "快速配送", exp3s: "全瑞士私人送货", contact: "联系我们", pay: "支付方式" },
-            de: { search: "Produkte suchen...", bestseller: "Bestseller", expert: "Expertenrat & Gesundheit", exp1: "Immunsystem", exp1s: "Vitamine für den Winter.", exp2: "Hautpflege", exp2s: "Natürliche Inhaltsstoffe.", exp3: "Versand", exp3s: "Diskrete Lieferung.", contact: "KONTAKT", pay: "ZAHLUNG" }
+            zh: { search: "搜索...", best: "畅销推荐", exp: "专家建议", e1t: "免疫系统", e1s: "冬日维他命", e2t: "皮肤护理", e2s: "天然成分", e3t: "安全保障", e3s: "瑞士品质", contact: "联系我们", pay: "支付方式" },
+            de: { search: "Suche...", best: "Bestseller", exp: "Expertenrat", e1t: "Immunsystem", e1s: "Vitamine für den Winter.", e2t: "Hautpflege", e2s: "Natürliche Beauty-Tipps.", e3t: "Sicherheit", e3s: "Geprüfte Qualität", contact: "KONTAKT", pay: "ZAHLUNG" }
         };
 
         function render(items) {
             const lang = document.getElementById('langSwitch').value;
             document.getElementById('searchInput').placeholder = dict[lang].search;
-            document.getElementById('sectionTitle').innerText = dict[lang].bestseller;
-            document.getElementById('expertTitle').innerText = dict[lang].expert;
-            document.getElementById('exp-1').innerText = dict[lang].exp1;
-            document.getElementById('exp-1-sub').innerText = dict[lang].exp1s;
-            document.getElementById('exp-2').innerText = dict[lang].exp2;
-            document.getElementById('exp-2-sub').innerText = dict[lang].exp2s;
-            document.getElementById('exp-3').innerText = dict[lang].exp3;
-            document.getElementById('exp-3-sub').innerText = dict[lang].exp3s;
-            document.getElementById('f-contact').innerText = dict[lang].contact;
-            document.getElementById('f-pay').innerText = dict[lang].pay;
+            document.getElementById('sectionTitle').innerText = dict[lang].best;
+            document.getElementById('expertTitle').innerText = dict[lang].exp;
+            document.getElementById('e1-t').innerText = dict[lang].e1t;
+            document.getElementById('e1-s').innerText = dict[lang].e1s;
+            document.getElementById('e2-t').innerText = dict[lang].e2t;
+            document.getElementById('e2-s').innerText = dict[lang].e2s;
+            document.getElementById('e3-t').innerText = dict[lang].e3t;
+            document.getElementById('e3-s').innerText = dict[lang].e3s;
+            document.getElementById('f-c').innerText = dict[lang].contact;
+            document.getElementById('f-p').innerText = dict[lang].pay;
 
             document.getElementById('productGrid').innerHTML = items.map(p => `
-                <div class="product-card" onclick="openModal(${p.id})">
+                <div class="p-card" onclick="openModal(${p.id})">
                     <img src="${p.img}" class="h-32 md:h-40 w-full object-contain mb-4">
                     <div class="text-[9px] font-bold text-blue-400 uppercase">${p.brand}</div>
                     <h3 class="text-xs md:text-sm font-bold text-[#003a5a] mb-4">${p[lang]}</h3>
@@ -122,11 +126,8 @@
         }
 
         function updateCart(n) { cart += n; const b = document.getElementById('cartCount'); b.innerText = cart; b.style.display = 'block'; }
-        
-        function goHome() { 
-            document.getElementById('searchInput').value = ""; 
-            filterCat('all', document.getElementById('nav-all')); 
-        }
+        function goHome() { document.getElementById('searchInput').value = ""; filterCat('all', document.getElementById('nav-all')); }
+        function closeModal() { document.getElementById('detailModal').style.display = 'none'; }
 
         function openModal(id) {
             const p = products.find(x => x.id === id);
@@ -134,10 +135,10 @@
             document.getElementById('modalBody').innerHTML = `
                 <div class="flex flex-col md:flex-row gap-8">
                     <img src="${p.img}" class="w-full md:w-1/2 object-contain h-64">
-                    <div class="flex-grow">
+                    <div>
                         <h2 class="text-2xl font-black text-[#003a5a]">${p[lang]}</h2>
                         <p class="text-blue-500 mb-6">${p.brand}</p>
-                        <p class="text-sm mb-4">${p.desc}</p>
+                        <p class="text-sm mb-8">${p.desc}</p>
                         <p class="text-3xl font-black text-[#0076a3] mb-8">${p.price} CHF</p>
                         <button onclick="updateCart(1);closeModal()" class="w-full bg-[#0076a3] text-white py-4 rounded-xl font-bold">In den Warenkorb</button>
                     </div>
@@ -145,15 +146,13 @@
             document.getElementById('detailModal').style.display = 'flex';
         }
 
-        function closeModal() { document.getElementById('detailModal').style.display = 'none'; }
-        
         document.getElementById('searchInput').oninput = (e) => {
             const val = e.target.value.toLowerCase();
             render(products.filter(p => p.de.toLowerCase().includes(val) || p.zh.toLowerCase().includes(val)));
         };
 
         function filterCat(cat, el) {
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(i => i.classList.remove('active'));
             el.classList.add('active');
             render(cat === 'all' ? products : products.filter(p => p.cat === cat));
         }
