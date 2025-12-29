@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEDERPHARMA | Produkte</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 强制 Arial 字体，模拟 Axapharm 的工业感 */
+        body { 
+            font-family: Arial, Helvetica, sans-serif; 
+            background-color: #ffffff; 
+            color: #333333;
+            font-size: 14px;
+        }
+
+        /* 侧边栏样式 */
+        .sidebar-link {
+            display: block;
+            padding: 10px 15px;
+            border-bottom: 1px solid #eeeeee;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666666;
+            transition: all 0.2s;
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            background-color: #f8f8f8;
+            color: #0056b3;
+            border-left: 3px solid #0056b3;
+        }
+
+        /* 产品卡片：扁平化、紧凑 */
+        .product-item {
+            border: 1px solid #e5e5e5;
+            padding: 20px;
+            transition: shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 220px;
+        }
+        .product-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-color: #cccccc;
+        }
+
+        .category-tag {
+            font-size: 10px;
+            font-weight: bold;
+            color: #0056b3;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: #666666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        /* 顶部导航 */
+        .top-nav {
+            border-bottom: 4px solid #0056b3;
+            padding: 20px 40px;
+        }
+
+        .btn-detail {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #0056b3;
+            border: 1px solid #0056b3;
+            padding: 6px 12px;
+            width: fit-content;
+        }
+        .btn-detail:hover {
+            background-color: #0056b3;
+            color: #ffffff;
+        }
+
+        /* 隐藏滚动条但保留功能 */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #dddddd; }
+    </style>
+</head>
+<body>
+
+    <header class="top-nav flex justify-between items-center bg-white sticky top-0 z-50 shadow-sm">
+        <div class="text-2xl font-black tracking-tighter uppercase">
+            WEDER<span class="text-blue-700">PHARMA</span>
+        </div>
+        <nav class="hidden md:flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
+            <a href="#" class="hover:text-blue-700">Unternehmen</a>
+            <a href="#" class="text-blue-700">Produkte</a>
+            <a href="#" class="hover:text-blue-700">Kontakt</a>
+        </nav>
+    </header>
+
+    <main class="max-w-[1400px] mx-auto flex flex-col md:flex-row py-10 px-6">
+        
+        <aside class="md:w-64 flex-shrink-0 mb-10 md:mb-0">
+            <h3 class="font-bold text-gray-900 mb-6 px-4 uppercase text-xs tracking-widest border-b pb-2">Kategorien</h3>
+            <div class="border-t border-l border-r border-gray-100">
+                <a href="#" class="sidebar-link active">Alle Produkte</a>
+                <a href="#" class="sidebar-link">Gastroenterologie</a>
+                <a href="#" class="sidebar-link">Kardiologie</a>
+                <a href="#" class="sidebar-link">Neurologie</a>
+                <a href="#" class="sidebar-link">Schmerztherapie</a>
+                <a href="#" class="sidebar-link">Vitamine / Mineralien</a>
+                <a href="#" class="sidebar-link">ZNS / Schlaf</a>
+            </div>
+            
+            <div class="mt-10 px-4 bg-gray-50 py-6">
+                <p class="text-[11px] font-bold uppercase mb-2 text-gray-400">Suche</p>
+                <input type="text" placeholder="Produkt suchen..." class="w-full p-2 border border-gray-300 text-xs focus:outline-none focus:border-blue-700">
+            </div>
+        </aside>
+
+        <section class="flex-grow md:pl-12">
+            
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-black mb-2">Produktkatalog</h1>
+                <p class="text-gray-500 text-sm">Übersicht über unsere pharmazeutischen Lösungen und Präparate.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="product-item">
+                    <div>
+                        <div class="category-tag">Gastroenterologie</div>
+                        <h2 class="product-name">Weder-Lyte®</h2>
+                        <p class="product-desc">Elektrolytkonzentrat zur Herstellung einer Infusionslösung bei Dehydratation.</p>
+                    </div>
+                    <a href="#" class="btn-detail">Details anzeigen</a>
+                </div>
+
+                <div class="product-item">
+                    <div>
+                        <div class="category-tag">Kardiologie</div>
+                        <h2 class="product-name">Swiss-Cardio 10mg</h2>
+                        <p class="product-desc">Filmtabletten zur Behandlung von Bluthochdruck und koronaren Herzkrankheiten.</p>
+                    </div>
+                    <a href="#" class="btn-detail">Details anzeigen</a>
+                </div>
+
+                <div class="product-item">
+                    <div>
+                        <div class="category-tag">Neurologie</div>
+                        <h2 class="product-name">Neuro-Tone Pro</h2>
+                        <p class="product-desc">Wirkstoffkombination zur Unterstützung der kognitiven Funktion bei Erschöpfung.</p>
+                    </div>
+                    <a href="#" class="btn-detail">Details anzeigen</a>
+                </div>
+
+                <div class="product-item">
+                    <div>
+                        <div class="category-tag">ZNS</div>
+                        <h2 class="product-name">Somna-Weder®</h2>
+                        <p class="product-desc">Präparat zur Kurzzeitbehandlung von Ein- und Durchschlafstörungen.</p>
+                    </div>
+                    <a href="#" class="btn-detail">Details anzeigen</a>
+                </div>
+
+                <div class="product-item">
+                    <div>
+                        <div class="category-tag">Schmerz</div>
+                        <h2 class="product-name">Weder-Dol 500mg</h2>
+                        <p class="product-desc">Analgetikum und Antipyretikum bei leichten bis mäßig starken Schmerzen.</p>
+                    </div>
+                    <a href="#" class="btn-detail">Details anzeigen</a>
+                </div>
+
+                <div class="product-item">
+                    <div>
+                        <div class="category-tag">Vitamine</div>
+                        <h2 class="product-name">Vita-Weder C Plus</h2>
+                        <p class="product-desc">Hochdosiertes Vitamin C Präparat zur Stärkung der Abwehrkräfte.</p>
+                    </div>
+                    <a href="#" class="btn-detail">Details anzeigen</a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-20 border-t border-gray-200 py-10 px-10 bg-gray-50 text-center">
+        <p class="text-[10px] text-gray-400 uppercase tracking-widest">© 2025 Wederpharma Biotech AG | Swissmedic zertifiziert</p>
+    </footer>
+
+</body>
